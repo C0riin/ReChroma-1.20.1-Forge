@@ -44,7 +44,7 @@ public class ReChroma
     {
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
-
+        // git testing
     }
 
     // Add the example block item to the building blocks tab
