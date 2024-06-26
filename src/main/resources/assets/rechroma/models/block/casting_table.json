@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "rechroma:block/casting_table/casting_table_down",
+    "east": "rechroma:block/casting_table/casting_table_side",
+    "north": "rechroma:block/casting_table/casting_table_side",
+    "south": "rechroma:block/casting_table/casting_table_side",
+    "up": "rechroma:block/casting_table/casting_table_up",
+    "west": "rechroma:block/casting_table/casting_table_side",
+    "particle": "rechroma:block/casting_table/casting_table_side"
+  }
+}

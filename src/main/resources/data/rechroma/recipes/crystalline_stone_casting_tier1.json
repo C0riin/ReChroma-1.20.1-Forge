@@ -1,0 +1,18 @@
+{
+  "type": "rechroma:casting_tier_1",
+  "ingredients": [
+    {"item": "minecraft:coal"},
+    {"item": "minecraft:empty"},
+    {"item": "minecraft:empty"},
+    {"item": "minecraft:empty"},
+    {"item": "minecraft:empty"},
+    {"item": "minecraft:empty"},
+    {"item": "minecraft:empty"},
+    {"item": "minecraft:empty"},
+    {"item": "minecraft:empty"}
+  ],
+  "output": {
+    "count": 7,
+    "item": "minecraft:diamond"
+  }
+}

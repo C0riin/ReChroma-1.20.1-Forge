@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rechroma:block/crystalline_stone_variants/crystalline_stone_default"
+  }
+}

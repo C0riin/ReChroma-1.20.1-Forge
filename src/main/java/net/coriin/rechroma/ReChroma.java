@@ -1,20 +1,29 @@
 package net.coriin.rechroma;
 
 import com.mojang.logging.LogUtils;
+import net.coriin.rechroma.block.ModBlocks;
+import net.coriin.rechroma.block.entity.ModBlockEntities;
+import net.coriin.rechroma.recipe.Modrecipes;
+import net.coriin.rechroma.registry.ModCreativeTabs;
+import net.coriin.rechroma.item.ModItems;
+import net.coriin.rechroma.screen.CastingTableScreen;
+import net.coriin.rechroma.screen.ModMenuTypes;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+
+import java.net.CacheRequest;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(ReChroma.MOD_ID)
@@ -30,6 +39,15 @@ public class ReChroma
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        LOGGER.info("registering items for rechroma");
+
+        ModItems.register(modEventBus);
+        ModCreativeTabs.register(modEventBus);
+        ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
+        Modrecipes.register(modEventBus);
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -44,7 +62,6 @@ public class ReChroma
     {
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
-        // git testing
     }
 
     // Add the example block item to the building blocks tab
@@ -71,6 +88,8 @@ public class ReChroma
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
+            MenuScreens.register(ModMenuTypes.CASTING_TABLE_MENU.get(), CastingTableScreen::new);
         }
     }
 }
