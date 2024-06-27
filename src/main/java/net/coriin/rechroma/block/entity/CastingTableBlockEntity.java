@@ -1,13 +1,13 @@
 package net.coriin.rechroma.block.entity;
 
-import net.coriin.rechroma.item.ModItems;
 import net.coriin.rechroma.recipe.CastingTier1Recipe;
 import net.coriin.rechroma.screen.CastingTableMenu;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -17,7 +17,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,7 +29,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Optional;
 
 public class CastingTableBlockEntity extends BlockEntity implements MenuProvider {
@@ -39,7 +37,8 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
 
     private static final int OUTPUT_SLOT = 9;
 
-    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+    //private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+    public final LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.of(() -> itemHandler);
 
     protected final ContainerData data;
     private int progress = 0;
@@ -83,7 +82,7 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
     @Override
     public void onLoad() {
         super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
+        //lazyItemHandler = LazyOptional.of(() -> itemHandler);
     }
 
     @Override
@@ -99,6 +98,21 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
         }
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
+
+
+    @Override public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+    @Override public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
+        load(pkt.getTag());
+    }
+    @Override public CompoundTag getUpdateTag() {
+        CompoundTag tag = new CompoundTag();
+        saveAdditional(tag);
+        return tag;
+    }
+    @Override public void handleUpdateTag(CompoundTag tag) { load(tag); }
+
 
     @Override
     public Component getDisplayName() {
