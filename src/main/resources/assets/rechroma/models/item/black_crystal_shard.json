@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "rechroma:item/black_crystal_shard"
+    "layer0": "rechroma:item/crystal_shards/black_crystal_shard"
   }
 }

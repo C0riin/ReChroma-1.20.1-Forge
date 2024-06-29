@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "rechroma:block/vertical_propulsion_panel/vertical_propulsion_panel_down",
+    "up": "rechroma:block/vertical_propulsion_panel/vertical_propulsion_panel_up",
+    "east": "rechroma:block/vertical_propulsion_panel/vertical_propulsion_panel_side",
+    "north": "rechroma:block/vertical_propulsion_panel/vertical_propulsion_panel_side",
+    "south": "rechroma:block/vertical_propulsion_panel/vertical_propulsion_panel_side",
+    "west": "rechroma:block/vertical_propulsion_panel/vertical_propulsion_panel_side",
+    "particle": "rechroma:block/vertical_propulsion_panel/vertical_propulsion_panel_side"
+  }
+}

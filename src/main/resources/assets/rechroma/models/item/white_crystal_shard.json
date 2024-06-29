@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "rechroma:item/crystal_shards/white_crystal_shard"
+  }
+}

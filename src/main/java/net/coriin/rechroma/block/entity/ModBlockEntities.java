@@ -17,6 +17,13 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("casting_table_be", ()->
                     BlockEntityType.Builder.of(CastingTableBlockEntity::new, ModBlocks.CASTING_TABLE.get()).build(null));
 
+
+
+    public static final RegistryObject<BlockEntityType<VerticalPropulsionPanelBlockEntity>> VERTICAL_PROPULSION_PANEL_BE =
+            BLOCK_ENTITIES.register("vertical_propulsion_panel", ()->
+                    BlockEntityType.Builder.of(VerticalPropulsionPanelBlockEntity::new, ModBlocks.VERTICAL_PROPULSION_PANEL.get()).build(null));
+
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

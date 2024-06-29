@@ -2,6 +2,7 @@ package net.coriin.rechroma.block.custom;
 
 import net.coriin.rechroma.block.entity.CastingTableBlockEntity;
 import net.coriin.rechroma.block.entity.ModBlockEntities;
+import net.coriin.rechroma.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -45,11 +46,15 @@ public class CastingTableBlock extends BaseEntityBlock {
         if(!pLevel.isClientSide()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
             if (blockEntity instanceof CastingTableBlockEntity) {
-                NetworkHooks.openScreen(((ServerPlayer) pPlayer), ((CastingTableBlockEntity) blockEntity), pPos);
-            }
-            else {
-                throw new IllegalStateException("Casting Table Container provider is missing");
-            }
+                if (pPlayer.getItemInHand(pHand).is(ModItems.POWER_MANIPULATOR.get())) {
+
+                    BlockEntity be = pLevel.getBlockEntity(pPos);
+                    if (be instanceof CastingTableBlockEntity) {
+                        ((CastingTableBlockEntity) be).doCrafting = true;
+                    }
+
+                } else { NetworkHooks.openScreen(((ServerPlayer) pPlayer), ((CastingTableBlockEntity) blockEntity), pPos);}
+            } else {throw new IllegalStateException("Casting Table Container provider is missing");}
         }
 
         return InteractionResult.sidedSuccess(pLevel.isClientSide());

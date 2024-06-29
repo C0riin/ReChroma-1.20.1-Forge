@@ -5,7 +5,7 @@
       "item": "minecraft:stone"
     },
     "c": {
-      "item": "rechroma:black_crystal_shard"
+      "tag": "rechroma:crystal_shards"
     }
   },
   "pattern": [

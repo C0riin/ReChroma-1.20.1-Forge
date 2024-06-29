@@ -3,14 +3,14 @@ package net.coriin.rechroma;
 import com.mojang.logging.LogUtils;
 import net.coriin.rechroma.block.ModBlocks;
 import net.coriin.rechroma.block.entity.ModBlockEntities;
+import net.coriin.rechroma.effect.ModEffects;
 import net.coriin.rechroma.recipe.Modrecipes;
-import net.coriin.rechroma.registry.ModCreativeTabs;
+import net.coriin.rechroma.util.ModCreativeTabs;
 import net.coriin.rechroma.item.ModItems;
 import net.coriin.rechroma.screen.CastingTableScreen;
 import net.coriin.rechroma.screen.ModMenuTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -22,8 +22,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-
-import java.net.CacheRequest;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(ReChroma.MOD_ID)
@@ -47,6 +45,8 @@ public class ReChroma
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
         Modrecipes.register(modEventBus);
+        ModEffects.register(modEventBus);
+
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);

@@ -20,7 +20,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import com.google.gson.JsonArray;
 import net.minecraft.util.GsonHelper;
-import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 
@@ -33,15 +32,11 @@ public class CastingTier1Recipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
     private final NonNullList<Ingredient> inputItems;
     private final ItemStack output;
-    private final int width;
-    private final int height;
 
     public CastingTier1Recipe(NonNullList<Ingredient> inputItems, ItemStack output, ResourceLocation id) {
         this.inputItems = inputItems;
         this.output = output;
         this.id = id;
-        this.width = 3;
-        this.height = 3;
     }
 
     @Override

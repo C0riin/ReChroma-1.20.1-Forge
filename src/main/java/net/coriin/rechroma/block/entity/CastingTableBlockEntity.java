@@ -43,6 +43,7 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 20;
+    public boolean doCrafting = false;
 
     public CastingTableBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.CASTING_TABLE_BE.get(), pPos, pBlockState);
@@ -70,6 +71,7 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
             }
         };
     }
+
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
@@ -99,17 +101,19 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
-
     @Override public ClientboundBlockEntityDataPacket getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
+        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::saveWithFullMetadata);
     }
+
+
     @Override public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
         load(pkt.getTag());
     }
     @Override public CompoundTag getUpdateTag() {
-        CompoundTag tag = new CompoundTag();
-        saveAdditional(tag);
-        return tag;
+        //CompoundTag tag = new CompoundTag();
+        //saveAdditional(tag);
+        //return tag;
+        return this.saveWithFullMetadata();
     }
     @Override public void handleUpdateTag(CompoundTag tag) { load(tag); }
 
@@ -137,11 +141,10 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
         progress = pTag.getInt("casting_table.progress");
-
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
-        if(hasRecipe()) {
+        if(hasRecipe() && doCrafting) {
             increaseCraftProgress();
             setChanged(pLevel, pPos, pState);
 
@@ -151,8 +154,8 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
             }
         } else {
             resetProgress();
+            doCrafting = false;
         }
-        //Minecraft.getInstance().player.displayClientMessage(Component.literal(this.itemHandler.getStackInSlot(5).toString()), true);
     }
 
     private void resetProgress() {
