@@ -22,4 +22,5 @@ public class ModEffects {
         MOB_EFFECTS.register(eventBus);
     }
 
+
 }

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "rechroma:block/chroma_collector/chroma_collector_down",
+    "up": "rechroma:block/chroma_collector/chroma_collector_up",
+    "east": "rechroma:block/chroma_collector/chroma_collector_side",
+    "north": "rechroma:block/chroma_collector/chroma_collector_side",
+    "south": "rechroma:block/chroma_collector/chroma_collector_side",
+    "west": "rechroma:block/chroma_collector/chroma_collector_side",
+    "particle": "rechroma:block/chroma_collector/chroma_collector_side"
+  }
+}

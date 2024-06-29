@@ -20,6 +20,7 @@ public class ModCreativeTabs {
             ()-> CreativeModeTab.builder().icon(()-> new ItemStack(ModItems.BLACK_CRYSTAL_SHARD.get())).title(Component.translatable("creativetab.rechroma.main"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.POWER_MANIPULATOR.get());
+                        output.accept(ModItems.LIQUID_CHROMA_BUCKET.get());
 
                         output.accept(ModItems.BLACK_CRYSTAL_SHARD.get());
                         output.accept(ModItems.BLUE_CRYSTAL_SHARD.get());
@@ -61,6 +62,8 @@ public class ModCreativeTabs {
 
                         output.accept(ModBlocks.CASTING_TABLE.get());
                         output.accept(ModBlocks.VERTICAL_PROPULSION_PANEL.get());
+                        output.accept(ModBlocks.LIQUID_CHROMA_COLLECTOR.get());
+
                         output.accept(ModBlocks.CRYSTALLINE_STONE.get());
                     }).build());
 

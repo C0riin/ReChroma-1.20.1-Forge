@@ -2,15 +2,21 @@ package net.coriin.rechroma.block;
 
 import net.coriin.rechroma.ReChroma;
 import net.coriin.rechroma.block.custom.CastingTableBlock;
+import net.coriin.rechroma.block.custom.LiquidChromaCollectorBlock;
 import net.coriin.rechroma.block.custom.VerticalPropulsionPanel;
+import net.coriin.rechroma.fluid.ModFluids;
 import net.coriin.rechroma.item.ModItems;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerBlock;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -26,13 +32,22 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> CASTING_TABLE = registerBlock("casting_table",
             ()-> new CastingTableBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
-
     public static final RegistryObject<Block> VERTICAL_PROPULSION_PANEL = registerBlock("vertical_propulsion_panel",
             ()-> new VerticalPropulsionPanel(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+    public static final RegistryObject<Block> LIQUID_CHROMA_COLLECTOR = registerBlock("liquid_chroma_collector",
+            ()-> new LiquidChromaCollectorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+
 
 
     public static final RegistryObject<Block> CRYSTALLINE_STONE = registerBlock("crystalline_stone",
             ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+
+    public static final RegistryObject<Block> SPECTRUM_FLOWER = registerBlock("spectrum_flower",
+            ()-> new FlowerBlock(()-> MobEffects.NIGHT_VISION , 100, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
+
+
+    public static final RegistryObject<LiquidBlock> LIQUID_CHROMA_BLOCK = BLOCKS.register("liquid_chroma_block",
+            ()-> new LiquidBlock(ModFluids.SOURCE_LIQUID_CHROMA, BlockBehaviour.Properties.copy(Blocks.WATER).noLootTable()));
 
 
     public static final RegistryObject<Block> BLACK_CRYSTAL_RUNE = registerBlock("black_crystal_rune",

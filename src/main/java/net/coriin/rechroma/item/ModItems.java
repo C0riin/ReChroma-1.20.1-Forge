@@ -1,9 +1,12 @@
 package net.coriin.rechroma.item;
 
 import net.coriin.rechroma.ReChroma;
+import net.coriin.rechroma.fluid.ModFluids;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -31,7 +34,12 @@ public class ModItems {
     public static final RegistryObject<Item> YELLOW_CRYSTAL_SHARD = ITEMS.register("yellow_crystal_shard", ()-> new Item((new Item.Properties())));
 
 
-    public static final RegistryObject<Item> POWER_MANIPULATOR = ITEMS.register("power_manipulator", ()-> new Item((new Item.Properties().stacksTo(1))));
+    public static final RegistryObject<Item> POWER_MANIPULATOR = ITEMS.register("power_manipulator",
+            ()-> new Item((new Item.Properties().stacksTo(1))));
+
+
+    public static final RegistryObject<Item> LIQUID_CHROMA_BUCKET = ITEMS.register("liquid_chroma_bucket",
+            ()-> new BucketItem(ModFluids.SOURCE_LIQUID_CHROMA,new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

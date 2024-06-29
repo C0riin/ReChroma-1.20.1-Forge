@@ -6,6 +6,7 @@ import com.google.common.collect.Sets;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
+import com.mojang.logging.LogUtils;
 import net.coriin.rechroma.ReChroma;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
@@ -13,25 +14,25 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.Level;
 import com.google.gson.JsonArray;
 import net.minecraft.util.GsonHelper;
 import org.jetbrains.annotations.Nullable;
-import net.minecraft.world.item.crafting.ShapedRecipe;
+import org.slf4j.Logger;
 
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import static net.minecraft.world.item.crafting.ShapedRecipe.itemStackFromJson;
 
 
 public class CastingTier1Recipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
     private final NonNullList<Ingredient> inputItems;
     private final ItemStack output;
+    private static final Logger LOGGER = LogUtils.getLogger();
 
     public CastingTier1Recipe(NonNullList<Ingredient> inputItems, ItemStack output, ResourceLocation id) {
         this.inputItems = inputItems;
@@ -81,19 +82,28 @@ public class CastingTier1Recipe implements Recipe<SimpleContainer> {
         return Serializer.INSTANCE;
     }
 
-    private static String[] patternFromJson(JsonArray jsonArr) {
-        var astring = new String[jsonArr.size()];
-        for (int i = 0; i < astring.length; ++i) {
-            var s = GsonHelper.convertToString(jsonArr.get(i), "pattern[" + i + "]");
+    static String[] patternFromJson(JsonArray pPatternArray) {
+        String[] astring = new String[pPatternArray.size()];
+        if (astring.length > 3) {
+            throw new JsonSyntaxException("Invalid pattern: too many rows, " + 3 + " is maximum");
+        } else if (astring.length == 0) {
+            throw new JsonSyntaxException("Invalid pattern: empty pattern not allowed");
+        } else {
+            for(int i = 0; i < astring.length; ++i) {
+                String s = GsonHelper.convertToString(pPatternArray.get(i), "pattern[" + i + "]");
+                if (s.length() > 3) {
+                    throw new JsonSyntaxException("Invalid pattern: too many columns, " + 3 + " is maximum");
+                }
 
-            if (i > 0 && astring[0].length() != s.length()) {
-                throw new JsonSyntaxException("Invalid pattern: each row must be the same width");
+                if (i > 0 && astring[0].length() != s.length()) {
+                    throw new JsonSyntaxException("Invalid pattern: each row must be the same width");
+                }
+
+                astring[i] = s;
             }
 
-            astring[i] = s;
+            return astring;
         }
-
-        return astring;
     }
 
     static Map<String, Ingredient> keyFromJsonCasting(JsonObject pKeyEntry) {
@@ -177,7 +187,7 @@ public class CastingTier1Recipe implements Recipe<SimpleContainer> {
         for(int i = 0; i < pPattern.length; ++i) {
             for(int j = 0; j < pPattern[i].length(); ++j) {
                 String s = pPattern[i].substring(j, j + 1);
-                Ingredient ingredient = (Ingredient)pKeys.get(s);
+                Ingredient ingredient = pKeys.get(s);
                 if (ingredient == null) {
                     throw new JsonSyntaxException("Pattern references symbol '" + s + "' but it's not defined in the key");
                 }
@@ -204,41 +214,81 @@ public class CastingTier1Recipe implements Recipe<SimpleContainer> {
         public static final String ID = "castingTier1";
     }
 
+    @VisibleForTesting
+    static String[] shrink(String... pToShrink) {
+        int i = Integer.MAX_VALUE;
+        int j = 0;
+        int k = 0;
+        int l = 0;
+
+        for(int i1 = 0; i1 < pToShrink.length; ++i1) {
+            String s = pToShrink[i1];
+            i = Math.min(i, firstNonSpace(s));
+            int j1 = lastNonSpace(s);
+            j = Math.max(j, j1);
+            if (j1 < 0) {
+                if (k == i1) {
+                    ++k;
+                }
+
+                ++l;
+            } else {
+                l = 0;
+            }
+        }
+
+        if (pToShrink.length == l) {
+            return new String[0];
+        } else {
+            String[] astring = new String[pToShrink.length - l - k];
+
+            for(int k1 = 0; k1 < astring.length; ++k1) {
+                astring[k1] = pToShrink[k1 + k].substring(i, j + 1);
+            }
+
+            return astring;
+        }
+    }
+
+    static Map<String, Ingredient> keyFromJson(JsonObject pKeyEntry) {
+        Map<String, Ingredient> map = Maps.newHashMap();
+
+        for(Map.Entry<String, JsonElement> entry : pKeyEntry.entrySet()) {
+            if (entry.getKey().length() != 1) {
+                throw new JsonSyntaxException("Invalid key entry: '" + (String)entry.getKey() + "' is an invalid symbol (must be 1 character only).");
+            }
+
+            if (" ".equals(entry.getKey())) {
+                throw new JsonSyntaxException("Invalid key entry: ' ' is a reserved symbol.");
+            }
+
+            map.put(entry.getKey(), Ingredient.fromJson(entry.getValue(), false));
+        }
+
+        map.put(" ", Ingredient.EMPTY);
+        return map;
+    }
+
+
     public static class Serializer implements RecipeSerializer<CastingTier1Recipe> {
         public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID = new ResourceLocation(ReChroma.MOD_ID, "casting_tier_1");
 
-        @Override
-        public CastingTier1Recipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
-            /*
-            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
+        public CastingTier1Recipe fromJson(ResourceLocation pRecipeId, JsonObject pJson) {
 
-            JsonArray ingredients = GsonHelper.getAsJsonArray(pSerializedRecipe, "ingredients");
+            Map<String, Ingredient> map = keyFromJson(GsonHelper.getAsJsonObject(pJson, "key"));
+            String[] astring = shrink(patternFromJson(GsonHelper.getAsJsonArray(pJson, "pattern")));
+            int i = astring[0].length();
+            int j = astring.length;
+            NonNullList<Ingredient> nonnulllist = dissolvePattern(astring, map, i, j);
+            ItemStack itemstack = itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "output"));
 
-            NonNullList<Ingredient> inputs = NonNullList.withSize(9, Ingredient.EMPTY);
-
-            for(int i = 0; i < ingredients.size(); i++) {
-                inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
-            }*/
-
-
-
-            var map = keyFromJsonCasting(GsonHelper.getAsJsonObject(pSerializedRecipe, "key"));
-            var pattern = shrinkCasting(CastingTier1Recipe.patternFromJson(GsonHelper.getAsJsonArray(pSerializedRecipe, "pattern")));
-            int width = pattern[0].length();
-            int height = pattern.length;
-            var inputs = dissolvePattern(pattern, map, width, height);
-            var output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
-
-
-
-            return new CastingTier1Recipe(inputs, output, pRecipeId);
-
+            return new CastingTier1Recipe(nonnulllist, itemstack, pRecipeId);
         }
+
 
         @Override
         public @Nullable CastingTier1Recipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
-            //List<Ingredient> inputs = new ArrayList<>(Arrays.asList(null,null,null,null,null,null,null,null,null));
             NonNullList<Ingredient> inputs = NonNullList.withSize(pBuffer.readInt(), Ingredient.EMPTY);
 
             for(int i = 0; i < inputs.size(); i++) {

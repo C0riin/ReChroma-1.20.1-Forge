@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "rechroma:block/vertical_propulsion_panel"
+      "model": "rechroma:block/block_entities/vertical_propulsion_panel"
     }
   }
 }

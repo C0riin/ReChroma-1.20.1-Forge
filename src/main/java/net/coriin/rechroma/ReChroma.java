@@ -4,13 +4,17 @@ import com.mojang.logging.LogUtils;
 import net.coriin.rechroma.block.ModBlocks;
 import net.coriin.rechroma.block.entity.ModBlockEntities;
 import net.coriin.rechroma.effect.ModEffects;
-import net.coriin.rechroma.recipe.Modrecipes;
+import net.coriin.rechroma.fluid.ModFluidTypes;
+import net.coriin.rechroma.fluid.ModFluids;
+import net.coriin.rechroma.recipe.ModRecipes;
 import net.coriin.rechroma.util.ModCreativeTabs;
 import net.coriin.rechroma.item.ModItems;
 import net.coriin.rechroma.screen.CastingTableScreen;
 import net.coriin.rechroma.screen.ModMenuTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -44,9 +48,11 @@ public class ReChroma
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
-        Modrecipes.register(modEventBus);
+        ModRecipes.register(modEventBus);
         ModEffects.register(modEventBus);
 
+        ModFluids.register(modEventBus);
+        ModFluidTypes.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -88,6 +94,9 @@ public class ReChroma
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
+            ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_LIQUID_CHROMA.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_LIQUID_CHROMA.get(), RenderType.translucent());
 
             MenuScreens.register(ModMenuTypes.CASTING_TABLE_MENU.get(), CastingTableScreen::new);
         }

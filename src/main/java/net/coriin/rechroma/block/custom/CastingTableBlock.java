@@ -48,11 +48,7 @@ public class CastingTableBlock extends BaseEntityBlock {
             if (blockEntity instanceof CastingTableBlockEntity) {
                 if (pPlayer.getItemInHand(pHand).is(ModItems.POWER_MANIPULATOR.get())) {
 
-                    BlockEntity be = pLevel.getBlockEntity(pPos);
-                    if (be instanceof CastingTableBlockEntity) {
-                        ((CastingTableBlockEntity) be).doCrafting = true;
-                    }
-
+                    ((CastingTableBlockEntity) blockEntity).doCrafting = true;
                 } else { NetworkHooks.openScreen(((ServerPlayer) pPlayer), ((CastingTableBlockEntity) blockEntity), pPos);}
             } else {throw new IllegalStateException("Casting Table Container provider is missing");}
         }

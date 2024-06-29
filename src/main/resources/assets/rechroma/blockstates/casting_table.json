@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "rechroma:block/casting_table"
+      "model": "rechroma:block/block_entities/casting_table"
     }
   }
 }

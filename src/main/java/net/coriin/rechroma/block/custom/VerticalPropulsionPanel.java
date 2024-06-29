@@ -30,7 +30,7 @@ public class VerticalPropulsionPanel extends BaseEntityBlock {
 
     @Override
     public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
-        BlockEntityType<VerticalPropulsionPanelBlockEntity> blockEntity = ModBlockEntities.VERTICAL_PROPULSION_PANEL_BE.get();
+        //BlockEntityType<VerticalPropulsionPanelBlockEntity> blockEntity = ModBlockEntities.VERTICAL_PROPULSION_PANEL_BE.get();
 
         /* //sth like that for chroma collector
         BlockEntity be = pLevel.getBlockEntity(pPos);

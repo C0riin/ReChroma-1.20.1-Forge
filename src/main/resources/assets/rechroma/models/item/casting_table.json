@@ -1,3 +1,3 @@
 {
-  "parent": "rechroma:block/casting_table"
+  "parent": "rechroma:block/block_entities/casting_table"
 }

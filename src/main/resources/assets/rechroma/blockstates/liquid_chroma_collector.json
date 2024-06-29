@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rechroma:block/block_entities/liquid_chroma_collector"
+    }
+  }
+}
