@@ -1,0 +1,18 @@
+{
+  "type": "rechroma:casting",
+  "isHaveRunes":false,
+  "key": {
+    "S": {
+      "item": "rechroma:crystalline_stone"
+    }
+  },
+  "pattern": [
+    "   ",
+    "SS ",
+    "SS "
+  ],
+  "output": {
+    "count": 4,
+    "item": "rechroma:crystalline_stone_bricks"
+  }
+}

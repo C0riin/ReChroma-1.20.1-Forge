@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "rechroma:block/crystalline_stones/corner",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "rechroma:block/crystalline_stones/corner"
+    },
+    "facing=south": {
+      "model": "rechroma:block/crystalline_stones/corner",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "rechroma:block/crystalline_stones/corner",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "rechroma:block/crystalline_stones/corner"
+    },
+    "facing=down": {
+      "model": "rechroma:block/crystalline_stones/corner"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "type": "rechroma:casting",
+  "isHaveRunes":true,
+  "key": {
+    "p": {
+      "item": "minecraft:iron_pickaxe"
+    },
+    "a": {
+      "item": "minecraft:iron_axe"
+    },
+    "h": {
+      "item": "minecraft:iron_shovel"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "c": {
+      "item": "rechroma:chromic_dust"
+    }
+  },
+  "pattern": [
+    "pah",
+    "csc",
+    "csc"
+  ],
+  "output": {
+    "count": 1,
+    "item": "rechroma:multi_tool"
+  },
+  "runes": [
+    {
+      "colorIndex": 2,
+      "x":2,
+      "y":-1,
+      "z":1
+    },
+    {
+      "colorIndex": 12,
+      "x":1,
+      "y":-1,
+      "z":2
+    }
+  ]
+}

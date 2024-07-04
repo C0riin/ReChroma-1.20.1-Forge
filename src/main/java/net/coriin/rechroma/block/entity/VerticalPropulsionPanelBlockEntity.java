@@ -29,7 +29,7 @@ public class VerticalPropulsionPanelBlockEntity extends BlockEntity {
 
         if(checkStructure(pLevel, pPos)) {
             AABB aabb = AABB.of(new BoundingBox(pPos.getX()-1, pPos.getY()+1, pPos.getZ()-1,
-                    pPos.getX()+1, pPos.getY()+2, pPos.getZ()+1));
+                    pPos.getX()+1, pPos.getY()+1, pPos.getZ()+1));
             entities = pLevel.getEntitiesOfClass(LivingEntity.class, aabb);
             if(!entities.isEmpty()){
                 Ticks++;
@@ -47,14 +47,14 @@ public class VerticalPropulsionPanelBlockEntity extends BlockEntity {
     }
 
     public boolean checkStructure(Level pLevel,BlockPos pPos) {
-        return pLevel.getBlockState(new BlockPos(pPos.getX(), pPos.getY(), pPos.getZ() + 1)).getBlock() == ModBlocks.CRYSTALLINE_STONE.get() &&
-                pLevel.getBlockState(new BlockPos(pPos.getX(), pPos.getY(), pPos.getZ() - 1)).getBlock() == ModBlocks.CRYSTALLINE_STONE.get() &&
-                pLevel.getBlockState(new BlockPos(pPos.getX() + 1, pPos.getY(), pPos.getZ())).getBlock() == ModBlocks.CRYSTALLINE_STONE.get() &&
-                pLevel.getBlockState(new BlockPos(pPos.getX() - 1, pPos.getY(), pPos.getZ())).getBlock() == ModBlocks.CRYSTALLINE_STONE.get() &&
+        return pLevel.getBlockState(new BlockPos(pPos.getX(), pPos.getY(), pPos.getZ() + 1)).getBlock() == ModBlocks.CRYSTALLINE_STONE_GROOVE.get() &&
+                pLevel.getBlockState(new BlockPos(pPos.getX(), pPos.getY(), pPos.getZ() - 1)).getBlock() == ModBlocks.CRYSTALLINE_STONE_GROOVE.get() &&
+                pLevel.getBlockState(new BlockPos(pPos.getX() + 1, pPos.getY(), pPos.getZ())).getBlock() == ModBlocks.CRYSTALLINE_STONE_GROOVE.get() &&
+                pLevel.getBlockState(new BlockPos(pPos.getX() - 1, pPos.getY(), pPos.getZ())).getBlock() == ModBlocks.CRYSTALLINE_STONE_GROOVE.get() &&
 
-                pLevel.getBlockState(new BlockPos(pPos.getX() + 1, pPos.getY(), pPos.getZ() + 1)).getBlock() == ModBlocks.CRYSTALLINE_STONE.get() &&
-                pLevel.getBlockState(new BlockPos(pPos.getX() - 1, pPos.getY(), pPos.getZ() + 1)).getBlock() == ModBlocks.CRYSTALLINE_STONE.get() &&
-                pLevel.getBlockState(new BlockPos(pPos.getX() + 1, pPos.getY(), pPos.getZ() - 1)).getBlock() == ModBlocks.CRYSTALLINE_STONE.get() &&
-                pLevel.getBlockState(new BlockPos(pPos.getX() - 1, pPos.getY(), pPos.getZ() - 1)).getBlock() == ModBlocks.CRYSTALLINE_STONE.get();
+                pLevel.getBlockState(new BlockPos(pPos.getX() + 1, pPos.getY(), pPos.getZ() + 1)).getBlock() == ModBlocks.CRYSTALLINE_STONE_CORNER.get() &&
+                pLevel.getBlockState(new BlockPos(pPos.getX() - 1, pPos.getY(), pPos.getZ() + 1)).getBlock() == ModBlocks.CRYSTALLINE_STONE_CORNER.get() &&
+                pLevel.getBlockState(new BlockPos(pPos.getX() + 1, pPos.getY(), pPos.getZ() - 1)).getBlock() == ModBlocks.CRYSTALLINE_STONE_CORNER.get() &&
+                pLevel.getBlockState(new BlockPos(pPos.getX() - 1, pPos.getY(), pPos.getZ() - 1)).getBlock() == ModBlocks.CRYSTALLINE_STONE_CORNER.get();
     }
 }

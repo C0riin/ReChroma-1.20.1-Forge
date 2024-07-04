@@ -1,0 +1,53 @@
+{
+  "type": "rechroma:casting",
+  "isHaveRunes":true,
+  "key": {
+    "S": {
+      "item": "minecraft:stone"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "s": {
+      "item": "minecraft:smooth_stone_slab"
+    },
+    "l": {
+      "item": "minecraft:lapis_lazuli"
+    }
+  },
+  "pattern": [
+    "i i",
+    "sls",
+    "SSS"
+  ],
+  "output": {
+    "count": 1,
+    "item": "rechroma:casting_stand"
+  },
+  "runes": [
+    {
+      "colorIndex": 12,
+      "x":2,
+      "y":0,
+      "z":-3
+    },
+    {
+      "colorIndex": 12,
+      "x":-2,
+      "y":0,
+      "z":3
+    },
+    {
+      "colorIndex": 0,
+      "x":-2,
+      "y":0,
+      "z":-3
+    },
+    {
+      "colorIndex": 0,
+      "x":2,
+      "y":0,
+      "z":3
+    }
+  ]
+}

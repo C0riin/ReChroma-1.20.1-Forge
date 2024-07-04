@@ -35,6 +35,16 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.YELLOW_CRYSTAL_RUNE.get());
 
         this.dropSelf(ModBlocks.CRYSTALLINE_STONE.get());
+        this.dropSelf(ModBlocks.CRYSTALLINE_STONE_CORNER.get());
+        this.dropSelf(ModBlocks.CRYSTALLINE_STONE_GROOVE.get());
+        this.dropSelf(ModBlocks.CRYSTALLINE_STONE_BEAM.get());
+        this.dropSelf(ModBlocks.CRYSTALLINE_STONE_BRICK.get());
+        this.dropSelf(ModBlocks.CRYSTALLINE_STONE_COLUMN.get());
+        this.dropSelf(ModBlocks.ENGRAVED_CRYSTALLINE_STONE.get());
+        this.dropSelf(ModBlocks.EMBOSSED_CRYSTALLINE_STONE.get());
+
+        this.dropSelf(ModBlocks.SPECTRUM_FLOWER.get());
+
         this.dropSelf(ModBlocks.CASTING_TABLE.get());
         this.dropSelf(ModBlocks.LIQUID_CHROMA_COLLECTOR.get());
         this.dropSelf(ModBlocks.VERTICAL_PROPULSION_PANEL.get());

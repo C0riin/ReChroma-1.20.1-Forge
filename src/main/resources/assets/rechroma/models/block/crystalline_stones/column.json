@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "rechroma:block/crystalline_stone_variants/crystalline_stone_default",
+    "up": "rechroma:block/crystalline_stone_variants/crystalline_stone_default",
+
+    "east": "rechroma:block/crystalline_stone_variants/crystalline_stone_column",
+    "north": "rechroma:block/crystalline_stone_variants/crystalline_stone_column",
+    "south": "rechroma:block/crystalline_stone_variants/crystalline_stone_column",
+    "west": "rechroma:block/crystalline_stone_variants/crystalline_stone_column",
+
+    "particle": "rechroma:block/crystalline_stone_variants/crystalline_stone_beam"
+  }
+}

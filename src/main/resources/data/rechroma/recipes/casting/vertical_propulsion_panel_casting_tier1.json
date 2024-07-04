@@ -1,0 +1,27 @@
+{
+  "type": "rechroma:casting",
+  "isHaveRunes":false,
+  "key": {
+    "r": {
+      "item": "minecraft:redstone"
+    },
+    "a": {
+      "item": "rechroma:aura_dust"
+    },
+    "s": {
+      "item": "rechroma:engraved_crystalline_stone"
+    },
+    "c": {
+      "item": "rechroma:lime_crystal_shard"
+    }
+  },
+  "pattern": [
+    "cac",
+    "asa",
+    "rar"
+  ],
+  "output": {
+    "count": 1,
+    "item": "rechroma:vertical_propulsion_panel"
+  }
+}

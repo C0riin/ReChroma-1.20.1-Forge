@@ -1,0 +1,18 @@
+{
+  "type": "rechroma:casting",
+  "isHaveRunes":false,
+  "key": {
+    "S": {
+      "item": "rechroma:crystalline_stone"
+    }
+  },
+  "pattern": [
+    "   ",
+    "SSS",
+    "   "
+  ],
+  "output": {
+    "count": 3,
+    "item": "rechroma:crystalline_stone_groove"
+  }
+}

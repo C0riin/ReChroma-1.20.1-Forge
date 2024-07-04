@@ -1,0 +1,27 @@
+{
+  "type": "rechroma:casting",
+  "isHaveRunes":false,
+  "key": {
+    "e": {
+      "item": "minecraft:ender_eye"
+    },
+    "G": {
+      "item": "minecraft:glowstone"
+    },
+    "s": {
+      "item": "minecraft:stone"
+    },
+    "c": {
+      "tag": "rechroma:crystal_shards"
+    }
+  },
+  "pattern": [
+    "cec",
+    "cGc",
+    "sss"
+  ],
+  "output": {
+    "count": 1,
+    "item": "rechroma:liquid_chroma_collector"
+  }
+}

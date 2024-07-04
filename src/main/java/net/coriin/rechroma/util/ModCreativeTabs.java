@@ -21,6 +21,11 @@ public class ModCreativeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.POWER_MANIPULATOR.get());
                         output.accept(ModItems.LIQUID_CHROMA_BUCKET.get());
+                        output.accept(ModItems.AURA_DUST.get());
+                        output.accept(ModItems.CHROMIC_DUST.get());
+
+                        output.accept(ModItems.MULTI_TOOL.get());
+                        output.accept(ModItems.ORE_HARVESTER.get());
 
                         output.accept(ModItems.BLACK_CRYSTAL_SHARD.get());
                         output.accept(ModItems.BLUE_CRYSTAL_SHARD.get());
@@ -61,10 +66,27 @@ public class ModCreativeTabs {
                         output.accept(ModBlocks.YELLOW_CRYSTAL_RUNE.get());
 
                         output.accept(ModBlocks.CASTING_TABLE.get());
+                        output.accept(ModBlocks.CASTING_STAND.get());
                         output.accept(ModBlocks.VERTICAL_PROPULSION_PANEL.get());
                         output.accept(ModBlocks.LIQUID_CHROMA_COLLECTOR.get());
+                        output.accept(ModBlocks.CRYSTAL_BREW_STAND.get());
 
                         output.accept(ModBlocks.CRYSTALLINE_STONE.get());
+                        output.accept(ModBlocks.CRYSTALLINE_STONE_CORNER.get());
+                        output.accept(ModBlocks.CRYSTALLINE_STONE_GROOVE.get());
+                        output.accept(ModBlocks.CRYSTALLINE_STONE_BEAM.get());
+                        output.accept(ModBlocks.CRYSTALLINE_STONE_BRICK.get());
+                        output.accept(ModBlocks.CRYSTALLINE_STONE_COLUMN.get());
+                        output.accept(ModBlocks.ENGRAVED_CRYSTALLINE_STONE.get());
+                        output.accept(ModBlocks.EMBOSSED_CRYSTALLINE_STONE.get());
+
+                        output.accept(ModBlocks.TRAVEL_PATH.get());
+
+                    }).build());
+
+    public static final RegistryObject<CreativeModeTab> WORLD_GEN_RECHROMA_TAB = CREATIVE_TABS.register("rechroma_tab_world_gen",
+            ()-> CreativeModeTab.builder().icon(()-> new ItemStack(ModBlocks.CASTING_TABLE.get())).title(Component.translatable("creativetab.rechroma.world_gen"))
+                    .displayItems((itemDisplayParameters, output) -> {
                     }).build());
 
     public static void register(IEventBus eventBus) {

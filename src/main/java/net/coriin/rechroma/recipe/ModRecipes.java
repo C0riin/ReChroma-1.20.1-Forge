@@ -12,8 +12,8 @@ public class ModRecipes {
     private static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS =
             DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, ReChroma.MOD_ID);
 
-    public static final RegistryObject<RecipeSerializer<CastingTier1Recipe>> CASTING_TIER_1 = SERIALIZERS.register("casting_tier_1",
-            ()-> CastingTier1Recipe.Serializer.INSTANCE);
+    public static final RegistryObject<RecipeSerializer<CastingRecipe>> CASTING_TIER_1 = SERIALIZERS.register("casting",
+            ()-> CastingRecipe.Serializer.INSTANCE);
 
 
 

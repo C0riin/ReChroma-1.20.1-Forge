@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "rechroma:block/crystalline_stone"
+      "model": "rechroma:block/crystalline_stones/default"
     }
   }
 }

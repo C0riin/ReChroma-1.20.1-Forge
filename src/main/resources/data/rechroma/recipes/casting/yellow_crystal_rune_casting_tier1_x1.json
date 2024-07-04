@@ -1,0 +1,21 @@
+{
+  "type": "rechroma:casting",
+  "isHaveRunes":false,
+  "key": {
+    "S": {
+      "item": "rechroma:crystalline_stone"
+    },
+    "c": {
+      "item": "rechroma:yellow_crystal_shard"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "ScS",
+    "SSS"
+  ],
+  "output": {
+    "count": 1,
+    "item": "rechroma:yellow_crystal_rune"
+  }
+}

@@ -18,7 +18,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         //blockWithItem(ModBlocks.VERTICAL_PROPULSION_PANEL);
-        //blockWithItem(ModBlocks.LIQUID_CHROMA_COLLECTOR);
+        //blockWithItem(ModBlocks.ENGRAVED_CRYSTALLINE_STONE);
+        //blockWithItem(ModBlocks.EMBOSSED_CRYSTALLINE_STONE);
+        //blockWithItem(ModBlocks.CRYSTALLINE_STONE_GROOVE);
+        //blockWithItem(ModBlocks.CRYSTALLINE_STONE_BRICK);
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

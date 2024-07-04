@@ -1,7 +1,13 @@
 package net.coriin.rechroma.block.entity;
 
-import net.coriin.rechroma.recipe.CastingTier1Recipe;
+import net.coriin.rechroma.auxiliary.StructureHelper;
+import net.coriin.rechroma.auxiliary.WorldHelper;
+import net.coriin.rechroma.block.ModBlocks;
+import net.coriin.rechroma.block.custom.RuneBlock;
+import net.coriin.rechroma.recipe.CastingRecipe;
 import net.coriin.rechroma.screen.CastingTableMenu;
+import net.coriin.rechroma.util.ModTags;
+import net.coriin.rechroma.util.RuneData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -18,6 +24,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -149,7 +156,7 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
-        if(hasRecipe() && doCrafting) {
+        if(hasRecipe() && doCrafting && hasRunes(pPos) && getCurrentRecipe().get().tier <= calculateTier(pLevel,pPos)) {
             increaseCraftProgress();
             setChanged(pLevel, pPos, pState);
 
@@ -169,7 +176,7 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
 
 
     private void craftItem() {
-        Optional<CastingTier1Recipe> recipe = getCurrentRecipe();
+        Optional<CastingRecipe> recipe = getCurrentRecipe();
         ItemStack result = recipe.get().getResultItem(null);
 
         int[] itemsCount = new int[itemHandler.getSlots()-1];
@@ -202,20 +209,67 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
     }
 
     private boolean hasRecipe() {
-        Optional<CastingTier1Recipe> recipe = getCurrentRecipe();
+        Optional<CastingRecipe> recipe = getCurrentRecipe();
         if(recipe.isEmpty()){
             return false;
         }
         ItemStack result = recipe.get().getResultItem(null);
         return canInsertAmountIntoOutputSlot(result.getCount()) && canInsertIntoOutputSlot(result.getItem());
     }
+    private boolean hasRunes(BlockPos currentPos){
+        boolean t = true;
 
-    private Optional<CastingTier1Recipe> getCurrentRecipe() {
+        if(hasRecipe()){
+            CastingRecipe recipe = getCurrentRecipe().get();
+            if(!recipe.isHaveRunes){
+                return true;
+            }
+            RuneData[] recipeRunes = recipe.runes;
+            for(int i = 0; i < recipeRunes.length; i++){
+                Block runeBlock = this.level.getBlockState(WorldHelper.blockPosSum(currentPos,
+                        new BlockPos(recipeRunes[i].blockPosX,recipeRunes[i].blockPosY,recipeRunes[i].blockPosZ))).getBlock();
+                if(runeBlock instanceof RuneBlock){
+                    t &= recipeRunes[i].colorIndex == ((RuneBlock) runeBlock).colorIndex;
+                }
+                else {return false;}
+            }
+        }
+        return t;
+    }
+
+    public int calculateTier(Level pLevel,BlockPos pPos, Player pPlayer) {
+
+        if(StructureHelper.castingTableTier1Structure.match(pLevel,WorldHelper.blockPosSum(pPos, new BlockPos(6,-1,-6)), pPlayer)){
+           return 1;
+        }
+        if(false){
+            return 2;
+        }
+        if(false){
+            return 3;
+        }
+        return 0;
+    }
+    public int calculateTier(Level pLevel,BlockPos pPos) {
+
+        if(StructureHelper.castingTableTier1Structure.match(pLevel,WorldHelper.blockPosSum(pPos, new BlockPos(6,-1,-6)))){
+            return 1;
+        }
+        if(false){
+            return 2;
+        }
+        if(false){
+            return 3;
+        }
+        return 0;
+    }
+
+    private Optional<CastingRecipe> getCurrentRecipe() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             inventory.setItem(i, itemHandler.getStackInSlot(i));
         }
-        return this.level.getRecipeManager().getRecipeFor(CastingTier1Recipe.Type.INSTANCE, inventory, this.level);
+        return this.level.getRecipeManager().getRecipeFor(CastingRecipe.Type.INSTANCE, inventory, this.level);
     }
 
     private boolean canInsertAmountIntoOutputSlot(int count) {

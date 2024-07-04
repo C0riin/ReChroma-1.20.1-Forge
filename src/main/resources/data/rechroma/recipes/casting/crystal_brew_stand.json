@@ -1,0 +1,24 @@
+{
+  "type": "rechroma:casting",
+  "isHaveRunes":false,
+  "key": {
+    "S": {
+      "item": "rechroma:crystalline_stone"
+    },
+    "c": {
+      "tag": "rechroma:crystal_shards"
+    },
+    "C": {
+      "item": "minecraft:cauldron"
+    }
+  },
+  "pattern": [
+    "c c",
+    "cCc",
+    "SSS"
+  ],
+  "output": {
+    "count": 1,
+    "item": "rechroma:crystal_brew_stand"
+  }
+}

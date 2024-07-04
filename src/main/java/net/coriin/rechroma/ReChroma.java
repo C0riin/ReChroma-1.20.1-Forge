@@ -98,6 +98,8 @@ public class ReChroma
             ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_LIQUID_CHROMA.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_LIQUID_CHROMA.get(), RenderType.translucent());
 
+
+
             MenuScreens.register(ModMenuTypes.CASTING_TABLE_MENU.get(), CastingTableScreen::new);
         }
     }

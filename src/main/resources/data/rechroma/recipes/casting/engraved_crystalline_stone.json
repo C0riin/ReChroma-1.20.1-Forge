@@ -1,0 +1,18 @@
+{
+  "type": "rechroma:casting",
+  "isHaveRunes":false,
+  "key": {
+    "S": {
+      "item": "rechroma:crystalline_stone"
+    }
+  },
+  "pattern": [
+    " S ",
+    "S S",
+    " S "
+  ],
+  "output": {
+    "count": 4,
+    "item": "rechroma:engraved_crystalline_stone"
+  }
+}
