@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "rechroma:item/tools/liquid_chroma_bucket"
+  }
+}
