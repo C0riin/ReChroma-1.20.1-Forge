@@ -32,7 +32,7 @@ public class CastingTableBlock extends BaseEntityBlock {
 
     @Override
     public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.INVISIBLE;
+        return RenderShape.MODEL;
     }
 
     @Override
@@ -60,7 +60,6 @@ public class CastingTableBlock extends BaseEntityBlock {
             else { NetworkHooks.openScreen(((ServerPlayer) pPlayer), ((CastingTableBlockEntity) blockEntity), pPos);}
             } else {throw new IllegalStateException("Casting Table Container provider is missing");}
         }
-
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
 

@@ -9,13 +9,11 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FlowerBlock;
-import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -56,6 +54,7 @@ public class ModBlocks {
             ()-> new CrystallineStoneCornerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
 
 
+
     public static final RegistryObject<Block> TRAVEL_PATH = registerBlock("travel_path",
             ()-> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).speedFactor(1.5f).jumpFactor(1.5f)));
 
@@ -64,6 +63,11 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> SPECTRUM_FLOWER = registerBlock("spectrum_flower",
             ()-> new FlowerBlock(()-> MobEffects.NIGHT_VISION , 100, BlockBehaviour.Properties.copy(Blocks.DANDELION).offsetType(BlockBehaviour.OffsetType.NONE)));
+
+    // Progress viewable plants
+    public static final RegistryObject<Block> AURA_BLOOM_FLOWER = registerBlock("aura_bloom",
+            ()-> new AuraBloomBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY).offsetType(BlockBehaviour.OffsetType.NONE)));
+
 
 
     public static final RegistryObject<LiquidBlock> LIQUID_CHROMA_BLOCK = BLOCKS.register("liquid_chroma_block",

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rechroma:block/block_entities/casting_table"
+    }
+  }
+}
