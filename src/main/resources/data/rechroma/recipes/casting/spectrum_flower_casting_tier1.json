@@ -1,6 +1,7 @@
 {
   "type": "rechroma:casting",
   "isHaveRunes":false,
+  "craftTime": 7,
   "key": {
     "l": {
       "tag": "minecraft:leaves"

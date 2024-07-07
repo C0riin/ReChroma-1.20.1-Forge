@@ -145,6 +145,7 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
         pTag.putInt("casting_table.progress", progress);
+        pTag.putBoolean("casting_table.docrafting", doCrafting);
         super.saveAdditional(pTag);
     }
 
@@ -153,12 +154,18 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
         progress = pTag.getInt("casting_table.progress");
+        doCrafting = pTag.getBoolean("casting_table.docrafting");
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
         if(hasRecipe() && doCrafting && hasRunes(pPos) && getCurrentRecipe().get().tier <= calculateTier(pLevel,pPos)) {
+
+            maxProgress = getCurrentRecipe().get().craftTime * calcCraftMultiplier();
+
             increaseCraftProgress();
+
             setChanged(pLevel, pPos, pState);
+
 
             if (hasProgressFinished()) {
                 craftItem();
@@ -179,26 +186,7 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
         Optional<CastingRecipe> recipe = getCurrentRecipe();
         ItemStack result = recipe.get().getResultItem(null);
 
-        int[] itemsCount = new int[itemHandler.getSlots()-1];
-        for(int i = 0; i < itemsCount.length-1; i++){
-            if(this.itemHandler.getStackInSlot(i).getCount() > 0) {
-                itemsCount[i] = this.itemHandler.getStackInSlot(i).getCount();
-            }
-        }
-
-        //System.out.println(Arrays.toString(itemsCount));
-
-        Arrays.sort(itemsCount);
-
-        int i1 = 0;
-        int min = 0;
-        while (min == 0){
-            min = itemsCount[i1];
-            i1++;
-        }
-
-        int craftMultiplier = Math.min(min,(result.getMaxStackSize()-this.itemHandler.getStackInSlot(9).getCount())/result.getCount());
-
+        int craftMultiplier = calcCraftMultiplier();
 
         for(int i = 0; i < itemHandler.getSlots()-1; i++){
             this.itemHandler.extractItem(i, craftMultiplier, false);
@@ -206,6 +194,25 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
 
         this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(),
                 this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()*craftMultiplier));
+    }
+
+    public int calcCraftMultiplier(){
+        Optional<CastingRecipe> recipe = getCurrentRecipe();
+        ItemStack result = recipe.get().getResultItem(null);
+        int[] itemsCount = new int[itemHandler.getSlots()-1];
+        for(int i = 0; i < itemsCount.length-1; i++){
+            if(this.itemHandler.getStackInSlot(i).getCount() > 0) {
+                itemsCount[i] = this.itemHandler.getStackInSlot(i).getCount();
+            }
+        }
+        Arrays.sort(itemsCount);
+        int i1 = 0;
+        int min = 0;
+        while (min == 0){
+            min = itemsCount[i1];
+            i1++;
+        }
+        return Math.min(min,(result.getMaxStackSize()- this.itemHandler.getStackInSlot(9).getCount())/result.getCount());
     }
 
     private boolean hasRecipe() {

@@ -1,6 +1,7 @@
-package net.coriin.rechroma;
+package net.coriin.rechroma.util;
 
 import com.mojang.logging.LogUtils;
+import net.coriin.rechroma.ReChroma;
 import net.coriin.rechroma.block.entity.ModBlockEntities;
 import net.coriin.rechroma.fluid.ModFluids;
 import net.coriin.rechroma.renderer.blockentity.AuraBloomBlockEntityRenderer;

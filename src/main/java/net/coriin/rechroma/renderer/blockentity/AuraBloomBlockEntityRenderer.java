@@ -1,6 +1,7 @@
 package net.coriin.rechroma.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.coriin.rechroma.auxiliary.ReChromaHelper;
 import net.coriin.rechroma.block.ModBlocks;
 import net.coriin.rechroma.block.entity.AuraBloomBlockEntity;
 import net.coriin.rechroma.item.ModItems;
@@ -21,7 +22,7 @@ public class AuraBloomBlockEntityRenderer implements BlockEntityRenderer<AuraBlo
     }
     @Override
     public void render(AuraBloomBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
-        if(Minecraft.getInstance().player.getItemInHand(InteractionHand.MAIN_HAND).is(ModItems.POWER_MANIPULATOR.get())) {
+        if(ReChromaHelper.canSee(Minecraft.getInstance().player)) {
             renderSingleBlock(ModBlocks.AURA_BLOOM_FLOWER.get().defaultBlockState(),
                     pPoseStack, pBuffer, pPackedLight, pPackedOverlay, ModelData.EMPTY, null);
         }

@@ -1,6 +1,7 @@
 {
   "type": "rechroma:casting",
   "isHaveRunes":true,
+  "craftTime": 10,
   "key": {
     "p": {
       "item": "minecraft:iron_pickaxe"

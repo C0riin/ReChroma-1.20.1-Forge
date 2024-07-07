@@ -1,6 +1,7 @@
 {
   "type": "rechroma:casting",
   "isHaveRunes":false,
+  "craftTime": 40,
   "key": {
     "r": {
       "item": "minecraft:redstone"

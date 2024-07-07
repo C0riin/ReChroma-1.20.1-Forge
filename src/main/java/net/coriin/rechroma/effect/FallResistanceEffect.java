@@ -20,8 +20,8 @@ public class FallResistanceEffect extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
 
-        pLivingEntity.fallDistance = 0;
-
+        //pLivingEntity.fallDistance = 0;
+        pLivingEntity.resetFallDistance();
 
 
 

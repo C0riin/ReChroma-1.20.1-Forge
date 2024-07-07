@@ -1,7 +1,43 @@
 {
-  "item.rechroma.black_crystal_shard": "Black crystal shard",
-  "block.rechroma.crystalline_stone": "Crystalline stone",
-  "block.rechroma.casting_table": "Casting table",
+  "item.rechroma.black_crystal_shard": "Black Crystal Shard",
+  "item.rechroma.blue_crystal_shard": "Blue Crystal Shard",
+  "item.rechroma.brown_crystal_shard": "Brown Crystal Shard",
+  "item.rechroma.cyan_crystal_shard": "Cyan Crystal Shard",
+  "item.rechroma.gray_crystal_shard": "Gray Crystal Shard",
+  "item.rechroma.green_crystal_shard": "Green Crystal Shard",
+  "item.rechroma.lightblue_crystal_shard": "Lightblue Crystal Shard",
+  "item.rechroma.lightgray_crystal_shard": "Lightgray Crystal Shard",
+  "item.rechroma.lime_crystal_shard": "Lime Crystal Shard",
+  "item.rechroma.magenta_crystal_shard": "Magenta Crystal Shard",
+  "item.rechroma.orange_crystal_shard": "Orange Crystal Shard",
+  "item.rechroma.pink_crystal_shard": "Pink Crystal Shard",
+  "item.rechroma.purple_crystal_shard": "Purple Crystal Shard",
+  "item.rechroma.red_crystal_shard": "Red Crystal Shard",
+  "item.rechroma.white_crystal_shard": "White Crystal Shard",
+  "item.rechroma.yellow_crystal_shard": "Yellow Crystal Shard",
+
+  "block.rechroma.black_crystal_rune": "Black Crystal Rune",
+  "block.rechroma.blue_crystal_rune": "Blue Crystal Rune",
+  "block.rechroma.brown_crystal_rune": "Brown Crystal Rune",
+  "block.rechroma.cyan_crystal_rune": "Cyan Crystal Rune",
+  "block.rechroma.gray_crystal_rune": "Gray Crystal Rune",
+  "block.rechroma.green_crystal_rune": "Green Crystal Rune",
+  "block.rechroma.lightblue_crystal_rune": "Lightblue Crystal Rune",
+  "block.rechroma.lightgray_crystal_rune": "Lightgray Crystal Rune",
+  "block.rechroma.lime_crystal_rune": "Lime Crystal Rune",
+  "block.rechroma.magenta_crystal_rune": "Magenta Crystal Rune",
+  "block.rechroma.orange_crystal_rune": "Orange Crystal Rune",
+  "block.rechroma.pink_crystal_rune": "Pink Crystal Rune",
+  "block.rechroma.purple_crystal_rune": "Purple Crystal Rune",
+  "block.rechroma.red_crystal_rune": "Red Crystal Rune",
+  "block.rechroma.white_crystal_rune": "White Crystal Rune",
+  "block.rechroma.yellow_crystal_rune": "Yellow Crystal Rune",
+
+
+
+  "block.rechroma.crystalline_stone": "Crystalline Stone",
+
+  "block.rechroma.casting_table": "Casting Table",
 
   "creativetab.rechroma.main": "Re:Chroma"
 }

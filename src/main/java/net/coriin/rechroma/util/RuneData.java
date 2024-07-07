@@ -66,5 +66,11 @@ public class RuneData {
         this.blockPosY = pos.getY();
         this.blockPosZ = pos.getZ();
     }
+    public RuneData(int color, int x, int y, int z) {
+        this.colorIndex = color;
+        this.blockPosX = x;
+        this.blockPosY = y;
+        this.blockPosZ = z;
+    }
 
 }

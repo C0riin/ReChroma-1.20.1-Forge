@@ -27,6 +27,7 @@ public class CastingTableScreen extends AbstractContainerScreen<CastingTableMenu
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float v, int i, int i1) {
+
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);

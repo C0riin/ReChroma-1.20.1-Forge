@@ -2,6 +2,7 @@ package net.coriin.rechroma.item;
 
 import net.coriin.rechroma.ReChroma;
 import net.coriin.rechroma.fluid.ModFluids;
+import net.coriin.rechroma.item.custom.ElementalManipulator;
 import net.coriin.rechroma.item.custom.OreHarvester;
 import net.coriin.rechroma.util.ModTags;
 import net.minecraft.world.item.*;
@@ -35,7 +36,7 @@ public class ModItems {
 
 
     public static final RegistryObject<Item> POWER_MANIPULATOR = ITEMS.register("power_manipulator",
-            ()-> new Item((new Item.Properties().stacksTo(1))));
+            ()-> new ElementalManipulator((new Item.Properties().stacksTo(1))));
 
 
     public static final RegistryObject<Item> MULTI_TOOL = ITEMS.register("multi_tool",

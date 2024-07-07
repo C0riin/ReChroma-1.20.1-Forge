@@ -1,6 +1,7 @@
 {
   "type": "rechroma:casting",
   "isHaveRunes":false,
+  "craftTime": 20,
   "key": {
     "S": {
       "item": "rechroma:crystalline_stone"

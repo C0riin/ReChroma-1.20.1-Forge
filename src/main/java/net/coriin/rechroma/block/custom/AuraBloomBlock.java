@@ -1,7 +1,11 @@
 package net.coriin.rechroma.block.custom;
 
+import net.coriin.rechroma.auxiliary.ReChromaHelper;
 import net.coriin.rechroma.block.entity.AuraBloomBlockEntity;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.RenderShape;
@@ -14,6 +18,11 @@ public class AuraBloomBlock extends Block implements EntityBlock {
 
     public AuraBloomBlock(BlockBehaviour.Properties pProperties) {
         super(pProperties);
+    }
+
+    @Override
+    public boolean canHarvestBlock(BlockState state, BlockGetter level, BlockPos pos, Player player) {
+        return ReChromaHelper.canSee(Minecraft.getInstance().player) || Minecraft.getInstance().player.isShiftKeyDown();
     }
 
     @Override

@@ -6,6 +6,9 @@ import net.coriin.rechroma.fluid.ModFluids;
 import net.coriin.rechroma.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -72,6 +75,8 @@ public class LiquidChromaCollectorBlock extends BaseEntityBlock {
                         if(player.totalExperience >= 10) {
                             ((LiquidChromaCollectorBlockEntity) blockEntity).collectChroma(5);
                             player.giveExperiencePoints(-10);
+                            EntityDataAccessor<Boolean> RECHROMA_PROGRESS_FLAG_TEST = SynchedEntityData.defineId(Player.class, EntityDataSerializers.BOOLEAN);
+
                         }
                     }
                 }

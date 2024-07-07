@@ -11,6 +11,7 @@ import net.coriin.rechroma.util.ModCreativeTabs;
 import net.coriin.rechroma.item.ModItems;
 import net.coriin.rechroma.screen.CastingTableScreen;
 import net.coriin.rechroma.screen.ModMenuTypes;
+import net.coriin.rechroma.util.OverlayRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -59,6 +60,7 @@ public class ReChroma
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new OverlayRenderer());
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

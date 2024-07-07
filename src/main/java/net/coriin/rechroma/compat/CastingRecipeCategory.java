@@ -16,8 +16,8 @@ import net.minecraft.world.item.ItemStack;
 
 public class CastingRecipeCategory implements IRecipeCategory<net.coriin.rechroma.recipe.CastingRecipe> {
 
-    public static final ResourceLocation UID = new ResourceLocation(ReChroma.MOD_ID, "casting_tier_1");
-    public static final ResourceLocation TEXTURE = new ResourceLocation(ReChroma.MOD_ID, "textures/gui/casting_tier_1_gui.png");
+    public static final ResourceLocation UID = new ResourceLocation(ReChroma.MOD_ID, "casting");
+    public static final ResourceLocation TEXTURE = new ResourceLocation(ReChroma.MOD_ID, "textures/gui/casting_table_tier1_gui.png");
 
     public static final RecipeType<net.coriin.rechroma.recipe.CastingRecipe> CASTING_TIER_1_RECIPE_RECIPE_TYPE =
             new RecipeType<>(UID, net.coriin.rechroma.recipe.CastingRecipe.class);
@@ -26,7 +26,7 @@ public class CastingRecipeCategory implements IRecipeCategory<net.coriin.rechrom
     private final IDrawable icon;
 
     public CastingRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0, 176, 85);
+        this.background = helper.createDrawable(TEXTURE, 0, 0, 218, 208);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.CASTING_TABLE.get()));
     }
 

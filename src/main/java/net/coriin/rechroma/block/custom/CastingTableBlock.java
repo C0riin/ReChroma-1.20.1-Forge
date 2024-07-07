@@ -1,7 +1,6 @@
 package net.coriin.rechroma.block.custom;
 
 import net.coriin.rechroma.block.entity.CastingTableBlockEntity;
-import net.coriin.rechroma.block.entity.LiquidChromaCollectorBlockEntity;
 import net.coriin.rechroma.block.entity.ModBlockEntities;
 import net.coriin.rechroma.item.ModItems;
 import net.minecraft.core.BlockPos;
@@ -10,7 +9,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -28,7 +26,6 @@ public class CastingTableBlock extends BaseEntityBlock {
     public CastingTableBlock(Properties pProperties) {
         super(pProperties);
     }
-
 
     @Override
     public RenderShape getRenderShape(BlockState pState) {
@@ -55,10 +52,11 @@ public class CastingTableBlock extends BaseEntityBlock {
                     ((CastingTableBlockEntity) blockEntity).doCrafting = true;
                 }
                 else if(pPlayer.getItemInHand(pHand).is(Items.DEBUG_STICK)){
-                    pPlayer.sendSystemMessage(Component.literal(String.valueOf(((CastingTableBlockEntity) blockEntity).calculateTier(pLevel,pPos, pPlayer))));
+                    pPlayer.sendSystemMessage(Component.literal(String.valueOf(((CastingTableBlockEntity) blockEntity).calculateTier(pLevel,pPos))));
                 }
             else { NetworkHooks.openScreen(((ServerPlayer) pPlayer), ((CastingTableBlockEntity) blockEntity), pPos);}
             } else {throw new IllegalStateException("Casting Table Container provider is missing");}
+
         }
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }

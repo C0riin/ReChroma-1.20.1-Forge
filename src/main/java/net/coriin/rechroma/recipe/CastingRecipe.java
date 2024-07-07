@@ -39,23 +39,26 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
     private static final Logger LOGGER = LogUtils.getLogger();
     public BlockPos castingTablePos;
     public int tier;
+    public int craftTime;
 
-    public CastingRecipe(NonNullList<Ingredient> inputItems, ItemStack output, ResourceLocation id) {
+    public CastingRecipe(NonNullList<Ingredient> inputItems, ItemStack output, int craftTime, ResourceLocation id) {
         this.inputItems = inputItems;
         this.output = output;
         this.id = id;
         this.isHaveRunes = false;
         this.tier = 0;
+        this.craftTime = craftTime;
 
 
     }
-    public CastingRecipe(NonNullList<Ingredient> inputItems, ItemStack output, ResourceLocation id, RuneData[] runes) {
+    public CastingRecipe(NonNullList<Ingredient> inputItems, ItemStack output,int craftTime, ResourceLocation id, RuneData[] runes) {
         this.inputItems = inputItems;
         this.output = output;
         this.id = id;
         this.runes = runes;
         this.isHaveRunes = true;
         this.tier = 1;
+        this.craftTime = craftTime;
     }
 
     @Override
@@ -145,7 +148,7 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
             int runeY = GsonHelper.getAsInt(s,"y");
             int runeZ = GsonHelper.getAsInt(s,"z");
             runes[i] = new RuneData(RuneData.runeColor.values()[runeColorIndex], new BlockPos(runeX, runeY, runeZ));
-            LOGGER.error(("json_test"+ runeColorIndex+" "+runeX+" "+runeY+" "+runeZ).toString());
+            //LOGGER.error(("json_test"+ runeColorIndex+" "+runeX+" "+runeY+" "+runeZ).toString());
 
         }
         return runes;
@@ -186,42 +189,6 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
         }
 
         return i;
-    }
-
-    @VisibleForTesting
-    static String[] shrinkCasting(String... pToShrink) {
-        int i = Integer.MAX_VALUE;
-        int j = 0;
-        int k = 0;
-        int l = 0;
-
-        for(int i1 = 0; i1 < pToShrink.length; ++i1) {
-            String s = pToShrink[i1];
-            i = Math.min(i, firstNonSpace(s));
-            int j1 = lastNonSpace(s);
-            j = Math.max(j, j1);
-            if (j1 < 0) {
-                if (k == i1) {
-                    ++k;
-                }
-
-                ++l;
-            } else {
-                l = 0;
-            }
-        }
-
-        if (pToShrink.length == l) {
-            return new String[0];
-        } else {
-            String[] astring = new String[pToShrink.length - l - k];
-
-            for(int k1 = 0; k1 < astring.length; ++k1) {
-                astring[k1] = pToShrink[k1 + k].substring(i, j + 1);
-            }
-
-            return astring;
-        }
     }
 
     static NonNullList<Ingredient> dissolvePattern(String[] pPattern, Map<String, Ingredient> pKeys) {
@@ -345,16 +312,18 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
             NonNullList<Ingredient> nonnulllist = dissolvePattern(astring, map);
             ItemStack itemstack = itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "output"));
 
+            int craftTime = GsonHelper.getAsInt(pJson, "craftTime");
+
             boolean isHaveRunes = GsonHelper.getAsBoolean(pJson, "isHaveRunes", false);
 
             if(isHaveRunes){
                 RuneData[] runes = runeDataFromJson(GsonHelper.getAsJsonArray(pJson, "runes"));
-                return new CastingRecipe(nonnulllist, itemstack, pRecipeId, runes);
+                return new CastingRecipe(nonnulllist, itemstack, craftTime, pRecipeId, runes);
             }
 
 
 
-            return new CastingRecipe(nonnulllist, itemstack, pRecipeId);
+            return new CastingRecipe(nonnulllist, itemstack,craftTime, pRecipeId);
         }
 
 
@@ -368,34 +337,19 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
 
             ItemStack output = pBuffer.readItem();
 
-            boolean b1 = pBuffer.readBoolean();
-            int i1= pBuffer.readInt();
-            int i2= pBuffer.readInt();
+            int CraftTime = pBuffer.readInt();
 
-
-
-
-            /*
-            int runeLength;
+            boolean isHaveRunes = pBuffer.readBoolean();
             RuneData[] runes;
-            boolean haveRunes;
-            try {
-                haveRunes = pBuffer.getBoolean(0);
-            } catch (JsonSyntaxException e) { haveRunes = false;}
-
-            if(pBuffer.getBoolean(0)){
-                runeLength = pBuffer.readInt();
-                runes = new RuneData[runeLength];
-
-                for(int i = 0; i < runeLength; i++) {
-                    runes[i] = new RuneData(RuneData.runeColor.values()[pBuffer.readInt()],
-                            new BlockPos(pBuffer.readInt(),pBuffer.readInt(),pBuffer.readInt()));
+            if(isHaveRunes){
+                runes = new RuneData[pBuffer.readInt()];
+                for(int i = 0; i < runes.length; ++i) {
+                    runes[i] = new RuneData(pBuffer.readInt(), pBuffer.readInt(), pBuffer.readInt(), pBuffer.readInt());
                 }
+                return new CastingRecipe(inputs, output, CraftTime, pRecipeId, runes);
+            }
 
-                return new CastingRecipe(inputs, output, pRecipeId, runes);
-            }*/
-
-            return new CastingRecipe(inputs, output, pRecipeId);
+            return new CastingRecipe(inputs, output, CraftTime, pRecipeId);
         }
 
         @Override
@@ -406,33 +360,20 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
             }
             pBuffer.writeItemStack(pRecipe.getResultItem(null), false);
 
-            pBuffer.writeBoolean(true);
-            pBuffer.writeInt(9);
-            pBuffer.writeInt(10000);
+            pBuffer.writeInt(pRecipe.craftTime);
 
-           /*
-            boolean t1;
+            pBuffer.writeBoolean(pRecipe.isHaveRunes);
 
-            try {
-                t1 = pRecipe.runes.length > 0;
-            } catch (IllegalAccessError e){t1 = false;}
-
-            if(t1){
-                pBuffer.writeBoolean(true);
-
+            if(pRecipe.isHaveRunes){
                 pBuffer.writeInt(pRecipe.runes.length);
-                for(RuneData runeData : pRecipe.runes){
-                    pBuffer.writeInt(runeData.colorIndex);
-                    pBuffer.writeInt(runeData.blockPosX);
-                    pBuffer.writeInt(runeData.blockPosY);
-                    pBuffer.writeInt(runeData.blockPosZ);
+                LOGGER.error("saving rune data to net work");
+                for(RuneData rd: pRecipe.runes){
+                    pBuffer.writeInt(rd.colorIndex);
+                    pBuffer.writeInt(rd.blockPosX);
+                    pBuffer.writeInt(rd.blockPosY);
+                    pBuffer.writeInt(rd.blockPosZ);
                 }
             }
-            else {
-                pBuffer.writeBoolean(false);
-            }
-            */
-
         }
     }
 
