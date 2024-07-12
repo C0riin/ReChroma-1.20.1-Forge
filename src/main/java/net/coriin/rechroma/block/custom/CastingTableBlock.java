@@ -1,8 +1,14 @@
 package net.coriin.rechroma.block.custom;
 
+import com.mojang.logging.LogUtils;
+import net.coriin.rechroma.PlayerKnowledgeSystem.PlayerKnowledgeProvider;
+import net.coriin.rechroma.auxiliary.ReChromaHelper;
 import net.coriin.rechroma.block.entity.CastingTableBlockEntity;
 import net.coriin.rechroma.block.entity.ModBlockEntities;
 import net.coriin.rechroma.item.ModItems;
+import net.coriin.rechroma.network.ModMessages;
+import net.coriin.rechroma.network.packet.KnowledgeC2SPacket;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -20,8 +26,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+
 
 public class CastingTableBlock extends BaseEntityBlock {
+
+    private static final Logger LOGGER = LogUtils.getLogger();
 
     public CastingTableBlock(Properties pProperties) {
         super(pProperties);
@@ -57,7 +67,12 @@ public class CastingTableBlock extends BaseEntityBlock {
             else { NetworkHooks.openScreen(((ServerPlayer) pPlayer), ((CastingTableBlockEntity) blockEntity), pPos);}
             } else {throw new IllegalStateException("Casting Table Container provider is missing");}
 
+            // for knowledge
+            if(ReChromaHelper.setFlagValue("test_flag", true)){
+                Minecraft.getInstance().player.sendSystemMessage(Component.literal("здесь должна выскочить ачивка"));
+            }
         }
+
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
 
@@ -76,5 +91,4 @@ public class CastingTableBlock extends BaseEntityBlock {
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new CastingTableBlockEntity(blockPos, blockState);
     }
-
 }

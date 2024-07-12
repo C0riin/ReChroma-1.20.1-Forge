@@ -5,6 +5,7 @@ import net.coriin.rechroma.block.ModBlocks;
 import net.coriin.rechroma.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -20,8 +21,12 @@ public class ModCreativeTabs {
             ()-> CreativeModeTab.builder().icon(()-> new ItemStack(ModItems.BLACK_CRYSTAL_SHARD.get())).title(Component.translatable("creativetab.rechroma.main"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.POWER_MANIPULATOR.get());
+                        output.accept(ModItems.CHROMATIC_LEXICON.get());
+
                         output.accept(ModItems.LIQUID_CHROMA_BUCKET.get());
+
                         output.accept(ModItems.AURA_DUST.get());
+                        output.accept(ModItems.VOID_ESSENCE.get());
                         output.accept(ModItems.CHROMIC_DUST.get());
 
                         output.accept(ModItems.MULTI_TOOL.get());
@@ -44,6 +49,7 @@ public class ModCreativeTabs {
                         output.accept(ModItems.WHITE_CRYSTAL_SHARD.get());
                         output.accept(ModItems.YELLOW_CRYSTAL_SHARD.get());
                     }).build());
+
 
     public static final RegistryObject<CreativeModeTab> BLOCK_RECHROMA_TAB = CREATIVE_TABS.register("rechroma_tab_blocks",
             ()-> CreativeModeTab.builder().icon(()-> new ItemStack(ModBlocks.CASTING_TABLE.get())).title(Component.translatable("creativetab.rechroma.blocks"))
@@ -87,6 +93,11 @@ public class ModCreativeTabs {
     public static final RegistryObject<CreativeModeTab> WORLD_GEN_RECHROMA_TAB = CREATIVE_TABS.register("rechroma_tab_world_gen",
             ()-> CreativeModeTab.builder().icon(()-> new ItemStack(ModBlocks.CASTING_TABLE.get())).title(Component.translatable("creativetab.rechroma.world_gen"))
                     .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModBlocks.AURA_BLOOM_FLOWER.get());
+                        output.accept(ModBlocks.VOID_REEDS.get());
+
+                        output.accept(ModBlocks.PURPLE_CRYSTAL_BLOCK.get());
+
                     }).build());
 
     public static void register(IEventBus eventBus) {

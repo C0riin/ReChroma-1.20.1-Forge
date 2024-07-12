@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "rechroma:block/block_entities/casting_table"
+      "model": "rechroma:block/plants/aura_bloom"
     }
   }
 }

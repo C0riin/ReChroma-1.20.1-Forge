@@ -1,11 +1,7 @@
 package net.coriin.rechroma.item.custom;
 
-import net.coriin.rechroma.item.ModItems;
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
@@ -21,19 +17,9 @@ public class ElementalManipulator extends Item {
 
 
     @Override
-    public void releaseUsing(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving, int pTimeLeft) {
-
-    }
-
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
-        ItemStack itemstack = pPlayer.getItemInHand(pHand);
         pPlayer.startUsingItem(pHand);
-        return InteractionResultHolder.success(itemstack);
-    }
-
-    @Override
-    public int getUseDuration(ItemStack pStack) {
-        return 72000;
+        return super.use(pLevel, pPlayer, pHand);
     }
 
     @Override
@@ -42,13 +28,34 @@ public class ElementalManipulator extends Item {
     }
 
     @Override
-    public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
-        if(pEntity instanceof Player){
-            Player pPlayer = (Player)pEntity;
-            if(pPlayer.getItemInHand(InteractionHand.MAIN_HAND).is(ModItems.POWER_MANIPULATOR.get())){
+    public int getUseDuration(ItemStack pStack) {
+        return 72000;
+    }
 
-            }
+    int ticksCounter = 0;
+    @Override
+    public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
+
+        if(ticksCounter >= 30){ //
+            // тут делаешь магию, которая тебе меняет модель
         }
-        super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
+        else if(ticksCounter >= 25){ //
+            // тут делаешь магию, которая тебе меняет модель
+        }
+        else if(ticksCounter >= 20){ //
+            // тут делаешь магию, которая тебе меняет модель
+        }
+        else if(ticksCounter >= 15){ //
+            // тут делаешь магию, которая тебе меняет модель
+        }
+        else if(ticksCounter >= 10){ //
+            // тут делаешь магию, которая тебе меняет модель
+        }
+        else if(ticksCounter >= 5){ //
+            // тут делаешь магию, которая тебе меняет модель
+        }
+
+        ticksCounter++;
+        super.onUseTick(pLevel, pLivingEntity, pStack, pRemainingUseDuration);
     }
 }

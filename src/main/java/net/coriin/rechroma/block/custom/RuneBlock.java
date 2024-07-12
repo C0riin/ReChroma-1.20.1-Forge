@@ -10,4 +10,5 @@ public class RuneBlock extends Block {
         super(pProperties);
         this.colorIndex = colorIndex;
     }
+
 }

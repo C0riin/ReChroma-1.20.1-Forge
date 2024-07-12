@@ -30,6 +30,10 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("aura_bloom_be", ()->
                     BlockEntityType.Builder.of(AuraBloomBlockEntity::new, ModBlocks.AURA_BLOOM_FLOWER.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<VoidReedsBlockEntity>> VOID_REEDS_BE =
+            BLOCK_ENTITIES.register("void_reeds_be", ()->
+                    BlockEntityType.Builder.of(VoidReedsBlockEntity::new, ModBlocks.VOID_REEDS.get()).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

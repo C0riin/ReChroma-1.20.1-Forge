@@ -2,12 +2,11 @@ package net.coriin.rechroma.item;
 
 import net.coriin.rechroma.ReChroma;
 import net.coriin.rechroma.fluid.ModFluids;
+import net.coriin.rechroma.item.custom.ChromaticLexicon;
 import net.coriin.rechroma.item.custom.ElementalManipulator;
 import net.coriin.rechroma.item.custom.OreHarvester;
 import net.coriin.rechroma.util.ModTags;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -38,6 +37,9 @@ public class ModItems {
     public static final RegistryObject<Item> POWER_MANIPULATOR = ITEMS.register("power_manipulator",
             ()-> new ElementalManipulator((new Item.Properties().stacksTo(1))));
 
+    public static final RegistryObject<Item> CHROMATIC_LEXICON = ITEMS.register("chromatic_lexicon",
+            ()-> new ChromaticLexicon((new Item.Properties().stacksTo(1))));
+
 
     public static final RegistryObject<Item> MULTI_TOOL = ITEMS.register("multi_tool",
             ()-> new DiggerItem(5,1f,ModToolTiers.MULTI_TOOL_TIER, ModTags.Blocks.MULTI_TOOL_MINEABLE,(new Item.Properties().stacksTo(1))));
@@ -45,6 +47,8 @@ public class ModItems {
             ()-> new OreHarvester(Tiers.DIAMOND,5,1f,(new Item.Properties().stacksTo(1))));
 
     public static final RegistryObject<Item> AURA_DUST = ITEMS.register("aura_dust",
+            ()-> new Item((new Item.Properties())));
+    public static final RegistryObject<Item> VOID_ESSENCE = ITEMS.register("void_essence",
             ()-> new Item((new Item.Properties())));
     public static final RegistryObject<Item> CHROMIC_DUST = ITEMS.register("chromic_dust",
             ()-> new Item((new Item.Properties())));

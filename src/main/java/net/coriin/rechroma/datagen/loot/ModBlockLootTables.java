@@ -48,6 +48,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.CASTING_TABLE.get());
         this.dropSelf(ModBlocks.LIQUID_CHROMA_COLLECTOR.get());
         this.dropSelf(ModBlocks.VERTICAL_PROPULSION_PANEL.get());
+
     }
     @Override
     protected Iterable<Block> getKnownBlocks() {

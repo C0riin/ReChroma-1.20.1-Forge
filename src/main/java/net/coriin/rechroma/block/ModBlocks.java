@@ -41,17 +41,17 @@ public class ModBlocks {
     public static final RegistryObject<Block> CRYSTALLINE_STONE_CORNER = registerBlock("crystalline_stone_corner",
             ()-> new CrystallineStoneCornerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
     public static final RegistryObject<Block> CRYSTALLINE_STONE_GROOVE = registerBlock("crystalline_stone_groove",
-            ()-> new CrystallineStoneCornerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
     public static final RegistryObject<Block> CRYSTALLINE_STONE_BEAM = registerBlock("crystalline_stone_beam",
-            ()-> new CrystallineStoneCornerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
     public static final RegistryObject<Block> CRYSTALLINE_STONE_BRICK = registerBlock("crystalline_stone_bricks",
-            ()-> new CrystallineStoneCornerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
     public static final RegistryObject<Block> CRYSTALLINE_STONE_COLUMN = registerBlock("crystalline_stone_column",
-            ()-> new CrystallineStoneCornerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
     public static final RegistryObject<Block> ENGRAVED_CRYSTALLINE_STONE = registerBlock("engraved_crystalline_stone",
-            ()-> new CrystallineStoneCornerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
     public static final RegistryObject<Block> EMBOSSED_CRYSTALLINE_STONE = registerBlock("embossed_crystalline_stone",
-            ()-> new CrystallineStoneCornerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
 
 
 
@@ -67,7 +67,8 @@ public class ModBlocks {
     // Progress viewable plants
     public static final RegistryObject<Block> AURA_BLOOM_FLOWER = registerBlock("aura_bloom",
             ()-> new AuraBloomBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY).offsetType(BlockBehaviour.OffsetType.NONE)));
-
+    public static final RegistryObject<Block> VOID_REEDS = registerBlock("void_reeds",
+            ()-> new VoidReedsBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY).offsetType(BlockBehaviour.OffsetType.NONE)));
 
 
     public static final RegistryObject<LiquidBlock> LIQUID_CHROMA_BLOCK = BLOCKS.register("liquid_chroma_block",
@@ -106,6 +107,10 @@ public class ModBlocks {
             ()-> new RuneBlock(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 8),14));
     public static final RegistryObject<Block> YELLOW_CRYSTAL_RUNE = registerBlock("yellow_crystal_rune",
             ()-> new RuneBlock(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 8),15));
+
+    public static final RegistryObject<Block> PURPLE_CRYSTAL_BLOCK = registerBlock("purple_crystal_block",
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12)));
+
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

@@ -41,6 +41,7 @@ public class CastingTableMenu extends AbstractContainerMenu {
                 }
             }
             this.addSlot(new SlotItemHandler(handler, 9, 189, 12));
+
         });
 
         addDataSlots(data);

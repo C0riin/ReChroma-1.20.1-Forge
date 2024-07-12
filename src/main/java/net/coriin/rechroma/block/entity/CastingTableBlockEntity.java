@@ -2,11 +2,9 @@ package net.coriin.rechroma.block.entity;
 
 import net.coriin.rechroma.auxiliary.StructureHelper;
 import net.coriin.rechroma.auxiliary.WorldHelper;
-import net.coriin.rechroma.block.ModBlocks;
 import net.coriin.rechroma.block.custom.RuneBlock;
 import net.coriin.rechroma.recipe.CastingRecipe;
 import net.coriin.rechroma.screen.CastingTableMenu;
-import net.coriin.rechroma.util.ModTags;
 import net.coriin.rechroma.util.RuneData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -249,7 +247,7 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
         if(StructureHelper.castingTableTier1Structure.match(pLevel,WorldHelper.blockPosSum(pPos, new BlockPos(6,-1,-6)), pPlayer)){
            return 1;
         }
-        if(false){
+        if(StructureHelper.castingTableTier2Structure.match(pLevel,WorldHelper.blockPosSum(pPos, new BlockPos(6,-1,-6)), pPlayer)){
             return 2;
         }
         if(false){
@@ -262,7 +260,7 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
         if(StructureHelper.castingTableTier1Structure.match(pLevel,WorldHelper.blockPosSum(pPos, new BlockPos(6,-1,-6)))){
             return 1;
         }
-        if(false){
+        if(StructureHelper.castingTableTier2Structure.match(pLevel,WorldHelper.blockPosSum(pPos, new BlockPos(6,-1,-6)))){
             return 2;
         }
         if(false){

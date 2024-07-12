@@ -37,7 +37,7 @@ public class CastingRecipeCategory implements IRecipeCategory<net.coriin.rechrom
 
     @Override
     public Component getTitle() {
-        return Component.literal("Casting");
+        return Component.translatable("block.rechroma.casting_table");
     }
 
     @Override
