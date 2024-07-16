@@ -6,10 +6,12 @@ import net.minecraft.resources.ResourceLocation;
 public class LexiconArticlePageData extends LexiconPageData {
 
     public ResourceLocation Image;
+    public Component[] description;
 
-    LexiconArticlePageData(ResourceLocation image, Component name, Component tooltip, boolean multiPage) {
+    public LexiconArticlePageData(ResourceLocation image, Component name, Component tooltip, Component[] description,boolean multiPage) {
         super(image, name, tooltip, multiPage);
         this.Image = image;
+        this.description = description;
 
     }
 }

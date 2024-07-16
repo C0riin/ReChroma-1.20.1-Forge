@@ -26,7 +26,7 @@ public class CastingTableScreen extends AbstractContainerScreen<CastingTableMenu
     }
 
     @Override
-    protected void renderBg(GuiGraphics guiGraphics, float v, int i, int i1) {
+    protected void renderBg(GuiGraphics pGuiGraphics, float v, int i, int i1) {
 
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
@@ -34,7 +34,7 @@ public class CastingTableScreen extends AbstractContainerScreen<CastingTableMenu
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        guiGraphics.blit(TEXTURE, x, y, 0, 0, 218, 208);
+        pGuiGraphics.blit(TEXTURE, x, y, 0, 0, 218, 208);
 
         //renderProgressArrow(guiGraphics, x, y);
     }

@@ -13,6 +13,14 @@ import net.minecraft.resources.ResourceLocation;
 
 public class LexiconMainPageScreen extends Screen {
 
+    public LexiconMainPageScreen(Component pTitle) {
+        super(pTitle);
+        //ReChroma.LOGGER.error("before exception or late");
+        //this.minecraft = Minecraft.getInstance();
+        //this.font = Minecraft.getInstance().font;
+    }
+
+
     private static final ResourceLocation TEXTURE_BG =
             new ResourceLocation(ReChroma.MOD_ID,"textures/gui/bg.png");
 
@@ -24,9 +32,18 @@ public class LexiconMainPageScreen extends Screen {
 
     private final int basicPadding = 20;
 
-
     int bgXOffset = 0;
     int bgYOffset = 0;
+
+    /*
+    * идея правильной отрисовки только нужных статей:
+    * 0. все действия происходят разово при открытии книги в методе init, либо в конструкторе
+    * 1. есть LexiconGroupData[][] с полной отрисовкой лексикона
+    * 2. из фрагментов получаются статьи которые должны быть отрисованны, фрагмент хранит String, который String -> pageData через заготовленный Map<String, pageData>
+    * 3. перебираются все LexiconGroupData.pages в копии LexiconGroupData[][] с полной отрисовкой лексикона
+    * 4. нужные(из пункта 2) статьи остаются, остальные удаляются, пустые группы и строчки тоже удаляются удаляются
+    * 5. полученый список отправляется на отрисовку
+    */
 
     LexiconGroupData testGroup = new LexiconGroupData(Component.literal("test group"),
             new LexiconPageData[]{
@@ -42,27 +59,14 @@ public class LexiconMainPageScreen extends Screen {
                             Component.literal("test article2"), Component.literal("test article2 tooltip"), false)});
 
     LexiconGroupData[] testRow1 = {testGroup,testGroup,testGroup};
-
     LexiconGroupData[][] testRows1 = {testRow1,testRow1,testRow1};
 
 
 
-    public LexiconMainPageScreen(Component pTitle) {
-        super(pTitle);
-    }
-
     @Override
     public void renderBackground(GuiGraphics pGuiGraphics) {
-
-        if(this.minecraft == null) return;
-
-
-
         renderImage(pGuiGraphics,  TEXTURE_BG, 0, 0, bgXOffset, bgYOffset,
                 width, height, 256, 256, 0.7f);
-
-
-
     }
 
     @Override
@@ -87,7 +91,7 @@ public class LexiconMainPageScreen extends Screen {
                             int pWidth, int pHeight, int pTextureWidth, int pTextureHeight){
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE_BG);
+        RenderSystem.setShaderTexture(0, TEXTURE);
 
         pGuiGraphics.blit(TEXTURE, pX, pY, pOx, pOy, pWidth, pHeight, pTextureWidth,pTextureHeight);
     }
@@ -177,7 +181,7 @@ public class LexiconMainPageScreen extends Screen {
     @Override
     public boolean mouseDragged(double pMouseX, double pMouseY, int pButton, double pDragX, double pDragY) {
 
-        if(Minecraft.getInstance().player.isShiftKeyDown()){
+        if(hasShiftDown()){
             bgXOffset -= pDragX * 2;
             bgYOffset -= pDragY * 2;
         } else {
@@ -185,18 +189,5 @@ public class LexiconMainPageScreen extends Screen {
             bgYOffset -= pDragY;
         }
         return super.mouseDragged(pMouseX, pMouseY, pButton, pDragX, pDragY);
-    }
-
-    @Override
-    public void afterMouseMove() {
-        this.minecraft = Minecraft.getInstance();
-    }
-    @Override
-    public void afterMouseAction() {
-        return;
-    }
-    @Override
-    public void afterKeyboardAction() {
-        return;
     }
 }

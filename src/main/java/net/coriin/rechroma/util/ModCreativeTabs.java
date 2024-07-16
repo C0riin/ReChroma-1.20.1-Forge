@@ -48,6 +48,11 @@ public class ModCreativeTabs {
                         output.accept(ModItems.RED_CRYSTAL_SHARD.get());
                         output.accept(ModItems.WHITE_CRYSTAL_SHARD.get());
                         output.accept(ModItems.YELLOW_CRYSTAL_SHARD.get());
+
+
+                        output.accept(ModItems.INFO_FRAGMENT.get());
+
+
                     }).build());
 
 

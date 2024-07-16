@@ -4,6 +4,7 @@ import net.coriin.rechroma.ReChroma;
 import net.coriin.rechroma.fluid.ModFluids;
 import net.coriin.rechroma.item.custom.ChromaticLexicon;
 import net.coriin.rechroma.item.custom.ElementalManipulator;
+import net.coriin.rechroma.item.custom.InfoFragmentItem;
 import net.coriin.rechroma.item.custom.OreHarvester;
 import net.coriin.rechroma.util.ModTags;
 import net.minecraft.world.item.*;
@@ -35,26 +36,30 @@ public class ModItems {
 
 
     public static final RegistryObject<Item> POWER_MANIPULATOR = ITEMS.register("power_manipulator",
-            ()-> new ElementalManipulator((new Item.Properties().stacksTo(1))));
+            () -> new ElementalManipulator((new Item.Properties().stacksTo(1))));
 
     public static final RegistryObject<Item> CHROMATIC_LEXICON = ITEMS.register("chromatic_lexicon",
-            ()-> new ChromaticLexicon((new Item.Properties().stacksTo(1))));
+            () -> new ChromaticLexicon((new Item.Properties().stacksTo(1))));
+
+    public static final RegistryObject<Item> INFO_FRAGMENT = ITEMS.register("info_fragment",
+            () -> new InfoFragmentItem((new Item.Properties().stacksTo(1)), "blank"));
 
 
     public static final RegistryObject<Item> MULTI_TOOL = ITEMS.register("multi_tool",
-            ()-> new DiggerItem(5,1f,ModToolTiers.MULTI_TOOL_TIER, ModTags.Blocks.MULTI_TOOL_MINEABLE,(new Item.Properties().stacksTo(1))));
+            () -> new DiggerItem(5,1f,ModToolTiers.MULTI_TOOL_TIER, ModTags.Blocks.MULTI_TOOL_MINEABLE,(new Item.Properties().stacksTo(1))));
     public static final RegistryObject<Item> ORE_HARVESTER = ITEMS.register("ore_harvester",
-            ()-> new OreHarvester(Tiers.DIAMOND,5,1f,(new Item.Properties().stacksTo(1))));
+            () -> new OreHarvester(Tiers.DIAMOND,5,1f,(new Item.Properties().stacksTo(1))));
 
     public static final RegistryObject<Item> AURA_DUST = ITEMS.register("aura_dust",
-            ()-> new Item((new Item.Properties())));
+            () -> new Item((new Item.Properties())));
     public static final RegistryObject<Item> VOID_ESSENCE = ITEMS.register("void_essence",
-            ()-> new Item((new Item.Properties())));
+            () -> new Item((new Item.Properties())));
     public static final RegistryObject<Item> CHROMIC_DUST = ITEMS.register("chromic_dust",
-            ()-> new Item((new Item.Properties())));
+            () -> new Item((new Item.Properties())));
 
     public static final RegistryObject<Item> LIQUID_CHROMA_BUCKET = ITEMS.register("liquid_chroma_bucket",
-            ()-> new BucketItem(ModFluids.SOURCE_LIQUID_CHROMA,new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
+            () -> new BucketItem(ModFluids.SOURCE_LIQUID_CHROMA,new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
+
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

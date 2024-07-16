@@ -38,7 +38,7 @@ import java.util.Optional;
 
 public class CastingTableBlockEntity extends BlockEntity implements MenuProvider {
 
-    private  final ItemStackHandler itemHandler = new ItemStackHandler(10){
+    private final ItemStackHandler itemHandler = new ItemStackHandler(10){
         @Override
         protected void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
