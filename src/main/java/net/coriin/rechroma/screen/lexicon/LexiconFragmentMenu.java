@@ -99,6 +99,7 @@ public class LexiconFragmentMenu extends AbstractContainerMenu {
     }
     public void setOffset(int value) {
         this.rowIndexOffset = value;
+        
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons

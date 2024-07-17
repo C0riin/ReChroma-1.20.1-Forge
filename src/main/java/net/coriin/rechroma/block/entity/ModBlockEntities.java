@@ -26,6 +26,7 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(LiquidChromaCollectorBlockEntity::new, ModBlocks.LIQUID_CHROMA_COLLECTOR.get()).build(null));
 
     // flowers
+
     public static final RegistryObject<BlockEntityType<AuraBloomBlockEntity>> AURA_BLOOM_BE =
             BLOCK_ENTITIES.register("aura_bloom_be", ()->
                     BlockEntityType.Builder.of(AuraBloomBlockEntity::new, ModBlocks.AURA_BLOOM_FLOWER.get()).build(null));

@@ -98,8 +98,8 @@ public class ModCreativeTabs {
     public static final RegistryObject<CreativeModeTab> WORLD_GEN_RECHROMA_TAB = CREATIVE_TABS.register("rechroma_tab_world_gen",
             ()-> CreativeModeTab.builder().icon(()-> new ItemStack(ModBlocks.CASTING_TABLE.get())).title(Component.translatable("creativetab.rechroma.world_gen"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModBlocks.AURA_BLOOM_FLOWER.get());
-                        output.accept(ModBlocks.VOID_REEDS.get());
+                        //output.accept(ModBlocks.AURA_BLOOM_FLOWER.get());
+                        //output.accept(ModBlocks.VOID_REEDS.get());
 
                         output.accept(ModBlocks.PURPLE_CRYSTAL_BLOCK.get());
 

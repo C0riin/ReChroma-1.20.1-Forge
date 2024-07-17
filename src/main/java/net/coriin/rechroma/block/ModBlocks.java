@@ -67,6 +67,7 @@ public class ModBlocks {
     // Progress viewable plants
     public static final RegistryObject<Block> AURA_BLOOM_FLOWER = registerBlock("aura_bloom",
             ()-> new AuraBloomBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY).offsetType(BlockBehaviour.OffsetType.NONE)));
+
     public static final RegistryObject<Block> VOID_REEDS = registerBlock("void_reeds",
             ()-> new VoidReedsBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY).offsetType(BlockBehaviour.OffsetType.NONE)));
 

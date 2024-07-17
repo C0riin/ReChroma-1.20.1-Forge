@@ -2,6 +2,7 @@ package net.coriin.rechroma.network;
 
 import net.coriin.rechroma.ReChroma;
 import net.coriin.rechroma.network.packet.KnowledgeC2SPacket;
+import net.coriin.rechroma.network.packet.LexiconS2PScreenPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -33,6 +34,11 @@ public class ModMessages {
                 .consumerMainThread(KnowledgeC2SPacket::handlePacket)
                 .add();
 
+        net.messageBuilder(LexiconS2PScreenPacket.class, getId(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(LexiconS2PScreenPacket::new)
+                .encoder(LexiconS2PScreenPacket::toBytes)
+                .consumerMainThread(LexiconS2PScreenPacket::handlePacket)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG message){

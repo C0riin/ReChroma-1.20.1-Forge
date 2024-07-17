@@ -55,7 +55,8 @@ public class ReChroma
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(new OverlayRenderer());
+        //MinecraftForge.EVENT_BUS.register(new OverlayRenderer());
+
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -65,8 +66,6 @@ public class ReChroma
     {
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
-
-
 
         ModMessages.register();
     }

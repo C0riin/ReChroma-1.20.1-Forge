@@ -15,7 +15,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.data.ModelData;
 
-public class VoidReedsBlockEntityRenderer implements BlockEntityRenderer<VoidReedsBlockEntity> {
+public class VoidReedsBlockEntityRenderer implements BlockEntityRenderer<VoidReedsBlockEntity>{
 
     public VoidReedsBlockEntityRenderer(BlockEntityRendererProvider.Context ctx) {
 

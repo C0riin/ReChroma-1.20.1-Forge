@@ -1,5 +1,7 @@
 package net.coriin.rechroma.item.custom;
 
+import net.coriin.rechroma.network.ModMessages;
+import net.coriin.rechroma.network.packet.LexiconS2PScreenPacket;
 import net.coriin.rechroma.screen.lexicon.LexiconFragmentMenu;
 import net.coriin.rechroma.screen.lexicon.LexiconMainPageScreen;
 import net.minecraft.client.Minecraft;
@@ -20,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class ChromaticLexicon extends Item implements MenuProvider {
 
-    Component LexiconTitle = Component.translatable("rechroma.gui.lexicon.main_page.title");
+    public static Component LexiconTitle = Component.translatable("rechroma.gui.lexicon.main_page.title");
     public int fragmentInvSize = 36;
 
     public ChromaticLexicon(Properties pProperties) {
@@ -30,13 +32,15 @@ public class ChromaticLexicon extends Item implements MenuProvider {
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if(!pLevel.isClientSide){
-            if(Minecraft.getInstance().player.isShiftKeyDown()){
+            if(pPlayer.isShiftKeyDown()){
                 NetworkHooks.openScreen((ServerPlayer) pPlayer, ((ChromaticLexicon)pPlayer.getItemInHand(pUsedHand).getItem()));
             }
+            else {
+                ModMessages.sendToPlayer(new LexiconS2PScreenPacket(), (ServerPlayer) pPlayer);
+                //Minecraft.getInstance().setScreen(new LexiconMainPageScreen(LexiconTitle)
+            }
         }
-        else {
-            if (!Minecraft.getInstance().player.isShiftKeyDown()) Minecraft.getInstance().setScreen(new LexiconMainPageScreen(LexiconTitle));
-        }
+
         pPlayer.getCooldowns().addCooldown(this, 20);
 
         return super.use(pLevel, pPlayer, pUsedHand);
@@ -54,6 +58,4 @@ public class ChromaticLexicon extends Item implements MenuProvider {
                 pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof ChromaticLexicon ?
                         pPlayer.getItemInHand(InteractionHand.MAIN_HAND) : pPlayer.getItemInHand(InteractionHand.OFF_HAND));
     }
-
-
 }

@@ -24,7 +24,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import org.jetbrains.annotations.Nullable;
 
-public class VoidReedsBlock extends Block implements EntityBlock, net.minecraftforge.common.IPlantable{
+public class VoidReedsBlock extends Block implements EntityBlock, net.minecraftforge.common.IPlantable{ //
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_15;
 
@@ -46,8 +46,9 @@ public class VoidReedsBlock extends Block implements EntityBlock, net.minecraftf
     }
     public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
         if (!canSurvive(pState,pLevel, pPos)) {
-            Boolean doDrops = ReChromaHelper.canSee(Minecraft.getInstance().player); //может быть рассинхронизация
-            pLevel.destroyBlock(pPos, doDrops);
+            //Boolean doDrops = ReChromaHelper.canSee(Minecraft.getInstance().player); //может быть рассинхронизация
+            // рассинхронизация случилась, из-за этой хркни сервер не работал
+            pLevel.destroyBlock(pPos, true);
         }
 
     }
@@ -122,6 +123,6 @@ public class VoidReedsBlock extends Block implements EntityBlock, net.minecraftf
 
     @Override
     public boolean canHarvestBlock(BlockState state, BlockGetter level, BlockPos pos, Player player) {
-        return ReChromaHelper.canSee(player);
+        return ReChromaHelper.canSee(player) || player.isShiftKeyDown();
     }
 }

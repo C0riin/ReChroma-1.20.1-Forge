@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public class AuraBloomBlock extends Block implements EntityBlock {
+public class AuraBloomBlock extends Block  implements EntityBlock{ //
 
     public AuraBloomBlock(BlockBehaviour.Properties pProperties) {
         super(pProperties);
@@ -27,7 +27,7 @@ public class AuraBloomBlock extends Block implements EntityBlock {
 
     @Override
     public boolean canHarvestBlock(BlockState state, BlockGetter level, BlockPos pos, Player player) {
-        return ReChromaHelper.canSee(Minecraft.getInstance().player) || Minecraft.getInstance().player.isShiftKeyDown();
+        return ReChromaHelper.canSee(player) || player.isShiftKeyDown();
     }
 
     @Override
