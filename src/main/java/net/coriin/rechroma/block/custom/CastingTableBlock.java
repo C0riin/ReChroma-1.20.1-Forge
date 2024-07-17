@@ -68,7 +68,7 @@ public class CastingTableBlock extends BaseEntityBlock {
             } else {throw new IllegalStateException("Casting Table Container provider is missing");}
 
             // for knowledge
-            if(ReChromaHelper.setFlagValue("test_flag", true)){
+            if(ReChromaHelper.setFlagValue((ServerPlayer) pPlayer,"test_flag", true)){
                 Minecraft.getInstance().player.sendSystemMessage(Component.literal("здесь должна выскочить ачивка"));
             }
         }

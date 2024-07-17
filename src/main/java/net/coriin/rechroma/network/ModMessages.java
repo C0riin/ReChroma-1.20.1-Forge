@@ -28,7 +28,7 @@ public class ModMessages {
 
         INSTANCE = net;
 
-        net.messageBuilder(KnowledgeC2SPacket.class, getId(), NetworkDirection.PLAY_TO_SERVER)
+        net.messageBuilder(KnowledgeC2SPacket.class, getId(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(KnowledgeC2SPacket::new)
                 .encoder(KnowledgeC2SPacket::toBytes)
                 .consumerMainThread(KnowledgeC2SPacket::handlePacket)

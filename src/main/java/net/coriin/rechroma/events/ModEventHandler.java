@@ -11,6 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.multiplayer.ServerSelectionList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -38,14 +39,6 @@ public class ModEventHandler {
         }
     }
 
-    /*
-    @SubscribeEvent
-    public static void onAttachCapabilitiesItem(AttachCapabilitiesEvent<ItemStack> event) {
-        if(event.getObject().getItem() instanceof ChromaticLexicon) {
-            event
-        }
-    }*/
-
     @SubscribeEvent
     public static void onPlayerCloned(PlayerEvent.Clone event) {
         if(event.isWasDeath()) {
@@ -64,8 +57,8 @@ public class ModEventHandler {
 
     @SubscribeEvent
     public static void syncCap(EntityJoinLevelEvent event) {
-        if(event.getEntity() instanceof Player && Minecraft.getInstance().getConnection() != null){
-            ReChromaHelper.syncKnowledge();
+        if(event.getEntity() instanceof ServerPlayer){ // && Minecraft.getInstance().getConnection() != null
+            ReChromaHelper.syncKnowledge((ServerPlayer) event.getEntity());
         }
     }
 }

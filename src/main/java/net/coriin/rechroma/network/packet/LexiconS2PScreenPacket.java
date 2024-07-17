@@ -27,6 +27,7 @@ public class LexiconS2PScreenPacket {
 
     public void handlePacket(Supplier<NetworkEvent.Context> supplier){
         NetworkEvent.Context ctx = supplier.get();
+
         ctx.enqueueWork(() -> {
             openScreen();
         });

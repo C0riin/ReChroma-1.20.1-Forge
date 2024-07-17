@@ -12,7 +12,6 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.data.ModelData;
 
@@ -24,8 +23,8 @@ public class AuraBloomBlockEntityRenderer  implements BlockEntityRenderer<AuraBl
     @Override
     public void render(AuraBloomBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
         if(ReChromaHelper.canSee(Minecraft.getInstance().player)) {
-            //renderSingleBlock(ModBlocks.AURA_BLOOM_FLOWER.get().defaultBlockState(),
-            //        pPoseStack, pBuffer, pPackedLight, pPackedOverlay, ModelData.EMPTY, null);
+            renderSingleBlock(ModBlocks.AURA_BLOOM_FLOWER.get().defaultBlockState(),
+                    pPoseStack, pBuffer, pPackedLight, pPackedOverlay, ModelData.EMPTY, null);
         }
     }
     public void renderSingleBlock(BlockState state, PoseStack p_110914_, MultiBufferSource p_110915_,

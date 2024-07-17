@@ -7,6 +7,7 @@ import net.coriin.rechroma.network.ModMessages;
 import net.coriin.rechroma.network.packet.KnowledgeC2SPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -70,7 +71,7 @@ public class ReChromaHelper {
         return flag[0];
     }
 
-    public static boolean setFlagValue(String flagName, boolean value){
+    public static boolean setFlagValue(ServerPlayer pPlayer, String flagName, boolean value){
         boolean[] t = {false};
         Minecraft.getInstance().player.getCapability(PlayerKnowledgeProvider.PLAYER_KNOWLEDGE).ifPresent(knowledge -> {
             if(Arrays.stream(knowledge.getAllProgressFlags()).toList().contains(flagName)){
@@ -83,13 +84,13 @@ public class ReChromaHelper {
                 LOGGER.error("No knowledge flag found for " + flagName);
             }
         });
-        syncKnowledge();
+        syncKnowledge(pPlayer);
 
         return t[0];
     }
 
-    public static void syncKnowledge(){
-        ModMessages.sendToServer(new KnowledgeC2SPacket());
+    public static void syncKnowledge(ServerPlayer pPlayer){
+        ModMessages.sendToPlayer(new KnowledgeC2SPacket(), pPlayer);
     }
 
 }

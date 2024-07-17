@@ -24,12 +24,11 @@ public class KnowledgeC2SPacket {
 
     }
 
-    public boolean handlePacket(Supplier<NetworkEvent.Context> supplier){
+    public void handlePacket(Supplier<NetworkEvent.Context> supplier){
         NetworkEvent.Context ctx = supplier.get();
         ctx.enqueueWork(() -> {
             ServerPlayer player = ctx.getSender();
-            //player.sendSystemMessage(Component.literal("packet received"));
-            //player.sendSystemMessage(Minecraft.getInstance().player.getName());
+
             player.getCapability(PlayerKnowledgeProvider.PLAYER_KNOWLEDGE).ifPresent(serverKnowledge -> {
                 Minecraft.getInstance().player.getCapability(PlayerKnowledgeProvider.PLAYER_KNOWLEDGE).ifPresent(clientKnowledge -> {
                     clientKnowledge.copyFrom(serverKnowledge);
@@ -37,6 +36,6 @@ public class KnowledgeC2SPacket {
             });
 
         });
-        return true;
+        ctx.setPacketHandled(true);
     }
 }
