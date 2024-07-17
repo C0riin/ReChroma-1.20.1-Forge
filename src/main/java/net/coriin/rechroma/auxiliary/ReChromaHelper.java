@@ -55,10 +55,10 @@ public class ReChromaHelper {
         return power[0];
     }
 
-    public static boolean getFlagValue(String flagName){
+    public static boolean getFlagValue(ServerPlayer pPlayer, String flagName){
         boolean[] flag = {false};
 
-        Minecraft.getInstance().player.getCapability(PlayerKnowledgeProvider.PLAYER_KNOWLEDGE).ifPresent(knowledge -> {
+        pPlayer.getCapability(PlayerKnowledgeProvider.PLAYER_KNOWLEDGE).ifPresent(knowledge -> {
             if(knowledge.getProgressFlags().containsKey(flagName)){
                 if(knowledge.getProgressFlags().get(flagName)){
                     flag[0] = true;
@@ -73,7 +73,7 @@ public class ReChromaHelper {
 
     public static boolean setFlagValue(ServerPlayer pPlayer, String flagName, boolean value){
         boolean[] t = {false};
-        Minecraft.getInstance().player.getCapability(PlayerKnowledgeProvider.PLAYER_KNOWLEDGE).ifPresent(knowledge -> {
+        pPlayer.getCapability(PlayerKnowledgeProvider.PLAYER_KNOWLEDGE).ifPresent(knowledge -> {
             if(Arrays.stream(knowledge.getAllProgressFlags()).toList().contains(flagName)){
                 if(knowledge.getProgressFlags().containsKey(flagName)){
                     knowledge.getProgressFlags().replace(flagName, value);

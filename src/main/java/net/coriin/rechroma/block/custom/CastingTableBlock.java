@@ -69,7 +69,7 @@ public class CastingTableBlock extends BaseEntityBlock {
 
             // for knowledge
             if(ReChromaHelper.setFlagValue((ServerPlayer) pPlayer,"test_flag", true)){
-                Minecraft.getInstance().player.sendSystemMessage(Component.literal("здесь должна выскочить ачивка"));
+                pPlayer.sendSystemMessage(Component.literal("здесь должна выскочить ачивка"));
             }
         }
 
