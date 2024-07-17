@@ -7,6 +7,7 @@ import net.coriin.rechroma.network.ModMessages;
 import net.coriin.rechroma.network.packet.KnowledgeC2SPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
@@ -90,7 +91,11 @@ public class ReChromaHelper {
     }
 
     public static void syncKnowledge(ServerPlayer pPlayer){
-        ModMessages.sendToPlayer(new KnowledgeC2SPacket(), pPlayer);
+        CompoundTag[] tag = new CompoundTag[]{new CompoundTag()};
+        pPlayer.getCapability(PlayerKnowledgeProvider.PLAYER_KNOWLEDGE).ifPresent(knowledge -> {
+            tag[0] = knowledge.getAsNBT();
+        });
+        ModMessages.sendToPlayer(new KnowledgeC2SPacket(tag[0]), pPlayer);
     }
 
 }

@@ -36,6 +36,15 @@ public class PlayerKnowledge {
             nbt.putBoolean(entry.getKey(),entry.getValue());
         }
     }
+
+    public CompoundTag getAsNBT(){
+        CompoundTag nbt = new CompoundTag();
+        for (Map.Entry<String,Boolean> entry : progressFlags.entrySet()){
+            nbt.putBoolean(entry.getKey(),entry.getValue());
+        }
+        return nbt;
+    }
+
     public void loadNBTData(CompoundTag nbt){
         for (String key : allFlags){
             if(nbt.contains(key)){

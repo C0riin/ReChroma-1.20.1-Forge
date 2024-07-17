@@ -4,31 +4,19 @@ import net.coriin.rechroma.PlayerKnowledgeSystem.PlayerKnowledge;
 import net.coriin.rechroma.PlayerKnowledgeSystem.PlayerKnowledgeProvider;
 import net.coriin.rechroma.ReChroma;
 import net.coriin.rechroma.auxiliary.ReChromaHelper;
-import net.coriin.rechroma.item.custom.ChromaticLexicon;
-import net.coriin.rechroma.network.ModMessages;
-import net.coriin.rechroma.network.packet.KnowledgeC2SPacket;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.multiplayer.ServerSelectionList;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = ReChroma.MOD_ID)
 public class ModEventHandler {
-
-
 
     @SubscribeEvent
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {

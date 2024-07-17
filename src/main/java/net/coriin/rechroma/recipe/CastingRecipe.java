@@ -366,7 +366,7 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
 
             if(pRecipe.isHaveRunes){
                 pBuffer.writeInt(pRecipe.runes.length);
-                LOGGER.error("saving rune data to net work");
+                //LOGGER.error("saving rune data to net work");
                 for(RuneData rd: pRecipe.runes){
                     pBuffer.writeInt(rd.colorIndex);
                     pBuffer.writeInt(rd.blockPosX);
