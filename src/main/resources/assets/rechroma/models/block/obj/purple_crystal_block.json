@@ -1,9 +1,0 @@
-{
-  "loader": "forge:obj",
-  "flip_v": true,
-  "model": "rechroma:models/block/obj/purple_crystal_block.obj",
-  "textures": {
-    "texture0": "minecraft:block/dirt",
-    "particle": "minecraft:block/dirt"
-  }
-}

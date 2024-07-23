@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "rechroma:block/obj/purple_crystal_block"
+      "model": "rechroma:block/obj/crystals/purple_crystal_block"
     }
   }
 }

@@ -1,0 +1,25 @@
+{
+  "feature": "rechroma:crystal_underground",
+  "placement": [
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "min_inclusive": {
+          "above_bottom": -60
+        },
+        "max_inclusive": {
+          "absolute": 70
+        }
+      },
+      "heightmap": "MOTION_BLOCKING_NO_LEAVES"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}
+

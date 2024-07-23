@@ -1,0 +1,175 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "tries": 2,
+    "xz_spread": 16,
+    "y_spread": 4,
+
+    "feature": {
+      "feature": {
+
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "data": {
+                  "Name": "rechroma:black_crystal_block"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "rechroma:blue_crystal_block"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "rechroma:brown_crystal_block"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "rechroma:cyan_crystal_block"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "rechroma:gray_crystal_block"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "rechroma:green_crystal_block"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "rechroma:lightblue_crystal_block"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "rechroma:lightgray_crystal_block"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "rechroma:lime_crystal_block"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "rechroma:magenta_crystal_block"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "rechroma:orange_crystal_block"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "rechroma:pink_crystal_block"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "rechroma:purple_crystal_block"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "rechroma:red_crystal_block"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "rechroma:white_crystal_block"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "rechroma:yellow_crystal_block"
+                },
+                "weight": 1
+              }
+            ]
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [
+              "minecraft:air",
+              "minecraft:cave_air"
+            ]
+          }
+        },
+        {
+          "type": "minecraft:count",
+          "count": {
+            "type": "minecraft:biased_to_bottom",
+            "value": {
+              "min_inclusive": 1,
+              "max_inclusive": 2
+            }
+          }
+        },
+        {
+          "type": "minecraft:rarity_filter",
+          "chance": 50
+        },
+        {
+          "type": "minecraft:in_square"
+        },
+        {
+          "type": "minecraft:height_range",
+          "height": {
+            "type": "minecraft:uniform",
+            "min_inclusive": {
+              "above_bottom": 75
+            },
+            "max_inclusive": {
+              "absolute": 150
+            }
+          },
+          "heightmap": "MOTION_BLOCKING_NO_LEAVES"
+        },
+        {
+          "type": "minecraft:biome"
+        },
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_block_tag",
+            "offset": [
+              0,
+              -1,
+              0
+            ],
+            "tag": "minecraft:dirt"
+          }
+        }
+      ]
+    }
+  }
+}

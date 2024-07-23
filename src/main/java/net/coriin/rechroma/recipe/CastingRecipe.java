@@ -27,6 +27,7 @@ import org.slf4j.Logger;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
 import static net.minecraft.world.item.crafting.ShapedRecipe.itemStackFromJson;
 
 
@@ -51,7 +52,8 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
 
 
     }
-    public CastingRecipe(NonNullList<Ingredient> inputItems, ItemStack output,int craftTime, ResourceLocation id, RuneData[] runes) {
+
+    public CastingRecipe(NonNullList<Ingredient> inputItems, ItemStack output, int craftTime, ResourceLocation id, RuneData[] runes) {
         this.inputItems = inputItems;
         this.output = output;
         this.id = id;
@@ -68,7 +70,7 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public boolean matches(SimpleContainer pContainer, Level level) {
-        if(level.isClientSide){
+        if (level.isClientSide) {
             return false;
         }
 
@@ -80,12 +82,11 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
 
         }*/
 
-        for(int i = 0; i < 3; i++){
-            for(int j = 0; j < inputItems.size()/3; j++){
-                t &= inputItems.get(i*3+j).test(pContainer.getItem(i*3+j));
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < inputItems.size() / 3; j++) {
+                t &= inputItems.get(i * 3 + j).test(pContainer.getItem(i * 3 + j));
             }
         }
-
 
 
         return t;
@@ -123,7 +124,7 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
         } else if (astring.length == 0) {
             throw new JsonSyntaxException("Invalid pattern: empty pattern not allowed");
         } else {
-            for(int i = 0; i < astring.length; ++i) {
+            for (int i = 0; i < astring.length; ++i) {
                 String s = GsonHelper.convertToString(pPatternArray.get(i), "pattern[" + i + "]");
                 if (s.length() > 3) {
                     throw new JsonSyntaxException("Invalid pattern: too many columns, " + 3 + " is maximum");
@@ -139,14 +140,15 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
             return astring;
         }
     }
+
     static RuneData[] runeDataFromJson(JsonArray pRuneDataArray) {
         RuneData[] runes = new RuneData[pRuneDataArray.size()];
-        for(int i = 0; i < runes.length; ++i) {
+        for (int i = 0; i < runes.length; ++i) {
             JsonObject s = pRuneDataArray.get(i).getAsJsonObject();
-            int runeColorIndex = GsonHelper.getAsInt(s,"colorIndex");
-            int runeX = GsonHelper.getAsInt(s,"x");
-            int runeY = GsonHelper.getAsInt(s,"y");
-            int runeZ = GsonHelper.getAsInt(s,"z");
+            int runeColorIndex = GsonHelper.getAsInt(s, "colorIndex");
+            int runeX = GsonHelper.getAsInt(s, "x");
+            int runeY = GsonHelper.getAsInt(s, "y");
+            int runeZ = GsonHelper.getAsInt(s, "z");
             runes[i] = new RuneData(RuneData.runeColor.values()[runeColorIndex], new BlockPos(runeX, runeY, runeZ));
             //LOGGER.error(("json_test"+ runeColorIndex+" "+runeX+" "+runeY+" "+runeZ).toString());
 
@@ -158,17 +160,17 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
         Map<String, Ingredient> map = Maps.newHashMap();
         Iterator var2 = pKeyEntry.entrySet().iterator();
 
-        while(var2.hasNext()) {
-            Map.Entry<String, JsonElement> entry = (Map.Entry)var2.next();
-            if (((String)entry.getKey()).length() != 1) {
-                throw new JsonSyntaxException("Invalid key entry: '" + (String)entry.getKey() + "' is an invalid symbol (must be 1 character only).");
+        while (var2.hasNext()) {
+            Map.Entry<String, JsonElement> entry = (Map.Entry) var2.next();
+            if (((String) entry.getKey()).length() != 1) {
+                throw new JsonSyntaxException("Invalid key entry: '" + (String) entry.getKey() + "' is an invalid symbol (must be 1 character only).");
             }
 
             if (" ".equals(entry.getKey())) {
                 throw new JsonSyntaxException("Invalid key entry: ' ' is a reserved symbol.");
             }
 
-            map.put((String)entry.getKey(), Ingredient.fromJson((JsonElement)entry.getValue(), false));
+            map.put((String) entry.getKey(), Ingredient.fromJson((JsonElement) entry.getValue(), false));
         }
 
         map.put(" ", Ingredient.EMPTY);
@@ -177,7 +179,7 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
 
     private static int firstNonSpace(String pEntry) {
         int i;
-        for(i = 0; i < pEntry.length() && pEntry.charAt(i) == ' '; ++i) {
+        for (i = 0; i < pEntry.length() && pEntry.charAt(i) == ' '; ++i) {
         }
 
         return i;
@@ -185,7 +187,7 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
 
     private static int lastNonSpace(String pEntry) {
         int i;
-        for(i = pEntry.length() - 1; i >= 0 && pEntry.charAt(i) == ' '; --i) {
+        for (i = pEntry.length() - 1; i >= 0 && pEntry.charAt(i) == ' '; --i) {
         }
 
         return i;
@@ -199,21 +201,22 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
 
         //LOGGER.error(Arrays.toString(pPattern));
 
-        for(int i = 0; i < pPattern.length; ++i) {
-            for(int j = 0; j < 3; ++j) {
+        for (int i = 0; i < pPattern.length; ++i) {
+            for (int j = 0; j < 3; ++j) {
                 String s = pPattern[i].substring(j, j + 1);
                 Ingredient ingredient;
-                if(!s.equals(" ")){
+                if (!s.equals(" ")) {
                     ingredient = pKeys.get(s);
+                } else {
+                    ingredient = Ingredient.EMPTY;
                 }
-                else {ingredient = Ingredient.EMPTY;}
 
                 if (ingredient == null) {
                     throw new JsonSyntaxException("Pattern references symbol '" + s + "' but it's not defined in the key");
                 }
 
                 set.remove(s);
-                nonnulllist.set(i*3 + j, ingredient);
+                nonnulllist.set(i * 3 + j, ingredient);
 
 
             }
@@ -228,9 +231,9 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
         }
     }
 
-    public static NonNullList<Ingredient> offsetList(NonNullList<Ingredient> list, int offset){
-        for(int i = list.size()-1; i >= offset; i--) {
-            list.set(i, list.get(i-1));
+    public static NonNullList<Ingredient> offsetList(NonNullList<Ingredient> list, int offset) {
+        for (int i = list.size() - 1; i >= offset; i--) {
+            list.set(i, list.get(i - 1));
         }
         return list;
     }
@@ -252,7 +255,7 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
         int k = 0;
         int l = 0;
 
-        for(int i1 = 0; i1 < pToShrink.length; ++i1) {
+        for (int i1 = 0; i1 < pToShrink.length; ++i1) {
             String s = pToShrink[i1];
             i = Math.min(i, firstNonSpace(s));
             int j1 = lastNonSpace(s);
@@ -273,7 +276,7 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
         } else {
             String[] astring = new String[pToShrink.length - l - k];
 
-            for(int k1 = 0; k1 < astring.length; ++k1) {
+            for (int k1 = 0; k1 < astring.length; ++k1) {
                 astring[k1] = pToShrink[k1 + k].substring(i, j + 1);
             }
 
@@ -284,9 +287,9 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
     static Map<String, Ingredient> keyFromJson(JsonObject pKeyEntry) {
         Map<String, Ingredient> map = Maps.newHashMap();
 
-        for(Map.Entry<String, JsonElement> entry : pKeyEntry.entrySet()) {
+        for (Map.Entry<String, JsonElement> entry : pKeyEntry.entrySet()) {
             if (entry.getKey().length() != 1) {
-                throw new JsonSyntaxException("Invalid key entry: '" + (String)entry.getKey() + "' is an invalid symbol (must be 1 character only).");
+                throw new JsonSyntaxException("Invalid key entry: '" + (String) entry.getKey() + "' is an invalid symbol (must be 1 character only).");
             }
 
             if (" ".equals(entry.getKey())) {
@@ -316,14 +319,13 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
 
             boolean isHaveRunes = GsonHelper.getAsBoolean(pJson, "isHaveRunes", false);
 
-            if(isHaveRunes){
+            if (isHaveRunes) {
                 RuneData[] runes = runeDataFromJson(GsonHelper.getAsJsonArray(pJson, "runes"));
                 return new CastingRecipe(nonnulllist, itemstack, craftTime, pRecipeId, runes);
             }
 
 
-
-            return new CastingRecipe(nonnulllist, itemstack,craftTime, pRecipeId);
+            return new CastingRecipe(nonnulllist, itemstack, craftTime, pRecipeId);
         }
 
 
@@ -331,7 +333,7 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
         public @Nullable CastingRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(9, Ingredient.EMPTY);
 
-            for(int i = 0; i < 9; i++) {
+            for (int i = 0; i < 9; i++) {
                 inputs.set(i, Ingredient.fromNetwork(pBuffer));
             }
 
@@ -341,9 +343,9 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
 
             boolean isHaveRunes = pBuffer.readBoolean();
             RuneData[] runes;
-            if(isHaveRunes){
+            if (isHaveRunes) {
                 runes = new RuneData[pBuffer.readInt()];
-                for(int i = 0; i < runes.length; ++i) {
+                for (int i = 0; i < runes.length; ++i) {
                     runes[i] = new RuneData(pBuffer.readInt(), pBuffer.readInt(), pBuffer.readInt(), pBuffer.readInt());
                 }
                 return new CastingRecipe(inputs, output, CraftTime, pRecipeId, runes);
@@ -364,10 +366,10 @@ public class CastingRecipe implements Recipe<SimpleContainer> {
 
             pBuffer.writeBoolean(pRecipe.isHaveRunes);
 
-            if(pRecipe.isHaveRunes){
+            if (pRecipe.isHaveRunes) {
                 pBuffer.writeInt(pRecipe.runes.length);
                 //LOGGER.error("saving rune data to net work");
-                for(RuneData rd: pRecipe.runes){
+                for (RuneData rd : pRecipe.runes) {
                     pBuffer.writeInt(rd.colorIndex);
                     pBuffer.writeInt(rd.blockPosX);
                     pBuffer.writeInt(rd.blockPosY);

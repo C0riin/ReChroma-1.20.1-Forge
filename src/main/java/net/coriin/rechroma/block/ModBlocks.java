@@ -4,14 +4,11 @@ import net.coriin.rechroma.ReChroma;
 import net.coriin.rechroma.block.custom.*;
 import net.coriin.rechroma.fluid.ModFluids;
 import net.coriin.rechroma.item.ModItems;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -53,13 +50,19 @@ public class ModBlocks {
     public static final RegistryObject<Block> EMBOSSED_CRYSTALLINE_STONE = registerBlock("embossed_crystalline_stone",
             ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
 
+    public static final RegistryObject<Block> ENERGIZED_CRYSTALLINE_STONE_BEAM = registerBlock("energized_crystalline_stone_beam",
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+    public static final RegistryObject<Block> CRYSTALLINE_PYLON_FOCUS = registerBlock("crystalline_pylon_focus",
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+    public static final RegistryObject<Block> CRYSTALLINE_ENERGY_STABILIZER = registerBlock("crystalline_energy_stabilizer",
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
 
 
     public static final RegistryObject<Block> TRAVEL_PATH = registerBlock("travel_path",
             ()-> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).speedFactor(1.5f).jumpFactor(1.5f)));
 
     public static final RegistryObject<Block> CASTING_STAND = registerBlock("casting_stand",
-            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
     public static final RegistryObject<Block> SPECTRUM_FLOWER = registerBlock("spectrum_flower",
             ()-> new FlowerBlock(()-> MobEffects.NIGHT_VISION , 100, BlockBehaviour.Properties.copy(Blocks.DANDELION).offsetType(BlockBehaviour.OffsetType.NONE)));
@@ -67,7 +70,6 @@ public class ModBlocks {
     // Progress viewable plants
     public static final RegistryObject<Block> AURA_BLOOM_FLOWER = registerBlock("aura_bloom",
             ()-> new AuraBloomBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY).offsetType(BlockBehaviour.OffsetType.NONE)));
-
     public static final RegistryObject<Block> VOID_REEDS = registerBlock("void_reeds",
             ()-> new VoidReedsBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY).offsetType(BlockBehaviour.OffsetType.NONE)));
 
@@ -75,7 +77,7 @@ public class ModBlocks {
     public static final RegistryObject<LiquidBlock> LIQUID_CHROMA_BLOCK = BLOCKS.register("liquid_chroma_block",
             ()-> new LiquidBlock(ModFluids.SOURCE_LIQUID_CHROMA, BlockBehaviour.Properties.copy(Blocks.WATER).noLootTable()));
 
-
+    // runes
     public static final RegistryObject<Block> BLACK_CRYSTAL_RUNE = registerBlock("black_crystal_rune",
             ()-> new RuneBlock(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 8),0));
     public static final RegistryObject<Block> BLUE_CRYSTAL_RUNE = registerBlock("blue_crystal_rune",
@@ -109,8 +111,39 @@ public class ModBlocks {
     public static final RegistryObject<Block> YELLOW_CRYSTAL_RUNE = registerBlock("yellow_crystal_rune",
             ()-> new RuneBlock(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 8),15));
 
+    // crystal blocks
+    public static final RegistryObject<Block> BLACK_CRYSTAL_BLOCK = registerBlock("black_crystal_block",
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+    public static final RegistryObject<Block> BLUE_CRYSTAL_BLOCK = registerBlock("blue_crystal_block",
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+    public static final RegistryObject<Block> BROWN_CRYSTAL_BLOCK = registerBlock("brown_crystal_block",
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+    public static final RegistryObject<Block> CYAN_CRYSTAL_BLOCK = registerBlock("cyan_crystal_block",
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+    public static final RegistryObject<Block> GRAY_CRYSTAL_BLOCK = registerBlock("gray_crystal_block",
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+    public static final RegistryObject<Block> GREEN_CRYSTAL_BLOCK = registerBlock("green_crystal_block",
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+    public static final RegistryObject<Block> LIGHTBLUE_CRYSTAL_BLOCK = registerBlock("lightblue_crystal_block",
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+    public static final RegistryObject<Block> LIGHTGRAY_CRYSTAL_BLOCK = registerBlock("lightgray_crystal_block",
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+    public static final RegistryObject<Block> LIME_CRYSTAL_BLOCK = registerBlock("lime_crystal_block",
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+    public static final RegistryObject<Block> MAGENTA_CRYSTAL_BLOCK = registerBlock("magenta_crystal_block",
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+    public static final RegistryObject<Block> ORANGE_CRYSTAL_BLOCK = registerBlock("orange_crystal_block",
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+    public static final RegistryObject<Block> PINK_CRYSTAL_BLOCK = registerBlock("pink_crystal_block",
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
     public static final RegistryObject<Block> PURPLE_CRYSTAL_BLOCK = registerBlock("purple_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12)));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+    public static final RegistryObject<Block> RED_CRYSTAL_BLOCK = registerBlock("red_crystal_block",
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+    public static final RegistryObject<Block> WHITE_CRYSTAL_BLOCK = registerBlock("white_crystal_block",
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+    public static final RegistryObject<Block> YELLOW_CRYSTAL_BLOCK = registerBlock("yellow_crystal_block",
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

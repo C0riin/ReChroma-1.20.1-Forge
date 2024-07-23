@@ -20,8 +20,8 @@ public class ModEventHandler {
 
     @SubscribeEvent
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
-        if(event.getObject() instanceof Player) {
-            if(!event.getObject().getCapability(PlayerKnowledgeProvider.PLAYER_KNOWLEDGE).isPresent()) {
+        if (event.getObject() instanceof Player) {
+            if (!event.getObject().getCapability(PlayerKnowledgeProvider.PLAYER_KNOWLEDGE).isPresent()) {
                 event.addCapability(new ResourceLocation(ReChroma.MOD_ID, "properties"), new PlayerKnowledgeProvider());
             }
         }
@@ -29,7 +29,7 @@ public class ModEventHandler {
 
     @SubscribeEvent
     public static void onPlayerCloned(PlayerEvent.Clone event) {
-        if(event.isWasDeath()) {
+        if (event.isWasDeath()) {
             event.getOriginal().getCapability(PlayerKnowledgeProvider.PLAYER_KNOWLEDGE).ifPresent(oldStore -> {
                 event.getOriginal().getCapability(PlayerKnowledgeProvider.PLAYER_KNOWLEDGE).ifPresent(newStore -> {
                     newStore.copyFrom(oldStore);
@@ -45,8 +45,9 @@ public class ModEventHandler {
 
     @SubscribeEvent
     public static void syncCap(EntityJoinLevelEvent event) {
-        if(event.getEntity() instanceof ServerPlayer){ // && Minecraft.getInstance().getConnection() != null
+        if (event.getEntity() instanceof ServerPlayer) { // && Minecraft.getInstance().getConnection() != null
             ReChromaHelper.syncKnowledge((ServerPlayer) event.getEntity());
         }
     }
+
 }

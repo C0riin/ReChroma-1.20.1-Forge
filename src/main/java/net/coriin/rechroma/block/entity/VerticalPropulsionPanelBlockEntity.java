@@ -31,6 +31,7 @@ public class VerticalPropulsionPanelBlockEntity extends BlockEntity {
             AABB aabb = AABB.of(new BoundingBox(pPos.getX()-1, pPos.getY()+1, pPos.getZ()-1,
                     pPos.getX()+1, pPos.getY()+1, pPos.getZ()+1));
             entities = pLevel.getEntitiesOfClass(LivingEntity.class, aabb);
+
             if(!entities.isEmpty()){
                 Ticks++;
             }

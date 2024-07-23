@@ -2,12 +2,8 @@ package net.coriin.rechroma.events;
 
 import com.mojang.logging.LogUtils;
 import net.coriin.rechroma.ReChroma;
-import net.coriin.rechroma.auxiliary.ReChromaHelper;
-import net.coriin.rechroma.block.ModBlocks;
 import net.coriin.rechroma.block.entity.ModBlockEntities;
 import net.coriin.rechroma.fluid.ModFluids;
-import net.coriin.rechroma.network.ModMessages;
-import net.coriin.rechroma.network.packet.KnowledgeC2SPacket;
 import net.coriin.rechroma.renderer.blockentity.AuraBloomBlockEntityRenderer;
 import net.coriin.rechroma.renderer.blockentity.VoidReedsBlockEntityRenderer;
 import net.coriin.rechroma.screen.CastingTableScreen;
@@ -18,11 +14,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -52,10 +46,10 @@ public class ClientEventHandler {
         ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_LIQUID_CHROMA.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_LIQUID_CHROMA.get(), RenderType.translucent());
 
+        //ItemBlockRenderTypes.setRenderLayer(ModBlocks.PURPLE_CRYSTAL_BLOCK.get(), RenderType.translucent());
         //ItemBlockRenderTypes.setRenderLayer(ModBlocks.SPECTRUM_FLOWER.get(), RenderType.cutout());
 
         MenuScreens.register(ModMenuTypes.CASTING_TABLE_MENU.get(), CastingTableScreen::new);
         MenuScreens.register(ModMenuTypes.LEXICON_FRAGMENTS_MENU.get(), LexiconFragmentScreen::new);
     }
-
 }

@@ -1,13 +1,10 @@
 package net.coriin.rechroma.screen.lexicon;
-import net.coriin.rechroma.ReChroma;
 import net.coriin.rechroma.item.custom.ChromaticLexicon;
 import net.coriin.rechroma.item.custom.InfoFragmentItem;
 import net.coriin.rechroma.screen.ModMenuTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -15,7 +12,6 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
-import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -24,6 +20,7 @@ public class LexiconFragmentMenu extends AbstractContainerMenu {
     public int rowIndexOffset = 0;
     public int invSize;
     public ItemStackHandler handler;
+    public ItemStackHandler auxHandler;
 
     public ItemStack lexiconStack;
     private Inventory inventory;
@@ -37,14 +34,13 @@ public class LexiconFragmentMenu extends AbstractContainerMenu {
                 !(inv.player.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof ChromaticLexicon)){
             throw new AssertionError("trying to open chromatic lexicon menu, but lexicon is not in hand");
         }
-
-        ReChroma.LOGGER.error("LexiconFragmentMenu but wrong constructor");
+        //ReChroma.LOGGER.error("LexiconFragmentMenu but wrong constructor");
     }
 
     public LexiconFragmentMenu(int pContainerId, Inventory inv, ItemStack lexiconStack) {
         super(ModMenuTypes.LEXICON_FRAGMENTS_MENU.get(),pContainerId);
 
-        ReChroma.LOGGER.error("LexiconFragmentMenu - right constructor");
+        //ReChroma.LOGGER.error("LexiconFragmentMenu - right constructor");
 
         this.inventory = inv;
         this.lexiconStack = lexiconStack;
@@ -54,8 +50,18 @@ public class LexiconFragmentMenu extends AbstractContainerMenu {
                 return stack.getItem() instanceof InfoFragmentItem;
             }
         };
+
+        this.auxHandler = new ItemStackHandler(27){
+            @Override
+            public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+                return stack.getItem() instanceof InfoFragmentItem;
+            }
+        };
+
         invSize = handler.getSlots();
         handler.deserializeNBT(lexiconStack.getTag() != null ? lexiconStack.getTag() : new CompoundTag());
+
+        setOffset(0);
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
@@ -63,7 +69,7 @@ public class LexiconFragmentMenu extends AbstractContainerMenu {
         for (int j = 0; j < 3; j++) {
             for (int i = 0; i < 9; i++) {
                 if(j*9+i + rowIndexOffset*9 < invSize){
-                    this.addSlot(new SlotItemHandler(handler, j*9+i + rowIndexOffset*9, 8 + 18*i, 17 + j*18));
+                    this.addSlot(new SlotItemHandler(auxHandler, j*9+i + rowIndexOffset*9, 8 + 18*i, 17 + j*18));
                 }
 
             }
@@ -99,7 +105,21 @@ public class LexiconFragmentMenu extends AbstractContainerMenu {
     }
     public void setOffset(int value) {
         this.rowIndexOffset = value;
+
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 9; j++){
+                auxHandler.setStackInSlot(i*9+j,handler.getStackInSlot(i*9+j + rowIndexOffset*9));
+            }
+        }
         
+    }
+
+    public void syncHandlers() {
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 9; j++){
+                handler.setStackInSlot(i*9+j + rowIndexOffset*9, handler.getStackInSlot(i*9+j));
+            }
+        }
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons

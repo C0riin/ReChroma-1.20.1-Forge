@@ -1,0 +1,60 @@
+# Blender 4.2.0 MTL File: 'None'
+# www.blender.org
+
+#newmtl Material.001
+#Ns 250.000000
+#Ka 1.000000 1.000000 1.000000
+#Kd 0.481824 0.001576 0.800363
+#Ks 0.500000 0.500000 0.500000
+#Ke 0.000000 0.000000 0.000000
+#Ni 1.500000
+#d 1.000000
+#illum 2
+
+newmtl black_crystal_block
+map_Kd rechroma:block/obj/crystals/black_crystal
+
+newmtl blue_crystal_block
+map_Kd rechroma:block/obj/crystals/blue_crystal
+
+newmtl brown_crystal_block
+map_Kd rechroma:block/obj/crystals/brown_crystal
+
+newmtl cyan_crystal_block
+map_Kd rechroma:block/obj/crystals/cyan_crystal
+
+newmtl gray_crystal_block
+map_Kd rechroma:block/obj/crystals/gray_crystal
+
+newmtl green_crystal_block
+map_Kd rechroma:block/obj/crystals/green_crystal
+
+newmtl lightblue_crystal_block
+map_Kd rechroma:block/obj/crystals/lightblue_crystal
+
+newmtl lightgray_crystal_block
+map_Kd rechroma:block/obj/crystals/lightgray_crystal
+
+newmtl lime_crystal_block
+map_Kd rechroma:block/obj/crystals/lime_crystal
+
+newmtl magenta_crystal_block
+map_Kd rechroma:block/obj/crystals/magenta_crystal
+
+newmtl orange_crystal_block
+map_Kd rechroma:block/obj/crystals/orange_crystal
+
+newmtl pink_crystal_block
+map_Kd rechroma:block/obj/crystals/pink_crystal
+
+newmtl purple_crystal_block
+map_Kd rechroma:block/obj/crystals/purple_crystal
+
+newmtl red_crystal_block
+map_Kd rechroma:block/obj/crystals/red_crystal
+
+newmtl white_crystal_block
+map_Kd rechroma:block/obj/crystals/white_crystal
+
+newmtl yellow_crystal_block
+map_Kd rechroma:block/obj/crystals/yellow_crystal

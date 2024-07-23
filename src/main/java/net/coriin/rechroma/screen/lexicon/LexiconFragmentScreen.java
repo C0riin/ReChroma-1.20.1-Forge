@@ -42,7 +42,7 @@ public class LexiconFragmentScreen extends AbstractContainerScreen<LexiconFragme
         this.btnDown = addWidget(
                 Button.builder(
                         Component.empty(), btn -> {
-                            menu.setOffset(Math.clamp(0,(int)Math.ceil(menu.invSize / 9f),menu.rowIndexOffset - 1));
+                            menu.setOffset(Math.clamp(0,(int)Math.ceil(menu.invSize / 9f)-3,menu.rowIndexOffset +1));
                             inv.player.sendSystemMessage(Component.literal("Down"));
                             //menu.rowIndexOffset = Math.clamp(0,(int)Math.ceil(menu.invSize / 9f), menu.rowIndexOffset);
                         }
@@ -51,7 +51,7 @@ public class LexiconFragmentScreen extends AbstractContainerScreen<LexiconFragme
         this.btnUp = addWidget(
                 Button.builder(
                    Component.empty(), btn -> {
-                       menu.setOffset(Math.clamp(0,(int)Math.ceil(menu.invSize / 9f),menu.rowIndexOffset + 1));
+                       menu.setOffset(Math.clamp(0,(int)Math.ceil(menu.invSize / 9f)-3,menu.rowIndexOffset - 1));
                        inv.player.sendSystemMessage(Component.literal("Up"));
                        //menu.rowIndexOffset = Math.clamp(0,(int)Math.ceil(menu.invSize / 9f), menu.rowIndexOffset);
                    }

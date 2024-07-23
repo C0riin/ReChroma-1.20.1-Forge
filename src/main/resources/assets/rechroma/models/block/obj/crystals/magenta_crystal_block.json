@@ -1,0 +1,6 @@
+{
+  "loader": "forge:obj",
+  "render_type": "translucent",
+  "model": "rechroma:models/block/obj/crystals/magenta_crystal_block.obj",
+  "flip-v": true
+}

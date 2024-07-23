@@ -91,6 +91,10 @@ public class ModCreativeTabs {
                         output.accept(ModBlocks.ENGRAVED_CRYSTALLINE_STONE.get());
                         output.accept(ModBlocks.EMBOSSED_CRYSTALLINE_STONE.get());
 
+                        output.accept(ModBlocks.ENERGIZED_CRYSTALLINE_STONE_BEAM.get());
+                        output.accept(ModBlocks.CRYSTALLINE_PYLON_FOCUS.get());
+                        output.accept(ModBlocks.CRYSTALLINE_ENERGY_STABILIZER.get());
+
                         output.accept(ModBlocks.TRAVEL_PATH.get());
 
                     }).build());
@@ -101,7 +105,22 @@ public class ModCreativeTabs {
                         output.accept(ModBlocks.AURA_BLOOM_FLOWER.get());
                         output.accept(ModBlocks.VOID_REEDS.get());
 
+                        output.accept(ModBlocks.BLACK_CRYSTAL_BLOCK.get());
+                        output.accept(ModBlocks.BLUE_CRYSTAL_BLOCK.get());
+                        output.accept(ModBlocks.BROWN_CRYSTAL_BLOCK.get());
+                        output.accept(ModBlocks.CYAN_CRYSTAL_BLOCK.get());
+                        output.accept(ModBlocks.GRAY_CRYSTAL_BLOCK.get());
+                        output.accept(ModBlocks.GREEN_CRYSTAL_BLOCK.get());
+                        output.accept(ModBlocks.LIGHTBLUE_CRYSTAL_BLOCK.get());
+                        output.accept(ModBlocks.LIGHTGRAY_CRYSTAL_BLOCK.get());
+                        output.accept(ModBlocks.LIME_CRYSTAL_BLOCK.get());
+                        output.accept(ModBlocks.MAGENTA_CRYSTAL_BLOCK.get());
+                        output.accept(ModBlocks.ORANGE_CRYSTAL_BLOCK.get());
+                        output.accept(ModBlocks.PINK_CRYSTAL_BLOCK.get());
                         output.accept(ModBlocks.PURPLE_CRYSTAL_BLOCK.get());
+                        output.accept(ModBlocks.RED_CRYSTAL_BLOCK.get());
+                        output.accept(ModBlocks.WHITE_CRYSTAL_BLOCK.get());
+                        output.accept(ModBlocks.YELLOW_CRYSTAL_BLOCK.get());
 
                     }).build());
 
