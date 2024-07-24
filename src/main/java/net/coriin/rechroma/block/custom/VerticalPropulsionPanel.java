@@ -54,4 +54,9 @@ public class VerticalPropulsionPanel extends BaseEntityBlock {
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new VerticalPropulsionPanelBlockEntity(pPos, pState);
     }
+
+    @Override
+    public void fallOn(Level pLevel, BlockState pState, BlockPos pPos, Entity pEntity, float pFallDistance) {
+        super.fallOn(pLevel, pState, pPos, pEntity, pFallDistance);
+    }
 }

@@ -16,6 +16,7 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RenderHighlightEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -52,4 +53,5 @@ public class ClientEventHandler {
         MenuScreens.register(ModMenuTypes.CASTING_TABLE_MENU.get(), CastingTableScreen::new);
         MenuScreens.register(ModMenuTypes.LEXICON_FRAGMENTS_MENU.get(), LexiconFragmentScreen::new);
     }
+
 }
