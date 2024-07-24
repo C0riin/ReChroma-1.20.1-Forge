@@ -34,21 +34,21 @@ public class ModBlocks {
 
 
     public static final RegistryObject<Block> CRYSTALLINE_STONE = registerBlock("crystalline_stone",
-            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> CRYSTALLINE_STONE_CORNER = registerBlock("crystalline_stone_corner",
-            ()-> new CrystallineStoneCornerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+            ()-> new CrystallineStoneCornerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> CRYSTALLINE_STONE_GROOVE = registerBlock("crystalline_stone_groove",
-            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> CRYSTALLINE_STONE_BEAM = registerBlock("crystalline_stone_beam",
-            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> CRYSTALLINE_STONE_BRICK = registerBlock("crystalline_stone_bricks",
-            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> CRYSTALLINE_STONE_COLUMN = registerBlock("crystalline_stone_column",
-            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> ENGRAVED_CRYSTALLINE_STONE = registerBlock("engraved_crystalline_stone",
-            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> EMBOSSED_CRYSTALLINE_STONE = registerBlock("embossed_crystalline_stone",
-            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> ENERGIZED_CRYSTALLINE_STONE_BEAM = registerBlock("energized_crystalline_stone_beam",
             ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
@@ -113,37 +113,37 @@ public class ModBlocks {
 
     // crystal blocks
     public static final RegistryObject<Block> BLACK_CRYSTAL_BLOCK = registerBlock("black_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BLUE_CRYSTAL_BLOCK = registerBlock("blue_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BROWN_CRYSTAL_BLOCK = registerBlock("brown_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> CYAN_CRYSTAL_BLOCK = registerBlock("cyan_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> GRAY_CRYSTAL_BLOCK = registerBlock("gray_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> GREEN_CRYSTAL_BLOCK = registerBlock("green_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> LIGHTBLUE_CRYSTAL_BLOCK = registerBlock("lightblue_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> LIGHTGRAY_CRYSTAL_BLOCK = registerBlock("lightgray_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> LIME_CRYSTAL_BLOCK = registerBlock("lime_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> MAGENTA_CRYSTAL_BLOCK = registerBlock("magenta_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> ORANGE_CRYSTAL_BLOCK = registerBlock("orange_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> PINK_CRYSTAL_BLOCK = registerBlock("pink_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> PURPLE_CRYSTAL_BLOCK = registerBlock("purple_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> RED_CRYSTAL_BLOCK = registerBlock("red_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> WHITE_CRYSTAL_BLOCK = registerBlock("white_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> YELLOW_CRYSTAL_BLOCK = registerBlock("yellow_crystal_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion()));
+            ()-> new Block(BlockBehaviour.Properties.copy(ModBlocks.CRYSTALLINE_STONE.get()).lightLevel(value -> 12).noOcclusion().requiresCorrectToolForDrops()));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

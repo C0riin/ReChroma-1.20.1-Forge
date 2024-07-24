@@ -1,0 +1,31 @@
+
+{
+  "values": [
+    "rechroma:black_crystal_block",
+    "rechroma:blue_crystal_block",
+    "rechroma:brown_crystal_block",
+    "rechroma:cyan_crystal_block",
+    "rechroma:gray_crystal_block",
+    "rechroma:green_crystal_block",
+    "rechroma:lightblue_crystal_block",
+    "rechroma:lightgray_crystal_block",
+    "rechroma:lime_crystal_block",
+    "rechroma:magenta_crystal_block",
+    "rechroma:orange_crystal_block",
+    "rechroma:pink_crystal_block",
+    "rechroma:purple_crystal_block",
+    "rechroma:red_crystal_block",
+    "rechroma:white_crystal_block",
+    "rechroma:yellow_crystal_block",
+
+
+    "rechroma:crystalline_stone",
+    "rechroma:crystalline_stone_corner",
+    "rechroma:crystalline_stone_groove",
+    "rechroma:crystalline_stone_beam",
+    "rechroma:crystalline_stone_bricks",
+    "rechroma:crystalline_stone_column",
+    "rechroma:engraved_crystalline_stone",
+    "rechroma:embossed_crystalline_stone"
+  ]
+}

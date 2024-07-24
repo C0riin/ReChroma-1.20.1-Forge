@@ -12,7 +12,9 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Random;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BezierCrystalsItem extends Item {
@@ -22,6 +24,7 @@ public class BezierCrystalsItem extends Item {
     int currentBounds = 0;
     int ticksBetweenAttacks = 6;
     int tickElapsed = 0;
+    List<LivingEntity> toNotBounce = new ArrayList<>();
 
     public BezierCrystalsItem(Properties pProperties) {
         super(pProperties);
@@ -32,11 +35,17 @@ public class BezierCrystalsItem extends Item {
         if(pLivingEntity instanceof Player pPlayer){
             if(!pLevel.isClientSide){
                 if(tickElapsed >= ticksBetweenAttacks){
+                    currentBounds = 0;
+                    toNotBounce.clear();
+
                     LivingEntity nearest = getNearestLivingEntity(pLevel, pPlayer);
                     if(nearest != null) {
+                        toNotBounce.add(pLivingEntity);
                         doAttack(pPlayer,nearest,pLevel);
                     }
                 }
+                //currentBounds = 0;
+                //List<LivingEntity> toNotBounce = new ArrayList<>();
                 tickElapsed++;
             }
         }
@@ -47,6 +56,7 @@ public class BezierCrystalsItem extends Item {
     @Override
     public void onStopUsing(ItemStack stack, LivingEntity entity, int count) {
         tickElapsed = 0;
+        currentBounds = 0;
         super.onStopUsing(stack, entity, count);
     }
 
@@ -66,13 +76,26 @@ public class BezierCrystalsItem extends Item {
         return UseAnim.BOW;
     }
 
-    public void doAttack(Player pPlayer, LivingEntity pLivingEntity, Level pLevel){
-        pLivingEntity.hurt(pLivingEntity.damageSources().magic(), 2);
+    public void doAttack(LivingEntity pLivingEntity1, LivingEntity pLivingEntity2, Level pLevel){
+        if(!toNotBounce.contains(pLivingEntity2)){
+            pLivingEntity2.hurt(pLivingEntity2.damageSources().magic(), 2);
+            toNotBounce.add(pLivingEntity2);
+        }
+
+        LivingEntity newNearest = getNearestLivingEntity(pLevel, pLivingEntity1,
+                new Vec3((Math.random()-0.5)*2, (Math.random()-0.5)*2, (Math.random()-0.5)*2));
+
+        if(newNearest != null && max_bounds > currentBounds){
+            currentBounds++;
+            doAttack(pLivingEntity2, newNearest, pLevel);
+        }
+
+
         tickElapsed = 0;
     }
 
-    private LivingEntity getNearestLivingEntity(Level pLevel, Player pPlayer) {
-        Vec3 playerVec = pPlayer.getLookAngle();
+    private LivingEntity getNearestLivingEntity(Level pLevel, LivingEntity pLivingEntity) {
+        Vec3 playerVec = pLivingEntity.getLookAngle();
 
         LivingEntity nearest = null;
         Vec3 posVector;
@@ -80,14 +103,41 @@ public class BezierCrystalsItem extends Item {
         double cos;
         double dist = Integer.MAX_VALUE;
 
-        List<LivingEntity> li = getEntitiesInRadius(pLevel, range, (int)pPlayer.getX(), (int)pPlayer.getY(), (int)pPlayer.getZ());
+        List<LivingEntity> li = getEntitiesInRadius(pLevel, range, (int)pLivingEntity.getX(), (int)pLivingEntity.getY(), (int)pLivingEntity.getZ());
 
         for (LivingEntity livingEntity : li) {
-            if(livingEntity == pPlayer) continue;
+            if(livingEntity == pLivingEntity || toNotBounce.contains(livingEntity)) continue;
 
-            posVector = livingEntity.position().subtract(pPlayer.position());
-            posVectorNormalized = (livingEntity.position().subtract(pPlayer.position())).normalize();
+            posVector = livingEntity.position().subtract(pLivingEntity.position());
+            posVectorNormalized = (livingEntity.position().subtract(pLivingEntity.position())).normalize();
             cos = RechromaMathHelper.cosFromScalarProduct(posVectorNormalized, playerVec.normalize());
+
+
+            if(dist > posVector.length() && cos >= 0.5) {
+                nearest = livingEntity;
+                dist = posVector.length();
+            }
+        }
+
+        return nearest;
+    }
+
+    private LivingEntity getNearestLivingEntity(Level pLevel, LivingEntity pLivingEntity, Vec3 dir) {
+
+        LivingEntity nearest = null;
+        Vec3 posVector;
+        Vec3 posVectorNormalized;
+        double cos;
+        double dist = Integer.MAX_VALUE;
+
+        List<LivingEntity> li = getEntitiesInRadius(pLevel, range, (int)pLivingEntity.getX(), (int)pLivingEntity.getY(), (int)pLivingEntity.getZ());
+
+        for (LivingEntity livingEntity : li) {
+            if(livingEntity == pLivingEntity || toNotBounce.contains(livingEntity)) continue;
+
+            posVector = livingEntity.position().subtract(pLivingEntity.position());
+            posVectorNormalized = (livingEntity.position().subtract(pLivingEntity.position())).normalize();
+            cos = RechromaMathHelper.cosFromScalarProduct(posVectorNormalized, dir.normalize());
 
 
             if(dist > posVector.length() && cos >= 0.5) {
