@@ -37,7 +37,6 @@ public class ChromaticLexicon extends Item implements MenuProvider {
             }
             else {
                 ModMessages.sendToPlayer(new LexiconS2PScreenPacket(), (ServerPlayer) pPlayer);
-                //Minecraft.getInstance().setScreen(new LexiconMainPageScreen(LexiconTitle)
             }
         }
 

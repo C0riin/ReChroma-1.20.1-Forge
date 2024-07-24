@@ -2,10 +2,7 @@ package net.coriin.rechroma.item;
 
 import net.coriin.rechroma.ReChroma;
 import net.coriin.rechroma.fluid.ModFluids;
-import net.coriin.rechroma.item.custom.ChromaticLexicon;
-import net.coriin.rechroma.item.custom.ElementalManipulator;
-import net.coriin.rechroma.item.custom.InfoFragmentItem;
-import net.coriin.rechroma.item.custom.OreHarvester;
+import net.coriin.rechroma.item.custom.*;
 import net.coriin.rechroma.util.ModTags;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -34,9 +31,12 @@ public class ModItems {
     public static final RegistryObject<Item> WHITE_CRYSTAL_SHARD = ITEMS.register("white_crystal_shard", ()-> new Item((new Item.Properties())));
     public static final RegistryObject<Item> YELLOW_CRYSTAL_SHARD = ITEMS.register("yellow_crystal_shard", ()-> new Item((new Item.Properties())));
 
-
+// TOOLS
     public static final RegistryObject<Item> POWER_MANIPULATOR = ITEMS.register("power_manipulator",
-            () -> new ElementalManipulator((new Item.Properties().stacksTo(1))));
+            () -> new PowerManipulator((new Item.Properties().stacksTo(1))));
+    public static final RegistryObject<Item> BEZIER_CRYSTALS = ITEMS.register("bezier_crystals",
+            () -> new BezierCrystalsItem((new Item.Properties().stacksTo(1))));
+
 
     public static final RegistryObject<Item> CHROMATIC_LEXICON = ITEMS.register("chromatic_lexicon",
             () -> new ChromaticLexicon((new Item.Properties().stacksTo(1))));

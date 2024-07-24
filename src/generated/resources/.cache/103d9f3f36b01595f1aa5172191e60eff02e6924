@@ -1,0 +1,7 @@
+// 1.20.1	2024-07-18T09:14:25.3227971	Registries
+2bccbbe2b2e788e0e91d12719a41a2e515df7af7 data/rechroma/forge/biome_modifier/add_nether_sapphire_ore.json
+64f793800f34c1b207820915b80dc70b19eed568 data/rechroma/forge/biome_modifier/add_sapphire_ore.json
+767c1341b85ee81d49e4fdbf2d928fa1e5c5374c data/rechroma/worldgen/configured_feature/crystal.json
+b6f9e24d9552fcf84b1f89b785dc80998f74e9f5 data/rechroma/worldgen/configured_feature/nether_crystal.json
+5add309a3abffbf0a70c9a97b12ad0c6ce903fc3 data/rechroma/worldgen/placed_feature/crystal_placed.json
+bc36f0efa2c7241fd277fee1e2daedf513d26e0d data/rechroma/worldgen/placed_feature/nether_crystal_placed.json
