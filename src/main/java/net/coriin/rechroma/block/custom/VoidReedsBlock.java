@@ -2,6 +2,7 @@ package net.coriin.rechroma.block.custom;
 
 import net.coriin.rechroma.auxiliary.ReChromaHelper;
 import net.coriin.rechroma.block.entity.VoidReedsBlockEntity;
+import net.coriin.rechroma.util.IProgressViewable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,7 +25,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import org.jetbrains.annotations.Nullable;
 
-public class VoidReedsBlock extends Block implements EntityBlock, net.minecraftforge.common.IPlantable{ //
+public class VoidReedsBlock extends Block implements EntityBlock, net.minecraftforge.common.IPlantable, IProgressViewable { //
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_15;
 

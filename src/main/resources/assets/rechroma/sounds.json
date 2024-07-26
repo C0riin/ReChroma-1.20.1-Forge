@@ -1,0 +1,8 @@
+{
+  "bezier_crystals_attack": {
+    "subtitles": "sounds.rechroma.bezier_crystals_attack",
+    "sounds": [
+      "rechroma:bezier_crystals_attack_1"
+    ]
+  }
+}

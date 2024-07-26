@@ -2,6 +2,7 @@ package net.coriin.rechroma.block.custom;
 
 import net.coriin.rechroma.auxiliary.ReChromaHelper;
 import net.coriin.rechroma.block.entity.AuraBloomBlockEntity;
+import net.coriin.rechroma.util.IProgressViewable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -19,7 +20,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public class AuraBloomBlock extends Block  implements EntityBlock{ //
+public class AuraBloomBlock extends Block  implements EntityBlock, IProgressViewable { //
 
     public AuraBloomBlock(BlockBehaviour.Properties pProperties) {
         super(pProperties);
