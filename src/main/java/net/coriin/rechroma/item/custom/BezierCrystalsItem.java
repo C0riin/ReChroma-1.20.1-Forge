@@ -1,7 +1,10 @@
 package net.coriin.rechroma.item.custom;
 
 import net.coriin.rechroma.auxiliary.RechromaMathHelper;
-import net.minecraft.network.chat.Component;
+import net.coriin.rechroma.network.ModMessages;
+import net.coriin.rechroma.network.packet.RenderBezierCurveS2ACPacket;
+import net.coriin.rechroma.sounds.ModSounds;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
@@ -12,7 +15,6 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import org.joml.Random;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,10 @@ public class BezierCrystalsItem extends Item {
     int currentBounds = 0;
     int ticksBetweenAttacks = 6;
     int tickElapsed = 0;
+    public static int qualityParamOfParticleBezierCurve = 60;
+
     List<LivingEntity> toNotBounce = new ArrayList<>();
+    private static final double REFERENCE_COS = Math.cos(Math.toRadians(60));
 
     public BezierCrystalsItem(Properties pProperties) {
         super(pProperties);
@@ -44,11 +49,10 @@ public class BezierCrystalsItem extends Item {
                         doAttack(pPlayer,nearest,pLevel);
                     }
                 }
-                //currentBounds = 0;
-                //List<LivingEntity> toNotBounce = new ArrayList<>();
                 tickElapsed++;
             }
         }
+        //Minecraft.getInstance().level.addParticle(ModParticles.BEZIER_CRYSTALS_ATTACK_PARTICLE.get(), 0,0,0,0,0,0);
         super.onUseTick(pLevel, pLivingEntity, pStack, pRemainingUseDuration);
 
     }
@@ -80,10 +84,18 @@ public class BezierCrystalsItem extends Item {
         if(!toNotBounce.contains(pLivingEntity2)){
             pLivingEntity2.hurt(pLivingEntity2.damageSources().magic(), 2);
             toNotBounce.add(pLivingEntity2);
+            pLevel.playSeededSound(null, pLivingEntity1.getX(), pLivingEntity1.getY(), pLivingEntity1.getZ(),
+                    ModSounds.BEZIER_CRYSTALS_ATTACK.get(), SoundSource.AMBIENT,
+                    1f,1f,0);
+
+            Vec3 dist = pLivingEntity2.position().subtract(pLivingEntity1.position());
+            ModMessages.sendToClients(new RenderBezierCurveS2ACPacket(pLivingEntity1.position().add(RechromaMathHelper.getRandomPlusMinus1Vector()),
+                    RechromaMathHelper.getRandomPlusMinus1Vector().scale(dist.length()/3).add(dist.scale(0.5).add(pLivingEntity1.position())),
+                    pLivingEntity2.position()));
         }
 
         LivingEntity newNearest = getNearestLivingEntity(pLevel, pLivingEntity1,
-                new Vec3((Math.random()-0.5)*2, (Math.random()-0.5)*2, (Math.random()-0.5)*2));
+                RechromaMathHelper.getRandomPlusMinus1Vector());
 
         if(newNearest != null && max_bounds > currentBounds){
             currentBounds++;
@@ -99,7 +111,6 @@ public class BezierCrystalsItem extends Item {
 
         LivingEntity nearest = null;
         Vec3 posVector;
-        Vec3 posVectorNormalized;
         double cos;
         double dist = Integer.MAX_VALUE;
 
@@ -109,11 +120,10 @@ public class BezierCrystalsItem extends Item {
             if(livingEntity == pLivingEntity || toNotBounce.contains(livingEntity)) continue;
 
             posVector = livingEntity.position().subtract(pLivingEntity.position());
-            posVectorNormalized = (livingEntity.position().subtract(pLivingEntity.position())).normalize();
-            cos = RechromaMathHelper.cosFromScalarProduct(posVectorNormalized, playerVec.normalize());
+            cos = RechromaMathHelper.cosFromScalarProduct((livingEntity.position().subtract(pLivingEntity.position())).normalize(), playerVec.normalize());
 
 
-            if(dist > posVector.length() && cos >= 0.5) {
+            if(dist > posVector.length() && cos >= REFERENCE_COS) {
                 nearest = livingEntity;
                 dist = posVector.length();
             }
@@ -126,7 +136,6 @@ public class BezierCrystalsItem extends Item {
 
         LivingEntity nearest = null;
         Vec3 posVector;
-        Vec3 posVectorNormalized;
         double cos;
         double dist = Integer.MAX_VALUE;
 
@@ -136,11 +145,11 @@ public class BezierCrystalsItem extends Item {
             if(livingEntity == pLivingEntity || toNotBounce.contains(livingEntity)) continue;
 
             posVector = livingEntity.position().subtract(pLivingEntity.position());
-            posVectorNormalized = (livingEntity.position().subtract(pLivingEntity.position())).normalize();
-            cos = RechromaMathHelper.cosFromScalarProduct(posVectorNormalized, dir.normalize());
+
+            cos = RechromaMathHelper.cosFromScalarProduct((livingEntity.position().subtract(pLivingEntity.position())).normalize(), dir.normalize());
 
 
-            if(dist > posVector.length() && cos >= 0.5) {
+            if(dist > posVector.length() && cos >= REFERENCE_COS) {
                 nearest = livingEntity;
                 dist = posVector.length();
             }

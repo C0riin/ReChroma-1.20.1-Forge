@@ -31,6 +31,7 @@ public class ModCreativeTabs {
 
                         output.accept(ModItems.MULTI_TOOL.get());
                         output.accept(ModItems.ORE_HARVESTER.get());
+                        output.accept(ModItems.BEZIER_CRYSTALS.get());
 
                         output.accept(ModItems.BLACK_CRYSTAL_SHARD.get());
                         output.accept(ModItems.BLUE_CRYSTAL_SHARD.get());

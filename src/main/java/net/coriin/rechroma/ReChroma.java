@@ -7,7 +7,9 @@ import net.coriin.rechroma.effect.ModEffects;
 import net.coriin.rechroma.fluid.ModFluidTypes;
 import net.coriin.rechroma.fluid.ModFluids;
 import net.coriin.rechroma.network.ModMessages;
+import net.coriin.rechroma.particles.ModParticles;
 import net.coriin.rechroma.recipe.ModRecipes;
+import net.coriin.rechroma.sounds.ModSounds;
 import net.coriin.rechroma.util.ModCreativeTabs;
 import net.coriin.rechroma.item.ModItems;
 import net.coriin.rechroma.screen.ModMenuTypes;
@@ -46,6 +48,8 @@ public class ReChroma
         ModMenuTypes.register(modEventBus);
         ModRecipes.register(modEventBus);
         ModEffects.register(modEventBus);
+        ModSounds.register(modEventBus);
+        ModParticles.register(modEventBus);
 
         ModFluids.register(modEventBus);
         ModFluidTypes.register(modEventBus);
