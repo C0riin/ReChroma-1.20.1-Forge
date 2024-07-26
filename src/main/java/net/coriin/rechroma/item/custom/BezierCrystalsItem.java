@@ -85,7 +85,7 @@ public class BezierCrystalsItem extends Item {
             pLivingEntity2.hurt(pLivingEntity2.damageSources().magic(), 2);
             toNotBounce.add(pLivingEntity2);
             pLevel.playSeededSound(null, pLivingEntity1.getX(), pLivingEntity1.getY(), pLivingEntity1.getZ(),
-                    ModSounds.BEZIER_CRYSTALS_ATTACK.get(), SoundSource.AMBIENT,
+                    ModSounds.BEZIER_CRYSTALS_ATTACK.get(), SoundSource.PLAYERS,
                     1f,1f,0);
 
             Vec3 dist = pLivingEntity2.position().subtract(pLivingEntity1.position());
