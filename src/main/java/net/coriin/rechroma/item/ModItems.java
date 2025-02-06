@@ -42,7 +42,7 @@ public class ModItems {
             () -> new ChromaticLexicon((new Item.Properties().stacksTo(1))));
 
     public static final RegistryObject<Item> INFO_FRAGMENT = ITEMS.register("info_fragment",
-            () -> new InfoFragmentItem((new Item.Properties().stacksTo(1)), "blank"));
+            () -> new InfoFragmentItem((new Item.Properties().stacksTo(1))));
 
 
     public static final RegistryObject<Item> MULTI_TOOL = ITEMS.register("multi_tool",

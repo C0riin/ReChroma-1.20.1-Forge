@@ -1,21 +1,21 @@
-package net.coriin.rechroma.PlayerKnowledgeSystem;
+package net.coriin.rechroma.PlayerKnowledgeSystem.fragments;
 
+import net.coriin.rechroma.PlayerKnowledgeSystem.ReChromaKnowledgeHelper;
 import net.minecraft.nbt.CompoundTag;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlayerKnowledge {
+public class PlayerFlagsCapability {
 
-    private Map<String,Boolean> progressFlags = new HashMap<String,Boolean>();
-    public static String[] allFlags = {"test_flag","casting"};
+    private Map<String,Boolean> progressFlags = new HashMap<>();
 
     public Map<String,Boolean> getProgressFlags() {
         return progressFlags;
     }
 
     public String[] getAllProgressFlags() {
-        return allFlags;
+        return (String[])ReChromaKnowledgeHelper.KnowledgeCore.ALL_PROGRESS_FLAGS.toArray();
     }
 
 
@@ -27,7 +27,7 @@ public class PlayerKnowledge {
         progressFlags.replace(flag,value);
     }
 
-    public void copyFrom(PlayerKnowledge other){
+    public void copyFrom(PlayerFlagsCapability other){
         this.progressFlags = other.progressFlags;
     }
 
@@ -46,7 +46,7 @@ public class PlayerKnowledge {
     }
 
     public void loadNBTData(CompoundTag nbt){
-        for (String key : allFlags){
+        for (String key : ReChromaKnowledgeHelper.KnowledgeCore.ALL_PROGRESS_FLAGS){
             if(nbt.contains(key)){
                 progressFlags.put(key,nbt.getBoolean(key));
             }
