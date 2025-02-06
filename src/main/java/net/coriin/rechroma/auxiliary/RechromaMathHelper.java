@@ -33,4 +33,16 @@ public class RechromaMathHelper {
         return new Vec3((Math.random()-0.5)*2,(Math.random()-0.5)*2,(Math.random()-0.5)*2);
     }
 
+    public static List<?> SubstractList(List<?> l1, List<?> l2){
+        for(Object le : l2){
+            l1.remove(le);
+        }
+        return l1;
+    }
+
+    public static int RandInt(int min_inclusive, int max_exclusive){
+        return (int) (Math.random() * (max_exclusive - min_inclusive)) + min_inclusive;
+
+    }
+
 }

@@ -1,30 +1,28 @@
 package net.coriin.rechroma.network.packet;
 
-import net.coriin.rechroma.PlayerKnowledgeSystem.PlayerKnowledgeProvider;
+import net.coriin.rechroma.PlayerKnowledgeSystem.flags.PlayerFragmentsProvider;
+import net.coriin.rechroma.PlayerKnowledgeSystem.fragments.PlayerFlagsProvider;
 import net.coriin.rechroma.ReChroma;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class KnowledgeC2SPacket {
+public class FragmentsC2SPacket {
 
     CompoundTag nbt;
 
 
-    public KnowledgeC2SPacket(){
+    public FragmentsC2SPacket(){
     }
 
-    public KnowledgeC2SPacket(FriendlyByteBuf buf){
+    public FragmentsC2SPacket(FriendlyByteBuf buf){
         this.nbt = buf.readNbt();
     }
-    public KnowledgeC2SPacket(CompoundTag nbt){
-        ReChroma.LOGGER.error("right constructor");
+    public FragmentsC2SPacket(CompoundTag nbt){
+        //ReChroma.LOGGER.error("right constructor");
         this.nbt = nbt;
     }
 
@@ -37,8 +35,8 @@ public class KnowledgeC2SPacket {
 
         ctx.enqueueWork(() -> {
 
-            Minecraft.getInstance().player.getCapability(PlayerKnowledgeProvider.PLAYER_KNOWLEDGE).ifPresent(clientKnowledge -> {
-                clientKnowledge.loadNBTData(nbt);
+            Minecraft.getInstance().player.getCapability(PlayerFragmentsProvider.PLAYER_FRAGMENTS).ifPresent(clientFragments -> {
+                clientFragments.loadNBTData(nbt);
             });
         });
         ctx.setPacketHandled(true);

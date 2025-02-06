@@ -1,5 +1,6 @@
 package net.coriin.rechroma.item.custom;
 
+import net.coriin.rechroma.PlayerKnowledgeSystem.ReChromaKnowledgeHelper;
 import net.coriin.rechroma.network.ModMessages;
 import net.coriin.rechroma.network.packet.LexiconS2PScreenPacket;
 import net.coriin.rechroma.screen.lexicon.LexiconFragmentMenu;
@@ -33,9 +34,10 @@ public class ChromaticLexicon extends Item implements MenuProvider {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if(!pLevel.isClientSide){
             if(pPlayer.isShiftKeyDown()){
-                NetworkHooks.openScreen((ServerPlayer) pPlayer, ((ChromaticLexicon)pPlayer.getItemInHand(pUsedHand).getItem()));
+                //NetworkHooks.openScreen((ServerPlayer) pPlayer, ((ChromaticLexicon)pPlayer.getItemInHand(pUsedHand).getItem()));
             }
             else {
+                ReChromaKnowledgeHelper.syncFragments((ServerPlayer) pPlayer);
                 ModMessages.sendToPlayer(new LexiconS2PScreenPacket(), (ServerPlayer) pPlayer);
             }
         }

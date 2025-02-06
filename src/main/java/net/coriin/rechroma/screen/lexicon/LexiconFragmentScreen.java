@@ -85,6 +85,8 @@ public class LexiconFragmentScreen extends AbstractContainerScreen<LexiconFragme
         RenderSystem.setShaderTexture(0, TEXTURE);
 
         pGuiGraphics.blit(TEXTURE, pX, pY, pOx, pOy, pWidth, pHeight, pTextureWidth,pTextureHeight);
+
+
     }
 
     @Override
@@ -97,5 +99,7 @@ public class LexiconFragmentScreen extends AbstractContainerScreen<LexiconFragme
     public void afterMouseAction() {
         this.minecraft = Minecraft.getInstance();
         super.afterMouseAction();
+
+
     }
 }

@@ -1,7 +1,8 @@
 package net.coriin.rechroma.network;
 
 import net.coriin.rechroma.ReChroma;
-import net.coriin.rechroma.network.packet.KnowledgeC2SPacket;
+import net.coriin.rechroma.network.packet.FlagsC2SPacket;
+import net.coriin.rechroma.network.packet.FragmentsC2SPacket;
 import net.coriin.rechroma.network.packet.LexiconS2PScreenPacket;
 import net.coriin.rechroma.network.packet.RenderBezierCurveS2ACPacket;
 import net.minecraft.resources.ResourceLocation;
@@ -29,10 +30,16 @@ public class ModMessages {
 
         INSTANCE = net;
 
-        net.messageBuilder(KnowledgeC2SPacket.class, getId(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(KnowledgeC2SPacket::new)
-                .encoder(KnowledgeC2SPacket::toBytes)
-                .consumerMainThread(KnowledgeC2SPacket::handlePacket)
+        net.messageBuilder(FlagsC2SPacket.class, getId(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(FlagsC2SPacket::new)
+                .encoder(FlagsC2SPacket::toBytes)
+                .consumerMainThread(FlagsC2SPacket::handlePacket)
+                .add();
+
+        net.messageBuilder(FragmentsC2SPacket.class, getId(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(FragmentsC2SPacket::new)
+                .encoder(FragmentsC2SPacket::toBytes)
+                .consumerMainThread(FragmentsC2SPacket::handlePacket)
                 .add();
 
         net.messageBuilder(LexiconS2PScreenPacket.class, getId(), NetworkDirection.PLAY_TO_CLIENT)

@@ -1,14 +1,10 @@
 package net.coriin.rechroma.block.custom;
 
 import com.mojang.logging.LogUtils;
-import net.coriin.rechroma.PlayerKnowledgeSystem.PlayerKnowledgeProvider;
-import net.coriin.rechroma.auxiliary.ReChromaHelper;
+import net.coriin.rechroma.PlayerKnowledgeSystem.ReChromaKnowledgeHelper;
 import net.coriin.rechroma.block.entity.CastingTableBlockEntity;
 import net.coriin.rechroma.block.entity.ModBlockEntities;
 import net.coriin.rechroma.item.ModItems;
-import net.coriin.rechroma.network.ModMessages;
-import net.coriin.rechroma.network.packet.KnowledgeC2SPacket;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -68,7 +64,7 @@ public class CastingTableBlock extends BaseEntityBlock {
             } else {throw new IllegalStateException("Casting Table Container provider is missing");}
 
             // for knowledge
-            if(ReChromaHelper.setFlagValue((ServerPlayer) pPlayer,"test_flag", true)){
+            if(ReChromaKnowledgeHelper.setFlagValue((ServerPlayer) pPlayer,"test_flag", true)){
                 pPlayer.sendSystemMessage(Component.literal("здесь должна выскочить ачивка"));
             }
         }

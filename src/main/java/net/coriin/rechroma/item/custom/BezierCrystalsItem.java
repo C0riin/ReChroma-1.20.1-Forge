@@ -27,6 +27,7 @@ public class BezierCrystalsItem extends Item {
     int ticksBetweenAttacks = 6;
     int tickElapsed = 0;
     public static int qualityParamOfParticleBezierCurve = 60;
+    public int damage = 4;
 
     List<LivingEntity> toNotBounce = new ArrayList<>();
     private static final double REFERENCE_COS = Math.cos(Math.toRadians(60));
@@ -59,6 +60,10 @@ public class BezierCrystalsItem extends Item {
 
     @Override
     public void onStopUsing(ItemStack stack, LivingEntity entity, int count) {
+
+        if(entity instanceof Player player && tickElapsed > 40){
+            player.getCooldowns().addCooldown(this,100);
+        }
         tickElapsed = 0;
         currentBounds = 0;
         super.onStopUsing(stack, entity, count);
@@ -82,16 +87,17 @@ public class BezierCrystalsItem extends Item {
 
     public void doAttack(LivingEntity pLivingEntity1, LivingEntity pLivingEntity2, Level pLevel){
         if(!toNotBounce.contains(pLivingEntity2)){
-            pLivingEntity2.hurt(pLivingEntity2.damageSources().magic(), 2);
+            pLivingEntity2.hurt(pLivingEntity2.damageSources().magic(), damage);
             toNotBounce.add(pLivingEntity2);
             pLevel.playSeededSound(null, pLivingEntity1.getX(), pLivingEntity1.getY(), pLivingEntity1.getZ(),
                     ModSounds.BEZIER_CRYSTALS_ATTACK.get(), SoundSource.PLAYERS,
                     1f,1f,0);
 
+
             Vec3 dist = pLivingEntity2.position().subtract(pLivingEntity1.position());
             ModMessages.sendToClients(new RenderBezierCurveS2ACPacket(pLivingEntity1.position().add(RechromaMathHelper.getRandomPlusMinus1Vector()),
                     RechromaMathHelper.getRandomPlusMinus1Vector().scale(dist.length()/3).add(dist.scale(0.5).add(pLivingEntity1.position())),
-                    pLivingEntity2.position()));
+                    pLivingEntity2.position().add(new Vec3(0, pLivingEntity2.getBbHeight()/2,0))));
         }
 
         LivingEntity newNearest = getNearestLivingEntity(pLevel, pLivingEntity1,

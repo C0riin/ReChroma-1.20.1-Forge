@@ -1,5 +1,6 @@
-package net.coriin.rechroma.PlayerKnowledgeSystem;
+package net.coriin.rechroma.PlayerKnowledgeSystem.fragments;
 
+import net.coriin.rechroma.PlayerKnowledgeSystem.ReChromaKnowledgeHelper;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.capabilities.Capability;
@@ -12,18 +13,19 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 
-public class PlayerKnowledgeProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
+public class PlayerFlagsProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-    public static Capability<PlayerKnowledge> PLAYER_KNOWLEDGE = CapabilityManager.get(new CapabilityToken<PlayerKnowledge>(){ });
+    public static Capability<PlayerFlagsCapability> PLAYER_KNOWLEDGE = CapabilityManager.get(new CapabilityToken<PlayerFlagsCapability>(){ });
 
-    private PlayerKnowledge playerKnowledge = null;
-    private final LazyOptional<PlayerKnowledge> optional = LazyOptional.of(this::createPlayerKnowledge);
+    private PlayerFlagsCapability playerFragmentsCapability = null;
+    private final LazyOptional<PlayerFlagsCapability> optional = LazyOptional.of(this::createPlayerKnowledge);
 
-    private PlayerKnowledge createPlayerKnowledge() {
-        if(this.playerKnowledge == null){
-            this.playerKnowledge = new PlayerKnowledge();
+    private PlayerFlagsCapability createPlayerKnowledge() {
+        if(this.playerFragmentsCapability == null){
+            this.playerFragmentsCapability = new PlayerFlagsCapability();
         }
-        return this.playerKnowledge;
+        ReChromaKnowledgeHelper.InitKnowledge(this.playerFragmentsCapability);
+        return this.playerFragmentsCapability;
     }
 
     @Override
