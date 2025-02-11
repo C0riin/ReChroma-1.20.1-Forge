@@ -9,6 +9,7 @@ public class RuneBlock extends Block {
     public RuneBlock(Properties pProperties, int colorIndex) {
         super(pProperties);
         this.colorIndex = colorIndex;
+
     }
 
 }

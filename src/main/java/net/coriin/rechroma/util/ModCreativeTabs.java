@@ -3,6 +3,7 @@ package net.coriin.rechroma.util;
 import net.coriin.rechroma.ReChroma;
 import net.coriin.rechroma.block.ModBlocks;
 import net.coriin.rechroma.item.ModItems;
+import net.coriin.rechroma.item.custom.ChromaticLexicon;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Mob;
@@ -21,7 +22,12 @@ public class ModCreativeTabs {
             ()-> CreativeModeTab.builder().icon(()-> new ItemStack(ModItems.BLACK_CRYSTAL_SHARD.get())).title(Component.translatable("creativetab.rechroma.main"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.POWER_MANIPULATOR.get());
+
+
                         output.accept(ModItems.CHROMATIC_LEXICON.get());
+                        ItemStack CREATIVE_SPAWNED_LEXICON = new ItemStack(ModItems.CHROMATIC_LEXICON.get(), 1);
+                        CREATIVE_SPAWNED_LEXICON.getOrCreateTag().putBoolean("is_creative_spawned", true);
+                        output.accept(CREATIVE_SPAWNED_LEXICON);
 
                         output.accept(ModItems.LIQUID_CHROMA_BUCKET.get());
 
@@ -95,6 +101,7 @@ public class ModCreativeTabs {
                         output.accept(ModBlocks.ENERGIZED_CRYSTALLINE_STONE_BEAM.get());
                         output.accept(ModBlocks.CRYSTALLINE_PYLON_FOCUS.get());
                         output.accept(ModBlocks.CRYSTALLINE_ENERGY_STABILIZER.get());
+                        output.accept(ModBlocks.PYLON_CORE.get());
 
                         output.accept(ModBlocks.TRAVEL_PATH.get());
 

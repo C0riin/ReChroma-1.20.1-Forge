@@ -1,7 +1,7 @@
-package net.coriin.rechroma.block.entity;
+package net.coriin.rechroma.block;
 
 import net.coriin.rechroma.ReChroma;
-import net.coriin.rechroma.block.ModBlocks;
+import net.coriin.rechroma.block.entity.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,6 +16,10 @@ public class ModBlockEntities {
     public static final RegistryObject<BlockEntityType<CastingTableBlockEntity>> CASTING_TABLE_BE =
             BLOCK_ENTITIES.register("casting_table_be", ()->
                     BlockEntityType.Builder.of(CastingTableBlockEntity::new, ModBlocks.CASTING_TABLE.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<PylonCoreBlockEntity>> PYLON_CORE_BE =
+            BLOCK_ENTITIES.register("pylon_core_be", ()->
+                    BlockEntityType.Builder.of(PylonCoreBlockEntity::new, ModBlocks.PYLON_CORE.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<VerticalPropulsionPanelBlockEntity>> VERTICAL_PROPULSION_PANEL_BE =
             BLOCK_ENTITIES.register("vertical_propulsion_panel", ()->

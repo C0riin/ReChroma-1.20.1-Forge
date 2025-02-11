@@ -1,5 +1,6 @@
 package net.coriin.rechroma.block.entity;
 
+import net.coriin.rechroma.block.ModBlockEntities;
 import net.coriin.rechroma.block.ModBlocks;
 import net.coriin.rechroma.effect.ModEffects;
 import net.minecraft.core.BlockPos;

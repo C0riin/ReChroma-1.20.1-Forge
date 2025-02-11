@@ -36,19 +36,18 @@ public class ModItems {
             () -> new PowerManipulator((new Item.Properties().stacksTo(1))));
     public static final RegistryObject<Item> BEZIER_CRYSTALS = ITEMS.register("bezier_crystals",
             () -> new BezierCrystalsItem((new Item.Properties().stacksTo(1))));
-
-
-    public static final RegistryObject<Item> CHROMATIC_LEXICON = ITEMS.register("chromatic_lexicon",
-            () -> new ChromaticLexicon((new Item.Properties().stacksTo(1))));
-
-    public static final RegistryObject<Item> INFO_FRAGMENT = ITEMS.register("info_fragment",
-            () -> new InfoFragmentItem((new Item.Properties().stacksTo(1))));
-
-
     public static final RegistryObject<Item> MULTI_TOOL = ITEMS.register("multi_tool",
             () -> new DiggerItem(5,1f,ModToolTiers.MULTI_TOOL_TIER, ModTags.Blocks.MULTI_TOOL_MINEABLE,(new Item.Properties().stacksTo(1))));
     public static final RegistryObject<Item> ORE_HARVESTER = ITEMS.register("ore_harvester",
             () -> new OreHarvester(Tiers.DIAMOND,5,1f,(new Item.Properties().stacksTo(1))));
+
+    public static final RegistryObject<Item> CHROMATIC_LEXICON = ITEMS.register("chromatic_lexicon",
+            () -> new ChromaticLexicon((new Item.Properties().stacksTo(1))));
+    public static final RegistryObject<Item> INFO_FRAGMENT = ITEMS.register("info_fragment",
+            () -> new InfoFragmentItem((new Item.Properties().stacksTo(1))));
+
+
+
 
     public static final RegistryObject<Item> AURA_DUST = ITEMS.register("aura_dust",
             () -> new Item((new Item.Properties())));

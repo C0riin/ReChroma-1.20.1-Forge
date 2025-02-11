@@ -1,7 +1,5 @@
-package net.coriin.rechroma.PlayerKnowledgeSystem.flags;
+package net.coriin.rechroma.capability.PlayerKnowledgeSystem.flags;
 
-import net.coriin.rechroma.PlayerKnowledgeSystem.ReChromaKnowledgeHelper;
-import net.coriin.rechroma.PlayerKnowledgeSystem.fragments.PlayerFlagsCapability;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.capabilities.Capability;

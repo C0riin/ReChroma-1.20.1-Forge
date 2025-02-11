@@ -2,7 +2,7 @@ package net.coriin.rechroma;
 
 import com.mojang.logging.LogUtils;
 import net.coriin.rechroma.block.ModBlocks;
-import net.coriin.rechroma.block.entity.ModBlockEntities;
+import net.coriin.rechroma.block.ModBlockEntities;
 import net.coriin.rechroma.effect.ModEffects;
 import net.coriin.rechroma.fluid.ModFluidTypes;
 import net.coriin.rechroma.fluid.ModFluids;
@@ -13,8 +13,6 @@ import net.coriin.rechroma.sounds.ModSounds;
 import net.coriin.rechroma.util.ModCreativeTabs;
 import net.coriin.rechroma.item.ModItems;
 import net.coriin.rechroma.screen.ModMenuTypes;
-import net.coriin.rechroma.util.OverlayRenderer;
-import net.minecraftforge.client.model.obj.ObjLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;

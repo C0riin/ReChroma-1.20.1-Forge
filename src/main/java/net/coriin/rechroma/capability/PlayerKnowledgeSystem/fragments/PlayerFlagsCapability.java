@@ -1,12 +1,14 @@
-package net.coriin.rechroma.PlayerKnowledgeSystem.fragments;
+package net.coriin.rechroma.capability.PlayerKnowledgeSystem.fragments;
 
-import net.coriin.rechroma.PlayerKnowledgeSystem.ReChromaKnowledgeHelper;
+import net.coriin.rechroma.capability.BaseCapability;
+import net.coriin.rechroma.auxiliary.ReChromaCapabilityHelper;
+import net.coriin.rechroma.util.lexicon.KnowledgeCore;
 import net.minecraft.nbt.CompoundTag;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlayerFlagsCapability {
+public class PlayerFlagsCapability extends BaseCapability {
 
     private Map<String,Boolean> progressFlags = new HashMap<>();
 
@@ -15,7 +17,7 @@ public class PlayerFlagsCapability {
     }
 
     public String[] getAllProgressFlags() {
-        return (String[])ReChromaKnowledgeHelper.KnowledgeCore.ALL_PROGRESS_FLAGS.toArray();
+        return (String[]) KnowledgeCore.ALL_PROGRESS_FLAGS.toArray();
     }
 
 
@@ -31,13 +33,13 @@ public class PlayerFlagsCapability {
         this.progressFlags = other.progressFlags;
     }
 
-    public void saveNBTData(CompoundTag nbt){
+    @Override public void saveNBTData(CompoundTag nbt){
         for (Map.Entry<String,Boolean> entry : progressFlags.entrySet()){
             nbt.putBoolean(entry.getKey(),entry.getValue());
         }
     }
 
-    public CompoundTag getAsNBT(){
+    @Override public CompoundTag getAsNBT(){
         CompoundTag nbt = new CompoundTag();
         for (Map.Entry<String,Boolean> entry : progressFlags.entrySet()){
             nbt.putBoolean(entry.getKey(),entry.getValue());
@@ -45,8 +47,8 @@ public class PlayerFlagsCapability {
         return nbt;
     }
 
-    public void loadNBTData(CompoundTag nbt){
-        for (String key : ReChromaKnowledgeHelper.KnowledgeCore.ALL_PROGRESS_FLAGS){
+    @Override public void loadNBTData(CompoundTag nbt){
+        for (String key : KnowledgeCore.ALL_PROGRESS_FLAGS){
             if(nbt.contains(key)){
                 progressFlags.put(key,nbt.getBoolean(key));
             }

@@ -1,6 +1,7 @@
 package net.coriin.rechroma.auxiliary;
 
 import net.minecraft.world.phys.Vec3;
+import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,5 +45,13 @@ public class RechromaMathHelper {
         return (int) (Math.random() * (max_exclusive - min_inclusive)) + min_inclusive;
 
     }
+
+    public static Vec3 Vector3fToVec3(Vector3f vec){
+        return new Vec3(vec.x, vec.y, vec.z);
+    }
+    public static Vector3f Vec3ToVector3f(Vec3 vec){
+        return new Vector3f((float)vec.x, (float)vec.y, (float)vec.z);
+    }
+
 
 }

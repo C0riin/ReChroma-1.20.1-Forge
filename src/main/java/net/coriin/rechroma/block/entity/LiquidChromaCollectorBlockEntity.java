@@ -1,11 +1,11 @@
 package net.coriin.rechroma.block.entity;
 
+import net.coriin.rechroma.block.ModBlockEntities;
 import net.coriin.rechroma.fluid.ModFluids;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;

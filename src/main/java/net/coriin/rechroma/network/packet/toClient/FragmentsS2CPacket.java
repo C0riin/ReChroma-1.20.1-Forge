@@ -1,8 +1,6 @@
-package net.coriin.rechroma.network.packet;
+package net.coriin.rechroma.network.packet.toClient;
 
-import net.coriin.rechroma.PlayerKnowledgeSystem.flags.PlayerFragmentsProvider;
-import net.coriin.rechroma.PlayerKnowledgeSystem.fragments.PlayerFlagsProvider;
-import net.coriin.rechroma.ReChroma;
+import net.coriin.rechroma.capability.PlayerKnowledgeSystem.flags.PlayerFragmentsProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
@@ -10,18 +8,18 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class FragmentsC2SPacket {
+public class FragmentsS2CPacket {
 
     CompoundTag nbt;
 
 
-    public FragmentsC2SPacket(){
+    public FragmentsS2CPacket(){
     }
 
-    public FragmentsC2SPacket(FriendlyByteBuf buf){
+    public FragmentsS2CPacket(FriendlyByteBuf buf){
         this.nbt = buf.readNbt();
     }
-    public FragmentsC2SPacket(CompoundTag nbt){
+    public FragmentsS2CPacket(CompoundTag nbt){
         //ReChroma.LOGGER.error("right constructor");
         this.nbt = nbt;
     }

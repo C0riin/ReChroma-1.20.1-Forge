@@ -1,10 +1,12 @@
 package net.coriin.rechroma.events;
 
-import net.coriin.rechroma.PlayerKnowledgeSystem.flags.PlayerFragmentsProvider;
-import net.coriin.rechroma.PlayerKnowledgeSystem.fragments.PlayerFlagsCapability;
-import net.coriin.rechroma.PlayerKnowledgeSystem.fragments.PlayerFlagsProvider;
-import net.coriin.rechroma.PlayerKnowledgeSystem.ReChromaKnowledgeHelper;
+import net.coriin.rechroma.capability.PlayerKnowledgeSystem.flags.PlayerFragmentsProvider;
+import net.coriin.rechroma.capability.PlayerKnowledgeSystem.fragments.PlayerFlagsCapability;
+import net.coriin.rechroma.capability.PlayerKnowledgeSystem.fragments.PlayerFlagsProvider;
+import net.coriin.rechroma.auxiliary.ReChromaCapabilityHelper;
 import net.coriin.rechroma.ReChroma;
+import net.coriin.rechroma.capability.colors.PlayerEnergyCapability;
+import net.coriin.rechroma.capability.colors.PlayerEnergyProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -28,6 +30,9 @@ public class ModEventHandler {
             if (!event.getObject().getCapability(PlayerFragmentsProvider.PLAYER_FRAGMENTS).isPresent()) {
                 event.addCapability(new ResourceLocation(ReChroma.MOD_ID, "fragments_cap"), new PlayerFragmentsProvider());
             }
+            if (!event.getObject().getCapability(PlayerEnergyProvider.PLAYER_ENERGY).isPresent()) {
+                event.addCapability(new ResourceLocation(ReChroma.MOD_ID, "energy_cap"), new PlayerEnergyProvider());
+            }
         }
     }
 
@@ -45,22 +50,24 @@ public class ModEventHandler {
                 });
             });
         }
+
     }
 
     @SubscribeEvent
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
         event.register(PlayerFlagsCapability.class);
         event.register(PlayerFragmentsProvider.class);
+        event.register(PlayerEnergyCapability.class);
     }
 
     @SubscribeEvent
     public static void syncCap(EntityJoinLevelEvent event) {
-        if (event.getEntity() instanceof ServerPlayer) { // && Minecraft.getInstance().getConnection() != null
-            ReChromaKnowledgeHelper.syncFlags((ServerPlayer) event.getEntity());
-            ReChromaKnowledgeHelper.syncFragments((ServerPlayer) event.getEntity());
+        if (event.getEntity() instanceof ServerPlayer pServerPlayer) { // && Minecraft.getInstance().getConnection() != null
+            ReChromaCapabilityHelper.syncFlags(pServerPlayer);
+            ReChromaCapabilityHelper.syncFragments(pServerPlayer);
+            ReChromaCapabilityHelper.SyncEnergy(pServerPlayer);
         }
     }
-
 
 
 }

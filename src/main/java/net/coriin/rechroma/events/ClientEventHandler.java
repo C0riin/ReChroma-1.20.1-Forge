@@ -2,8 +2,7 @@ package net.coriin.rechroma.events;
 
 import com.mojang.logging.LogUtils;
 import net.coriin.rechroma.ReChroma;
-import net.coriin.rechroma.auxiliary.ReChromaHelper;
-import net.coriin.rechroma.block.entity.ModBlockEntities;
+import net.coriin.rechroma.block.ModBlockEntities;
 import net.coriin.rechroma.fluid.ModFluids;
 import net.coriin.rechroma.particles.ModParticles;
 import net.coriin.rechroma.particles.custom.BezierCrystalsAttackParticle;
@@ -12,19 +11,14 @@ import net.coriin.rechroma.renderer.blockentity.VoidReedsBlockEntityRenderer;
 import net.coriin.rechroma.screen.CastingTableScreen;
 import net.coriin.rechroma.screen.ModMenuTypes;
 import net.coriin.rechroma.screen.lexicon.LexiconFragmentScreen;
-import net.coriin.rechroma.util.IProgressViewable;
 import net.coriin.rechroma.util.OverlayRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.core.particles.ParticleType;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.client.event.RenderHighlightEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -75,7 +69,5 @@ public class ClientEventHandler {
         //event.registerSpecial(ModParticles.BEZIER_CRYSTALS_ATTACK_PARTICLES.get(), BezierCrystalsAttackParticle.Provider::new);
         Minecraft.getInstance().particleEngine.register(ModParticles.BEZIER_CRYSTALS_ATTACK_PARTICLE.get(), BezierCrystalsAttackParticle.Provider::new);
     }
-
-
 
 }

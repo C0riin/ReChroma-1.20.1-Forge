@@ -2,6 +2,7 @@ package net.coriin.rechroma.block.entity;
 
 import net.coriin.rechroma.auxiliary.StructureHelper;
 import net.coriin.rechroma.auxiliary.WorldHelper;
+import net.coriin.rechroma.block.ModBlockEntities;
 import net.coriin.rechroma.block.custom.RuneBlock;
 import net.coriin.rechroma.recipe.CastingRecipe;
 import net.coriin.rechroma.screen.CastingTableMenu;
@@ -83,22 +84,19 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
         };
     }
 
-    @Override
-    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+    @Override public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if(cap == ForgeCapabilities.ITEM_HANDLER){
             return lazyItemHandler.cast();
         }
         return super.getCapability(cap, side);
     }
 
-    @Override
-    public void onLoad() {
+    @Override public void onLoad() {
         super.onLoad();
         //lazyItemHandler = LazyOptional.of(() -> itemHandler);
     }
 
-    @Override
-    public void invalidateCaps() {
+    @Override public void invalidateCaps() {
         super.invalidateCaps();
         lazyItemHandler.invalidate();
     }
@@ -127,9 +125,7 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
     }
     @Override public void handleUpdateTag(CompoundTag tag) { load(tag); }
 
-
-    @Override
-    public Component getDisplayName() {
+    @Override public Component getDisplayName() {
         return Component.translatable("block.rechroma.casting_table");
     }
 
@@ -139,16 +135,13 @@ public class CastingTableBlockEntity extends BlockEntity implements MenuProvider
         return new CastingTableMenu(pCointainerid, inventory, this, this.data);
     }
 
-    @Override
-    protected void saveAdditional(CompoundTag pTag) {
+    @Override protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
         pTag.putInt("casting_table.progress", progress);
         pTag.putBoolean("casting_table.docrafting", doCrafting);
         super.saveAdditional(pTag);
     }
-
-    @Override
-    public void load(CompoundTag pTag) {
+    @Override public void load(CompoundTag pTag) {
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
         progress = pTag.getInt("casting_table.progress");

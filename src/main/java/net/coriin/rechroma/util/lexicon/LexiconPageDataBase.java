@@ -30,7 +30,6 @@ public class LexiconPageDataBase {
     }
 
 
-
     public LexiconArticleScreenBase GetScreen(){
         return new LexiconArticleScreenBase(this);
     }

@@ -1,26 +1,26 @@
-package net.coriin.rechroma.network.packet;
+package net.coriin.rechroma.network.packet.toServer;
 
-import net.coriin.rechroma.PlayerKnowledgeSystem.fragments.PlayerFlagsProvider;
 import net.coriin.rechroma.ReChroma;
-import net.minecraft.client.Minecraft;
+import net.coriin.rechroma.auxiliary.ReChromaCapabilityHelper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class FlagsC2SPacket {
+public class FlagsSyncC2SPacket {
 
     CompoundTag nbt;
 
 
-    public FlagsC2SPacket(){
+    public FlagsSyncC2SPacket(){
     }
 
-    public FlagsC2SPacket(FriendlyByteBuf buf){
+    public FlagsSyncC2SPacket(FriendlyByteBuf buf){
         this.nbt = buf.readNbt();
     }
-    public FlagsC2SPacket(CompoundTag nbt){
+    public FlagsSyncC2SPacket(CompoundTag nbt){
         //ReChroma.LOGGER.error("right constructor");
         this.nbt = nbt;
     }
@@ -32,11 +32,12 @@ public class FlagsC2SPacket {
     public void handlePacket(Supplier<NetworkEvent.Context> supplier){
         NetworkEvent.Context ctx = supplier.get();
 
-        ctx.enqueueWork(() -> {
+        ServerPlayer pPlayer = ctx.getSender();
 
-            Minecraft.getInstance().player.getCapability(PlayerFlagsProvider.PLAYER_KNOWLEDGE).ifPresent(clientKnowledge -> {
-                clientKnowledge.loadNBTData(nbt);
-            });
+        if(pPlayer == null) {ReChroma.LOGGER.info("Fuck this shit player null again flags");}
+
+        ctx.enqueueWork(() -> {
+            ReChromaCapabilityHelper.syncFlags(pPlayer);
         });
         ctx.setPacketHandled(true);
     }

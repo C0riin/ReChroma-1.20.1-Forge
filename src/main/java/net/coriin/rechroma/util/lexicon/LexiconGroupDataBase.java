@@ -20,7 +20,7 @@ public class LexiconGroupDataBase {
 
     public LexiconGroupDataBase(final Component name, List<LexiconPageDataBase> pages) {
         this.name = name;
-        this.pages = pages;
+        this.pages.addAll(pages);
         this.pagesPerLine = 4;
     }
 
@@ -28,6 +28,10 @@ public class LexiconGroupDataBase {
         this.name = name;
         this.pages.addAll(Arrays.stream(pages).toList());
         this.pagesPerLine = pagesPerLine;
+    }
+
+    public LexiconGroupDataBase GetFullCopy(){
+        return new LexiconGroupDataBase(this.name, this.pages);
     }
 
 }

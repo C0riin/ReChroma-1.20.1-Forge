@@ -1,10 +1,8 @@
-package net.coriin.rechroma.network.packet;
+package net.coriin.rechroma.network.packet.toClient;
 
 import net.coriin.rechroma.auxiliary.RechromaMathHelper;
 import net.coriin.rechroma.item.custom.BezierCrystalsItem;
-import net.coriin.rechroma.item.custom.ChromaticLexicon;
 import net.coriin.rechroma.particles.ModParticles;
-import net.coriin.rechroma.screen.lexicon.LexiconMainPageScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.phys.Vec3;

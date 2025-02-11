@@ -56,6 +56,9 @@ public class ModBlocks {
             ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
     public static final RegistryObject<Block> CRYSTALLINE_ENERGY_STABILIZER = registerBlock("crystalline_energy_stabilizer",
             ()-> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)));
+    public static final RegistryObject<Block> PYLON_CORE = registerBlock("pylon_core",
+            ()-> new PylonCoreBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).mapColor(MapColor.ICE)));
+
 
 
     public static final RegistryObject<Block> TRAVEL_PATH = registerBlock("travel_path",

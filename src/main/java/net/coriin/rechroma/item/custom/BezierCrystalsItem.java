@@ -2,7 +2,7 @@ package net.coriin.rechroma.item.custom;
 
 import net.coriin.rechroma.auxiliary.RechromaMathHelper;
 import net.coriin.rechroma.network.ModMessages;
-import net.coriin.rechroma.network.packet.RenderBezierCurveS2ACPacket;
+import net.coriin.rechroma.network.packet.toClient.RenderBezierCurveS2ACPacket;
 import net.coriin.rechroma.sounds.ModSounds;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -36,8 +36,7 @@ public class BezierCrystalsItem extends Item {
         super(pProperties);
     }
 
-    @Override
-    public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
+    @Override public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
         if(pLivingEntity instanceof Player pPlayer){
             if(!pLevel.isClientSide){
                 if(tickElapsed >= ticksBetweenAttacks){
@@ -58,8 +57,7 @@ public class BezierCrystalsItem extends Item {
 
     }
 
-    @Override
-    public void onStopUsing(ItemStack stack, LivingEntity entity, int count) {
+    @Override public void onStopUsing(ItemStack stack, LivingEntity entity, int count) {
 
         if(entity instanceof Player player && tickElapsed > 40){
             player.getCooldowns().addCooldown(this,100);
@@ -69,15 +67,13 @@ public class BezierCrystalsItem extends Item {
         super.onStopUsing(stack, entity, count);
     }
 
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+    @Override public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         pPlayer.startUsingItem(pUsedHand);
 
         return super.use(pLevel, pPlayer, pUsedHand);
     }
 
-    @Override
-    public int getUseDuration(ItemStack pStack) {
+    @Override public int getUseDuration(ItemStack pStack) {
         return 72000;
     }
 

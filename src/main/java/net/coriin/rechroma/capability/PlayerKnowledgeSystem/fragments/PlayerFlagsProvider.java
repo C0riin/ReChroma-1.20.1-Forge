@@ -1,6 +1,6 @@
-package net.coriin.rechroma.PlayerKnowledgeSystem.fragments;
+package net.coriin.rechroma.capability.PlayerKnowledgeSystem.fragments;
 
-import net.coriin.rechroma.PlayerKnowledgeSystem.ReChromaKnowledgeHelper;
+import net.coriin.rechroma.auxiliary.ReChromaCapabilityHelper;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.capabilities.Capability;
@@ -24,7 +24,7 @@ public class PlayerFlagsProvider implements ICapabilityProvider, INBTSerializabl
         if(this.playerFragmentsCapability == null){
             this.playerFragmentsCapability = new PlayerFlagsCapability();
         }
-        ReChromaKnowledgeHelper.InitKnowledge(this.playerFragmentsCapability);
+        ReChromaCapabilityHelper.InitKnowledge(this.playerFragmentsCapability);
         return this.playerFragmentsCapability;
     }
 
